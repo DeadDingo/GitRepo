@@ -1,0 +1,109 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf400
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww15560\viewh8860\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qr
+
+\f0\fs24 \cf0 Josh Harshman\
+cscd240 \
+Lab7\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc
+\cf0 Lab 7\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 1.  \
+a.  What is the size of ptr? \
+-The size of the pointer variable ptr is 8.\
+\
+b.  What is the size of twod?\
+-The size of twod is 48 --maybe?  sizeof(twod) does return 48.\
+\
+c.  What is the size of twod[0] and why?\
+-The size of twod[0] is 12 because it is a 4x3 array.  4x3=12.\
+\
+d.  What is the size of twod[0][0]?\
+-The size of twod[0][0] is 4.\
+\
+e.  What can you say about twod and towd[0] as it relates to the name of the array?\
+- twod is the name of the array and can be used as a pointer to the base address of the array.\
+twod[0] is the value at the base address of the array so &towd[0] should have the same address as\
+twod.\
+\
+f.  Draw a memory map that shows the memory locations of each element of the array and of ptr\
+\
+Address	|	value\
+------------------------------\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 0x7fffa46b3790	0	-> 	\{0x200, 1\} \{0x204, 2\}\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 ------------------------------\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 0x7fffa46b3794	10	->	\{0x300, 11\} \{0x304, 12\}\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 ------------------------------\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 0x7fffa46b3798	20	->	\{0x400, 21\} \{0x404, 22\}\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 ------------------------------\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 0x7fffa46b379c	30	->	\{0x500, 31\} \{0x504, 32\}\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 ------------------------------\
+\'85\
+------------------------------\
+\'85\
+-----------------------------------------------------\
+0x7fff24a09cd8	ptr=0x7fffa46b3790\
+------------------------------------------------------\
+\
+2.  \
+\
+printf("twod + 3 is: %p\\n", twod + 3); \
+Guess:  Type is a pointer.  The pointer is being incremented by 3 and then being printed. The memory address will be 0x7fffa46b379c\
+--Correct Guess\
+printf("*(*(twod + 1)) is: %d\\n", *(*(twod + 1))); \
+Guess:  Type will be a decimal.  The base address of the array is being temporarily incremented by 1. It will print the value at index 1 of the array which is 10\
+--Correct Guess\
+printf("*twod + 1 is: %p\\n", *twod+1);\
+Guess:  Type will be a pointer.  The array name (which is acting as a pointer) will be incremented by 1, to the next contiguous memory space.  This will print the address of index 1 of the array.  The address will be 0x7fffa46b3794\
+--Correct Guess\
+printf("*twod[2] is: %d\\n", *twod[2]); \
+Guess:  Type will be a decimal.  The array name is being dereferenced at index 2.  This will print the value of the twod array at index 2 which is 20.\
+--Correct Guess\
+printf("*(twod + 2) + 2 is: %p\\n", *(twod + 2) + 2); \
+Guess:  This will be a pointer.  It will print address of the array at index [2][2].  Which according to my memory map above will be 0x404\
+--Correct Guess\
+printf("twod[1] is: %p\\n", twod[1]);\
+Guess:  This will be a pointer.  It will print the address that twod[1] points to.  The address will be 0x7fffa46b3794\
+--Correct Guess \
+printf("twod[1][2] is: %d\\n", twod[1][2]); \
+Guess:  This will be a decimal.  It is resolving the sub rows and cols of the 2 dim array.  It will print out the value held at the index [1][2] in the 2dim array twod.  The value will be 12\
+--Correct Guess\
+ \
+printf("ptr %p\\n", ptr);\
+Guess:  This will be a pointer.  Not to be confused with &ptr which is the address at which the actual pointer variable ptr is stored, this will print out the address which it points to which is the base address of the 2d array 0x7fffa46b3790\
+--Correct Guess\
+printf("twod [1] %p\\n", twod [1]);\
+Guess:  This will be a pointer.  It will print the address that twod[1] points to.  The address will be 0x7fffa46b3794\
+--Correct Guess\
+printf("ptr[1] %?\\d", ptr[1]);\
+Guess:  This will be a decimal.  It will print out the value that ptr[1] points to which is 1\
+--Correct Guess \
+printf("ptr + 1 %p\\n", ptr + 1);\
+Guess:  This will be a pointer.  This will increment the address that ptr points to, to the next memory address in contiguous memory.  It will print the memory address that ptr+1 points to which is 0x200 (according to my memory map)\
+--Correct Guess\
+printf("*(ptr + 1) %d\\n", *(ptr + 1) ); \
+Guess:  This will be a decimal. It will increment the address that the pointer variable points to by 4 bytes and print the value held at that address.  It will print the value at the memory address that ptr+1 points to which is 1.  ptr[1] yields same result.\
+--Correct guess\
+printf("twod + 1 %p\\n", twod+1); \
+Guess:  Will be a pointer.  Will print the address of the array at index 1 which is 0x7fffa46b3794\
+--Correct Guess\
+printf("*twod + 1 %p\\n", *twod + 1); \
+Guess:  WIll be a pointer.  Will print the address of the array at index [0][1].  According to my memory map this will be 0x200\
+--Correct Guess\
+printf("ptr[8] %d\\n", ptr[8]); \
+Guess:  This will print a decimal.  Since ptr points to the base address of the array, and the values are stored in contiguous memory, ptr sub 8 will print the value held at index 8 of the array which is 22.\
+--Correct Guess\
+\
+}
