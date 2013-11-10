@@ -101,6 +101,7 @@ void function6(int (*twod)[3], int rows, int cols) {
   printf("\n");
 
 }
+
 int main(void) {
 
   int twod[4][3] = { {0,1,2}, {10,11,12}, {20,21,22}, {30,31,32} };
@@ -154,6 +155,8 @@ int main(void) {
   function4(twod[0], 4, 3);
   function5(twod[0], 4, 3);
   function6(twod, 4, 3);
+  //-------
+
   return 0;
 
 }

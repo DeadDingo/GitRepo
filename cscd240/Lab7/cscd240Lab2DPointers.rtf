@@ -193,4 +193,15 @@ My guess is that the warning about incompatible pointer types comes from passing
 10.  Function added\
 output:\
 \
-}
+0 1 2 \
+10 11 12 \
+20 21 22 \
+30 31 32 \
+\
+11.  In the expression *(twod[3]), the twod[3] portion of the statement is evaluated first because of order of precedence.  This will evaluate to point to the equivalent position of twod[3][0].  The expression is then dereferenced to get the value at that index.  If executed in this context, the value would return 30.  On the other hand, in the expression (*towd)[3], the *twod portion of the statement is evaluated first because order of precedence.  This dereferences the value that the base address.  The rest of the expression is then evaluated and ends up returning a 10 as the value.  This is because the memory the array is stored in is contiguous and hence one is able to iterate through it linearly in this context.\
+\
+12.  Yes you can pass the two dimensional array (twod), to a function with the prototype "void function7(int **twod, int rows, int cols)".  The 2 dimensional array is an array of pointers to pointers already, but the compiler will generate incompatible pointer type warnings if you try to do this without casting to a pointer - to pointer - to pointer.  In order to modify **, you need ***.\
+\
+13.  Much of the functionality stays the same when you pass an array by pointer or by square brackets.  Technically the array name and a pointer to the array are the same thing, except the pointer is more flexible in that it is not a constant.  When passing the pointer of a 2d array by first dereferencing the 2d array into a 1d pointer, the process of iterating through the array becomes a lot more linear in a function.  This is in contrast to passing it by brackets in which the process for iterating through the 2d array requires 2 nested for loops.  When passing by brackets however, you must give the number of columns so the function can know the width of the array.  The number of rows and overall size can be omitted because the function does not need to allocate space for the array as it was already declared explicitly.\
+\
+14.  }
