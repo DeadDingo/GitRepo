@@ -1,5 +1,106 @@
 #include <stdio.h>
 
+void function1(int array[][3], int rows, int cols);
+void function2(int array[][3], int rows, int cols);
+void function3(int array[], int rows, int cols);
+void function4(int array[], int rows, int cols);
+void function5(int * array, int rows, int cols);
+void function6(int (*twod)[3], int rows, int cols);
+
+//=====================================================
+
+void function1(int array[][3], int rows, int cols) {
+
+  int i;
+  int j;
+  for(i=0;i<rows;i++) {
+    for (j=0;j<cols;j++) {
+      printf("%-d ", array[i][j]);
+    }
+    printf("\n");
+  }
+
+  printf("\n");
+
+}
+void function2(int array[][3], int rows, int cols) {
+
+  int i, j;
+  for( i = 0; i < rows ; i++ ) {
+    for( j = cols-1; j >= 0; j-- ) {
+      printf("%-d " , array[i][j]);
+    }
+    printf("\n");
+  }
+
+  printf("\n");
+}
+void function3(int array[], int rows, int cols) {
+
+  int i, j;
+  int size = rows * cols;
+  i = 0;
+  while(i < size) {
+    for(j = 0; j < cols; j++) {
+      printf("%-d ", array[i]);
+      i++;
+    }
+    printf("\n");;
+
+  }
+
+
+  printf("\n");
+}
+void function4(int array[], int rows, int cols) {
+
+  int *ptr, i, j, size;
+  size = rows*cols;
+  ptr = &array[0];
+  i = 0;
+  while(i < size) {
+    for(j = cols-1; j >= 0; j--) {
+      int k = i+j;
+      printf("%-d ", *(ptr+k));
+    }
+    i+=3;
+    printf("\n");
+  }
+  printf("\n");
+
+}
+void function5(int * array, int rows, int cols) {
+
+  int i, j, size;
+
+  size = rows*cols;
+  i=0;
+  while(i < size) {
+    for(j = cols-1; j >=0; j--) {
+      int k = i+j;
+      printf("%-d ", array[k]);
+    }
+    i+=3;
+    printf("\n");
+
+  }
+  printf("\n");
+
+
+}
+void function6(int (*twod)[3], int rows, int cols) {
+
+  int i, j;
+  
+  for(i = 0; i < rows; i++) {
+    for(j = 0; j < cols; j++) {
+      printf("%-d ", twod[i][j]);
+    }
+    printf("\n");
+  }
+  printf("\n");
+
+}
 int main(void) {
 
   int twod[4][3] = { {0,1,2}, {10,11,12}, {20,21,22}, {30,31,32} };
@@ -47,6 +148,12 @@ int main(void) {
 
   //--------------------------------
 
-  
+  function1(twod, 4, 3);
+  function2(twod, 4, 3);
+  function3(twod[0], 4, 3);
+  function4(twod[0], 4, 3);
+  function5(twod[0], 4, 3);
+  function6(twod, 4, 3);
+  return 0;
 
 }

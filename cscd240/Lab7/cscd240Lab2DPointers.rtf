@@ -106,4 +106,91 @@ printf("ptr[8] %d\\n", ptr[8]); \
 Guess:  This will print a decimal.  Since ptr points to the base address of the array, and the values are stored in contiguous memory, ptr sub 8 will print the value held at index 8 of the array which is 22.\
 --Correct Guess\
 \
+\
+\
+3.\
+\
+a.  Done\
+\
+b.  DeadDingos-MacBook-Air:Lab7 dingo$ ./a.out \
+sizeof(ptr) 8\
+sizeof(twod[0]) 12\
+sizeof(twod[0][0]) 4\
+twod 0x7fff5d9fbbc0\
+ptr 0x7fff5d9fbbc0\
+&twod[0] 0x7fff5d9fbbc0\
+&twod[0][0] 0x7fff5d9fbbc0\
+&twod[0][1] 0x7fff5d9fbbc4\
+&twod[0][2] 0x7fff5d9fbbc8\
+&twod[1] 0x7fff5d9fbbcc\
+&ptr 0x7fff5d9fbbb8\
+\
+\
+twod + 3 is: 0x7fff5d9fbbe4\
+*(*(twod+1)) is: 10\
+*twod + 1 is: 0x7fff5d9fbbc4\
+*towd[2] is: 20\
+*(twod+2)+2 is: 0x7fff5d9fbbe0\
+twod[1] is: 0x7fff5d9fbbcc\
+twod[1][2] is: 12\
+\
+ptr 0x7fff5d9fbbc0\
+twod[1] 0x7fff5d9fbbcc\
+ptr[1] 1\
+ptr + 1 0x7fff5d9fbbc4\
+*(ptr + 1) 1\
+twod+1 0x7fff5d9fbbcc\
+*twod+1 0x7fff5d9fbbc4\
+value: 1570749380\
+ptr[8] 22\
+\
+c.  Done.  Refer to question 2\
+\
+4.  No, the code will not compile as it is not a valid printf statement.  There are no arguments, only variable formatters.  No closing parenthesis, and no semicolon.\
+\
+5.  Function added.\
+output:\
+\
+0 1 2 \
+10 11 12 \
+20 21 22 \
+30 31 32 \
+\
+6.  Function added.\
+output:\
+\
+2 1 0 \
+12 11 10 \
+22 21 20 \
+32 31 30 \
+\
+7.  Function added\
+output:\
+\
+0 1 2 \
+10 11 12 \
+20 21 22 \
+30 31 32 \
+\
+8. Function added\
+output:\
+2 1 0 \
+12 11 10 \
+22 21 20 \
+32 31 30 \
+\
+9.  Function added.\
+output:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 2 1 0 \
+12 11 10 \
+22 21 20 \
+32 31 30 \
+\
+My guess is that the warning about incompatible pointer types comes from passing a pointer into a function expecting a different type of pointer.\
+\
+10.  Function added\
+output:\
+\
 }
