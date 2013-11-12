@@ -3,7 +3,7 @@
 //  cscd240PGM
 //
 //  Created by Josh Harshman
-//
+//  All rights reserved.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,8 +23,8 @@ void usage( void ) {
 
 int main(int argc, const char * argv[]) {
   int i, j;
-  int flag1 = 0; //-e switch
-  int flag2 = 0; //-c switch
+  int flag1 = 0; //-e switch (edge draw)
+  int flag2 = 0; //-c switch (circle draw)
   int numRows, numCols;
   
   char **header;
@@ -47,7 +47,18 @@ int main(int argc, const char * argv[]) {
     }
 
   }
-  //Will have to move switch statment in final program
+
+
+  //read pgm file with pgmRead() function
+  //content = pgmRead(&header[0], &numRows, &numCols);
+
+  /*To test what I have working so far.  Gonna print the information I have
+   * */
+  printf("%d\n", numRows);
+  printf("%d\n", numCols);
+
+  //free(content);
+
   switch(flag1) {
   case 1 :
     if(flag2 == 1) {
@@ -68,13 +79,8 @@ int main(int argc, const char * argv[]) {
     break;
 
   }
-    
-  //Done with argument parsing
 
 
-  //read pgm file with pgmRead( ) function.
-  
-  content = pgmRead(header[0], &numRows, &numCols);
 
     // write your code here
     
