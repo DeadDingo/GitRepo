@@ -21,28 +21,11 @@
 
 
 int ** pgmRead(char ** header, int *numRows, int *numCols) {
-  int i, j;
+  int r, c;
   int **content;
-  //get header information
-  for(i = 0; i < ROWS; i ++) {
-    for(j = 0; j < COLS; j ++) {
-      scanf("%c ", header[i][j] );
-    }
-  }
-  *numRows = *(*(header + 2) + 0);
-  *numCols = *(*(header + 2) + 1);
 
-  //dynamically allocate memory for pixel map and populate
-  content = (int **)malloc(*numRows * sizeof(int));
-  for(i = 0; i < *numRows; i ++) {
-    for(j = 0; j < *numCols; j ++) {
-      content[i] = (int *)malloc(*numCols * sizeof(int));
-      scanf("%d ", *(*(content + i) +j) );
-    }
-  }
 
   return content;
-
 }
 int pgmDrawCircle(int **pixels, int numRows, int numCols, int centerRow, int centerCol, int radius, char **header) {
 

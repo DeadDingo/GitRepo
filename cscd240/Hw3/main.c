@@ -50,14 +50,16 @@ int main(int argc, const char * argv[]) {
 
 
   //read pgm file with pgmRead() function
-  //content = pgmRead(&header[0], &numRows, &numCols);
+  content = pgmRead(&header[0], &numRows, &numCols);
 
   /*To test what I have working so far.  Gonna print the information I have
    * */
   printf("%d\n", numRows);
   printf("%d\n", numCols);
 
-  //free(content);
+
+
+
 
   switch(flag1) {
   case 1 :
