@@ -11,6 +11,9 @@
 
 #include "pgmUtility.h"
 
+#define ROWS 4  //Move to pgmUtility.c
+#define COLS 200 //move to pgmUtility.c
+
 void usage( void ) {
   printf("Usage\n");
   printf(" -h Help Dialog");
@@ -21,12 +24,16 @@ void usage( void ) {
 
 
 int main(int argc, const char * argv[]) {
-  int i;
+  int i, j;
   int flag1 = 0; //-e switch
   int flag2 = 0; //-c switch
+  int numRows, numCols;
+  
+  char header[ROWS][COLS];
+  int **content;
 
   //command line argument parsing
-
+  //turn flag switches on or off
   for(i = 1; i < argc; i++) {
 
     if(strncmp(argv[i], "-e", 2) == 0) {
@@ -38,13 +45,11 @@ int main(int argc, const char * argv[]) {
       flag2 = 1;
     }
     if(strncmp(argv[i], "-h", 2) == 0) {
-      //print an optional help dialog
+      usage();
     }
 
   }
-
-  // write you code here
- 
+  //Will have to move switch statment in final program
   switch(flag1) {
   case 1 :
     if(flag2 == 1) {
@@ -66,7 +71,22 @@ int main(int argc, const char * argv[]) {
 
   }
     
-    // read in picture
+  //Done with argument parsing
+
+  //Read the header of the PGM file
+  for(i = 0; i < ROWS; i++) {
+    for(j = 0; j < COLS; j++) {
+      scanf("%c", &header[i][j]);
+    }
+  }
+
+  numRows = header[2][0];
+  numCols = header[2][1];
+
+
+  //read pgm file with pgmRead( ) function
+  content = pgmRead(header, numRows, numCols);
+
     // write your code here
     
     // draw

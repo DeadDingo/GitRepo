@@ -18,8 +18,25 @@
 
 
 int ** pgmRead(char ** header, int *numRows, int *numCols) {
+  
+  //This should return the header and numRows, and numCols.  Pass by reference instead of value
 
-  //function
+  int i, j;
+  int **content;
+  //allocate space for the array
+  content = (int **)malloc(*numRows * sizeof(int));
+  for(i = 0; i < *numCols; i ++) {
+    content[i] = (int *)malloc(*numCols * sizeof(int));
+  }
+
+  //populate
+  for(i = 0; i < *numRows; i ++) {
+    for(j = 0; j < *numCols; j ++) {
+      scanf("%d ", content[i][j]);
+    }
+  }
+
+  return content;
 
 }
 int pgmDrawCircle(int **pixels, int numRows, int numCols, int centerRow, int centerCol, int radius, char **header) {
