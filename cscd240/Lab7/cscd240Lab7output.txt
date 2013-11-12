@@ -1,0 +1,61 @@
+gcc cscd240Lab7.c
+./a.out
+sizeof(ptr) 8
+sizeof(twod[0]) 12
+sizeof(twod[0][0]) 4
+twod 0x7fff57d83b80
+ptr 0x7fff57d83b80
+&twod[0] 0x7fff57d83b80
+&twod[0][0] 0x7fff57d83b80
+&twod[0][1] 0x7fff57d83b84
+&twod[0][2] 0x7fff57d83b88
+&twod[1] 0x7fff57d83b8c
+&ptr 0x7fff57d83b78
+
+
+twod + 3 is: 0x7fff57d83ba4
+*(*(twod+1)) is: 10
+*twod + 1 is: 0x7fff57d83b84
+*towd[2] is: 20
+*(twod+2)+2 is: 0x7fff57d83ba0
+twod[1] is: 0x7fff57d83b8c
+twod[1][2] is: 12
+
+ptr 0x7fff57d83b80
+twod[1] 0x7fff57d83b8c
+ptr[1] 1
+ptr + 1 0x7fff57d83b84
+*(ptr + 1) 1
+twod+1 0x7fff57d83b8c
+*twod+1 0x7fff57d83b84
+ptr[8] 22
+0 1 2 
+10 11 12 
+20 21 22 
+30 31 32 
+
+2 1 0 
+12 11 10 
+22 21 20 
+32 31 30 
+
+0 1 2 
+10 11 12 
+20 21 22 
+30 31 32 
+
+2 1 0 
+12 11 10 
+22 21 20 
+32 31 30 
+
+2 1 0 
+12 11 10 
+22 21 20 
+32 31 30 
+
+0 1 2 
+10 11 12 
+20 21 22 
+30 31 32 
+

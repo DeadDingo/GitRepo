@@ -202,6 +202,69 @@ output:\
 \
 12.  Yes you can pass the two dimensional array (twod), to a function with the prototype "void function7(int **twod, int rows, int cols)".  The 2 dimensional array is an array of pointers to pointers already, but the compiler will generate incompatible pointer type warnings if you try to do this without casting to a pointer - to pointer - to pointer.  In order to modify **, you need ***.\
 \
-13.  Much of the functionality stays the same when you pass an array by pointer or by square brackets.  Technically the array name and a pointer to the array are the same thing, except the pointer is more flexible in that it is not a constant.  When passing the pointer of a 2d array by first dereferencing the 2d array into a 1d pointer, the process of iterating through the array becomes a lot more linear in a function.  This is in contrast to passing it by brackets in which the process for iterating through the 2d array requires 2 nested for loops.  When passing by brackets however, you must give the number of columns so the function can know the width of the array.  The number of rows and overall size can be omitted because the function does not need to allocate space for the array as it was already declared explicitly.\
+13.  Much of the functionality stays the same when you pass an array by pointer or by square brackets.  Technically the array name and a pointer to the array are the same thing, except the pointer is more flexible in that it is not a constant.  When passing the pointer of a 2d array by first dereferencing the 2d array into a 1d pointer, the process of iterating through the array becomes a lot more linear in a function.  This is in contrast to passing it by brackets in which the process for iterating through the 2d array requires 2 nested for loops.  When passing by brackets however, xyou must give the number of columns so the function can know the width of the array.  The number of rows and overall size can be omitted because the function does not need to allocate space for the array as it was already declared explicitly.\
 \
-14.  }
+14.  \
+DeadDingos-MacBook-Air:Lab7 dingo$ make\
+gcc cscd240Lab7.c\
+./a.out\
+sizeof(ptr) 8\
+sizeof(twod[0]) 12\
+sizeof(twod[0][0]) 4\
+twod 0x7fff59181b80\
+ptr 0x7fff59181b80\
+&twod[0] 0x7fff59181b80\
+&twod[0][0] 0x7fff59181b80\
+&twod[0][1] 0x7fff59181b84\
+&twod[0][2] 0x7fff59181b88\
+&twod[1] 0x7fff59181b8c\
+&ptr 0x7fff59181b78\
+\
+\
+twod + 3 is: 0x7fff59181ba4\
+*(*(twod+1)) is: 10\
+*twod + 1 is: 0x7fff59181b84\
+*towd[2] is: 20\
+*(twod+2)+2 is: 0x7fff59181ba0\
+twod[1] is: 0x7fff59181b8c\
+twod[1][2] is: 12\
+\
+ptr 0x7fff59181b80\
+twod[1] 0x7fff59181b8c\
+ptr[1] 1\
+ptr + 1 0x7fff59181b84\
+*(ptr + 1) 1\
+twod+1 0x7fff59181b8c\
+*twod+1 0x7fff59181b84\
+ptr[8] 22\
+0 1 2 \
+10 11 12 \
+20 21 22 \
+30 31 32 \
+\
+2 1 0 \
+12 11 10 \
+22 21 20 \
+32 31 30 \
+\
+0 1 2 \
+10 11 12 \
+20 21 22 \
+30 31 32 \
+\
+2 1 0 \
+12 11 10 \
+22 21 20 \
+32 31 30 \
+\
+2 1 0 \
+12 11 10 \
+22 21 20 \
+32 31 30 \
+\
+0 1 2 \
+10 11 12 \
+20 21 22 \
+30 31 32 \
+\
+}
