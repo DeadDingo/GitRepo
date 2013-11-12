@@ -11,6 +11,9 @@
 
 #include "pgmUtility.h"
 
+#define ROWS 4
+#define COLS 100
+
 
 // implement or define each function prototypes listed in pgmUtility.h file.
 // NOTE: You can NOT change the input, output, and argument type of the functions in pgmUtility.h
@@ -18,21 +21,23 @@
 
 
 int ** pgmRead(char ** header, int *numRows, int *numCols) {
-  
-  //This should return the header and numRows, and numCols.  Pass by reference instead of value
-
   int i, j;
   int **content;
-  //allocate space for the array
-  content = (int **)malloc(*numRows * sizeof(int));
-  for(i = 0; i < *numCols; i ++) {
-    content[i] = (int *)malloc(*numCols * sizeof(int));
+  //get header information
+  for(i = 0; i < ROWS; i ++) {
+    for(j = 0; j < COLS; j ++) {
+      scanf("%c ", *(*(header + i) + j) );
+    }
   }
+  *numRows = *(*(header + 2) + 0);
+  *numCols = *(*(header + 2) + 1);
 
-  //populate
-  for(i = 0; i < *numRows; i ++) {
+  //dynamically allocate memory for pixel map and populate
+  content = (int **)malloc(*numRows * sizeof(int));
+  for(i = 0; i < numRows; i ++) {
     for(j = 0; j < *numCols; j ++) {
-      scanf("%d ", content[i][j]);
+      content[i] = (int *)malloc(*numCols * sizeof(int));
+      scanf("%d ", *(*(content + i) +j) );
     }
   }
 

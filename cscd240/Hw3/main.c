@@ -11,8 +11,6 @@
 
 #include "pgmUtility.h"
 
-#define ROWS 4  //Move to pgmUtility.c
-#define COLS 200 //move to pgmUtility.c
 
 void usage( void ) {
   printf("Usage\n");
@@ -29,7 +27,7 @@ int main(int argc, const char * argv[]) {
   int flag2 = 0; //-c switch
   int numRows, numCols;
   
-  char header[ROWS][COLS];
+  char **header;
   int **content;
 
   //command line argument parsing
@@ -73,19 +71,10 @@ int main(int argc, const char * argv[]) {
     
   //Done with argument parsing
 
-  //Read the header of the PGM file
-  for(i = 0; i < ROWS; i++) {
-    for(j = 0; j < COLS; j++) {
-      scanf("%c", &header[i][j]);
-    }
-  }
 
-  numRows = header[2][0];
-  numCols = header[2][1];
-
-
-  //read pgm file with pgmRead( ) function
-  content = pgmRead(header, numRows, numCols);
+  //read pgm file with pgmRead( ) function.
+  
+  content = pgmRead(header[0], &numRows, &numCols);
 
     // write your code here
     
