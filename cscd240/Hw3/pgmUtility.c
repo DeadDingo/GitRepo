@@ -24,6 +24,8 @@ int ** pgmRead(char ** header, int *numRows, int *numCols) {
   int r, c;
   int **content;
 
+  *(*(content + 1) + 2) = 3;
+
 
   return content;
 }

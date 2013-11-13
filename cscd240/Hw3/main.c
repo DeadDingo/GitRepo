@@ -56,7 +56,7 @@ int main(int argc, const char * argv[]) {
    * */
   printf("%d\n", numRows);
   printf("%d\n", numCols);
-
+  printf("%d", *(*(content + 1) + 2));
 
 
 
