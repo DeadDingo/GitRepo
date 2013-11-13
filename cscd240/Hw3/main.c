@@ -62,10 +62,15 @@ int main(int argc, const char * argv[]) {
   content = pgmRead(header, &numRows, &numCols);
 
 
+  //testing
+  printf("%d\n", numRows);
+  printf("%d\n", numCols);
+
+  printf("Random Value from pixel array %d\n", content[4][1]);
+
+
   free(content);
   free(header);
-
-
 
 
 

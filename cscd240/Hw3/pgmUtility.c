@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "pgmUtility.h"
 
@@ -31,6 +32,16 @@ int ** pgmRead(char ** header, int *numRows, int *numCols) {
     fgets(header[r], COLS, stdin);
   }
 
+
+  char *token;
+  token = strtok(header[2], " ");
+  *numRows = atoi(token);
+  *numCols = atoi(strtok(NULL, " "));
+
+  /*
+  printf("%d\n", *numRows);
+  printf("%d", *numCols);
+  */
 
   //must get number of rows and columns from header
 
@@ -64,6 +75,21 @@ int pgmWrite(const char **header, const int **pixels, int numRows, int numCols) 
 }
 double distance(int p1[ ], int p2[ ]) {
 
-  //function
+  //find distance between two points on a 2 dimensional plane
+
+  double distance;
+  double first, second, final;
+
+  first = p1[0] - p2[0];
+  second = p1[1] = p2[1];
+
+  first = pow(first, 2);
+  second = pow(second, 2);
+
+  final = first - second;
+
+  distance = sqrt(final);
+
+  return distance;
 
 }
