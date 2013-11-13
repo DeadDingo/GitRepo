@@ -22,12 +22,30 @@
 
 int ** pgmRead(char ** header, int *numRows, int *numCols) {
   int r, c;
-  int **content;
+  int **array;
 
-  *(*(content + 1) + 2) = 3;
+  for(r = 0; r < ROWS; r++) {
+    if(header[r] == NULL) {
+      header[r] = (char *)malloc(COLS * sizeof(char));
+    }
+    fgets(header[r], COLS, stdin);
+  }
 
 
-  return content;
+  //must get number of rows and columns from header
+
+  array = (int **)malloc(*numRows * sizeof(int *));
+  for(r = 0; r < *numRows; r++) {
+    array[r] = (int *)malloc(*numCols * sizeof(int));
+  }
+
+  for(r = 0; r < *numRows; r++) {
+    for(c = 0; c < *numCols; c++) {
+      scanf("%d ", &array[r][c]);
+    }
+  }
+
+  return array;
 }
 int pgmDrawCircle(int **pixels, int numRows, int numCols, int centerRow, int centerCol, int radius, char **header) {
 

@@ -11,12 +11,14 @@
 
 #include "pgmUtility.h"
 
+#define ROWS 4
+#define COLS 100
 
 void usage( void ) {
   printf("Usage\n");
-  printf(" -h Help Dialog");
-  printf(" -e < OldImageFile > NewImageFile");
-  printf(" -c < OldImageFile > NewImageFile");
+  printf(" -h Help Dialog\n");
+  printf(" -e < OldImageFile > NewImageFile\n");
+  printf(" -c < OldImageFile > NewImageFile\n");
   exit (8);
 }
 
@@ -48,15 +50,22 @@ int main(int argc, const char * argv[]) {
 
   }
 
+  //allocate memory for header array
+  header = (char **)malloc(ROWS * sizeof(char));
+  for(i = 0; i < ROWS; i++) {
+    for(j = 0; j < COLS; j++) {
+      header[i] = (char *)malloc(COLS * sizeof(char));
+    }
+  }
 
   //read pgm file with pgmRead() function
-  content = pgmRead(&header[0], &numRows, &numCols);
+  content = pgmRead(header, &numRows, &numCols);
 
-  /*To test what I have working so far.  Gonna print the information I have
-   * */
-  printf("%d\n", numRows);
-  printf("%d\n", numCols);
-  printf("%d", *(*(content + 1) + 2));
+
+  free(content);
+  free(header);
+
+
 
 
 
