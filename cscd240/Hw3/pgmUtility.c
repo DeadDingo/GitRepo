@@ -33,9 +33,8 @@ int ** pgmRead(char ** header, int *numRows, int *numCols) {
   }
 
 
-  char *token;
-  token = strtok(header[2], " ");
-  *numRows = atoi(token);
+  char *str;
+  *numRows = atoi(strtok(str, " "));
   *numCols = atoi(strtok(NULL, " "));
 
   /*

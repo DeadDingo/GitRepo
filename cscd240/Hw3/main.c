@@ -30,7 +30,7 @@ int main(int argc, const char * argv[]) {
   int numRows, numCols;
   
   char **header;
-  int **content;
+  int **pixels;
 
   //command line argument parsing
   //turn flag switches on or off
@@ -59,17 +59,17 @@ int main(int argc, const char * argv[]) {
   }
 
   //read pgm file with pgmRead() function
-  content = pgmRead(header, &numRows, &numCols);
+  pixels = pgmRead(header, &numRows, &numCols);
 
 
   //testing
   printf("%d\n", numRows);
   printf("%d\n", numCols);
 
-  printf("Random Value from pixel array %d\n", content[4][1]);
+  printf("Random Value from pixel array %d\n", pixels[4][1]);
 
 
-  free(content);
+  free(pixels);
   free(header);
 
 
