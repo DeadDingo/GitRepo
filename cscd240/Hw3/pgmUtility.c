@@ -60,7 +60,18 @@ int ** pgmRead(char ** header, int *numRows, int *numCols) {
 }
 int pgmDrawCircle(int **pixels, int numRows, int numCols, int centerRow, int centerCol, int radius, char **header) {
 
-  //function
+  //Draw a circle
+
+  int r, c;
+  int p1[2], p2[2];
+
+  for(r = 0; r < numRows; r++) {
+    for(c = 0; c < numCols; c++) {
+      if(distance(p1, p2) <= radus) {
+	*(*(pixels + r) +c) = 0;
+      }
+    }
+  }
 
 }
 int pgmDrawEdge(int **pixels, int numRows, int numCols, int edgeWidth, char **header) {
