@@ -60,18 +60,24 @@ int ** pgmRead(char ** header, int *numRows, int *numCols) {
 }
 int pgmDrawCircle(int **pixels, int numRows, int numCols, int centerRow, int centerCol, int radius, char **header) {
 
-  //Draw a circle
-
   int r, c;
-  int p1[2], p2[2];
+  int p1[2];
+  int p2[] = {centerRow, centerCol};
+
+  //int oldMaxIntensity = atoi(header[ROWS - 1]); //gets orriginal max intensity value 
+  //int newMaxIntensity;
+
 
   for(r = 0; r < numRows; r++) {
     for(c = 0; c < numCols; c++) {
-      if(distance(p1, p2) <= radus) {
-	*(*(pixels + r) +c) = 0;
-      }
+      p1[0] = r;
+      p1[1] = c;
+      if(distance(p2, p1) <= radius)
+	pixels[r][c] = 0;
     }
   }
+
+  return 0;
 
 }
 int pgmDrawEdge(int **pixels, int numRows, int numCols, int edgeWidth, char **header) {
@@ -93,6 +99,8 @@ int pgmWrite(const char **header, const int **pixels, int numRows, int numCols) 
       printf("%d ", *(*(pixels + r) + c) );
     }
   }
+
+  return 0;
 
 }
 double distance(int p1[ ], int p2[ ]) {

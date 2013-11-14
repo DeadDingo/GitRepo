@@ -73,12 +73,13 @@ int main(int argc, const char * argv[]) {
       //execute circle draw and edge draw
     }
     else { 
-      //execute only circle draw only
+      //execute only edge draw only
     }
     break;
   case 0 :
       if(flag2 == 1) {
-	//execute frame draw
+	//execute circle draw
+	pgmDrawCircle(pixels, numRows, numCols, 100, 200, 50, header);
       }
     //done
     break;
