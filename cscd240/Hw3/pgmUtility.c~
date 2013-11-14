@@ -70,7 +70,18 @@ int pgmDrawEdge(int **pixels, int numRows, int numCols, int edgeWidth, char **he
 }
 int pgmWrite(const char **header, const int **pixels, int numRows, int numCols) {
 
-  //function
+  int r, c;
+
+  for(r = 0; r < ROWS; r++) {
+    for(c = 0; c < COLS; c++) {
+      printf("%c", *(*(header + r) + c) );
+    }
+  }
+  for(r = 0; r < numRows; r++) {
+    for(c = 0; c < numCols; c++) {
+      printf("%d ", *(*(pixels + r) + c) );
+    }
+  }
 
 }
 double distance(int p1[ ], int p2[ ]) {

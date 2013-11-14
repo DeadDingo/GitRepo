@@ -65,14 +65,6 @@ int main(int argc, const char * argv[]) {
 
   //read pgm file with pgmRead() function
   pixels = pgmRead(header, &numRows, &numCols);
-  pgmWrite(header, pixels, numRows, numCols);
-
-  //testing
-  //printf("%d\n", numRows);
-  //printf("%d\n", numCols);
-
-  //printf("Random Value from pixel array %d\n", pixels[4][1]);
-  //end testing
 
 
   switch(flag1) {
@@ -95,6 +87,11 @@ int main(int argc, const char * argv[]) {
     break;
 
   }
+
+
+  //write new pgm file
+  pgmWrite((const char **)header, (const int **)pixels, numRows, numCols);
+
 
   free(pixels);
   free(header);
