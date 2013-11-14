@@ -28,7 +28,7 @@ int main(int argc, const char * argv[]) {
   int i, j;
   int flag1 = 0; //-e switch (edge draw)
   int flag2 = 0; //-c switch (circle draw)
-  int numRows, numCols;
+  int numRows, numCols, centerRow, centerCols, radius;
   
   char **header;
   int **pixels;
@@ -41,10 +41,12 @@ int main(int argc, const char * argv[]) {
 
     if(strncmp(argv[i], "-e", 2) == 0) {
       //set flag on
+      //get edge with values
       flag1 = 1;
     }
     if(strncmp(argv[i], "-c", 2) == 0) {
       //set flag on
+      //get radius and center values
       flag2 = 1;
     }
     if(strncmp(argv[i], "-h", 2) == 0) {
@@ -63,13 +65,13 @@ int main(int argc, const char * argv[]) {
 
   //read pgm file with pgmRead() function
   pixels = pgmRead(header, &numRows, &numCols);
-
+  pgmWrite(header, pixels, numRows, numCols);
 
   //testing
-  printf("%d\n", numRows);
-  printf("%d\n", numCols);
+  //printf("%d\n", numRows);
+  //printf("%d\n", numCols);
 
-  printf("Random Value from pixel array %d\n", pixels[4][1]);
+  //printf("Random Value from pixel array %d\n", pixels[4][1]);
   //end testing
 
 

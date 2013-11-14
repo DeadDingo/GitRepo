@@ -2,7 +2,7 @@
 //  main.c
 //  cscd240PGM
 //
-//  Created by Josh Harshman :)
+//  Created by Josh Harshman
 //  All rights reserved.
 
 #include <stdio.h>
@@ -41,10 +41,12 @@ int main(int argc, const char * argv[]) {
 
     if(strncmp(argv[i], "-e", 2) == 0) {
       //set flag on
+      //get edge with values
       flag1 = 1;
     }
     if(strncmp(argv[i], "-c", 2) == 0) {
       //set flag on
+      //get radius and center values
       flag2 = 1;
     }
     if(strncmp(argv[i], "-h", 2) == 0) {

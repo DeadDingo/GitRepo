@@ -31,7 +31,7 @@ int ** pgmRead(char ** header, int *numRows, int *numCols) {
     fgets(header[r], COLS, stdin);
   }
 
-  //try sscanf
+  //sscanf parses the numRows and numCols
   sscanf(header[ROWS - 2], "%d %d", numRows, numCols);
 
   //  char *str = header[2];
@@ -61,8 +61,6 @@ int ** pgmRead(char ** header, int *numRows, int *numCols) {
 int pgmDrawCircle(int **pixels, int numRows, int numCols, int centerRow, int centerCol, int radius, char **header) {
 
   //function
-
-  
 
 }
 int pgmDrawEdge(int **pixels, int numRows, int numCols, int edgeWidth, char **header) {
