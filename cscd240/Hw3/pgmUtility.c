@@ -34,7 +34,7 @@ int ** pgmRead(char ** header, int *numRows, int *numCols) {
   //sscanf parses the numRows and numCols
   sscanf(header[ROWS - 2], "%d %d", numRows, numCols);
 
-  //read un pixel map
+  //read in pixel map
   array = (int **)malloc(*numRows * sizeof(int *));
   for(r = 0; r < *numRows; r++) {
     array[r] = (int *)malloc(*numCols * sizeof(int));
@@ -42,7 +42,7 @@ int ** pgmRead(char ** header, int *numRows, int *numCols) {
 
   for(r = 0; r < *numRows; r++) {
     for(c = 0; c < *numCols; c++) {
-      scanf("%d", &array[r][c]);
+      scanf("%d", *(array + r) + c );
     }
   }
 

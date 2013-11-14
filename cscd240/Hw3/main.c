@@ -63,7 +63,7 @@ int main(int argc, const char * argv[]) {
     }
   }
 
-  //read pgm file with pgmRead() function
+  //read pgm file
   pixels = pgmRead(header, &numRows, &numCols);
 
 
@@ -74,7 +74,6 @@ int main(int argc, const char * argv[]) {
     }
     else { 
       //execute only edge draw only
-      pgmDrawEdge(pixels, numRows, numCols, 100, header);
     }
     break;
   case 0 :
@@ -82,12 +81,10 @@ int main(int argc, const char * argv[]) {
 	//execute circle draw
 	pgmDrawCircle(pixels, numRows, numCols, 100, 400, 50, header);
       }
-    //done
     break;
   default : 
     usage();
     break;
-
   }
 
 
@@ -95,16 +92,9 @@ int main(int argc, const char * argv[]) {
   pgmWrite((const char **)header, (const int **)pixels, numRows, numCols);
 
 
+
   free(pixels);
   free(header);
-
-    // write your code here
-    
-    // draw
-    // draw in picture, write you code here
-    
-    // write image back
-    // write your code here
     
     return 0;
 }
