@@ -57,6 +57,9 @@ int main(int argc, const char * argv[]) {
     if(strncmp(argv[i], "-h", 2) == 0) {
       usage();
     }
+    else {
+      usage();
+    }
 
   }
 
