@@ -38,9 +38,6 @@ int main(int argc, const char * argv[]) {
   //command line argument parsing
   //turn flag switches on or off
 
-  if(argc == 1)
-    usage();
-
   for(i = 1; i < argc; i++) {
 
     if(strncmp(argv[i], "-e", 2) == 0) {
@@ -62,6 +59,9 @@ int main(int argc, const char * argv[]) {
     }
 
   }
+
+  if(argc < 4)
+    usage();
 
   //allocate memory for header array
   header = (char **)malloc(ROWS * sizeof(char));
