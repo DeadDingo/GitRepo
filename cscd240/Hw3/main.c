@@ -105,10 +105,10 @@ int main(int argc, const char * argv[]) {
   pgmWrite((const char **)header, (const int **)pixels, numRows, numCols);
 
 
-
-  free(pixels);
   free(header);
-    
-    return 0;
+  free(pixels);
+
+  return 0;
+
 }
 
