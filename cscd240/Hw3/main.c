@@ -67,7 +67,7 @@ int main(int argc, const char * argv[]) {
   header = (char **)malloc(ROWS * sizeof(char));
   for(i = 0; i < ROWS; i++) {
     for(j = 0; j < COLS; j++) {
-      header[i] = (char *)malloc(COLS * sizeof(char));
+      header[i] = (char *)malloc(COLS * sizeof(char *));
     }
   }
 

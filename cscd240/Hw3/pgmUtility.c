@@ -25,9 +25,6 @@ int ** pgmRead(char ** header, int *numRows, int *numCols) {
   int **array;
 
   for(r = 0; r < ROWS; r++) {
-    if(header[r] == NULL) {
-      header[r] = (char *)malloc(COLS * sizeof(char));
-    }
     fgets(header[r], COLS, stdin);
     if(header == NULL)
       return NULL;
