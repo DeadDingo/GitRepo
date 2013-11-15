@@ -28,7 +28,7 @@ int main(int argc, const char * argv[]) {
   int i, j;
   int flag1 = 0; //-e switch (edge draw)
   int flag2 = 0; //-c switch (circle draw)
-  int numRows, numCols, centerRow, centerCols, radius;
+  int numRows, numCols, centerRow, centerCols, radius, edgeWidth;
   
   char **header;
   int **pixels;

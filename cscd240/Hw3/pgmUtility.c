@@ -32,7 +32,7 @@ int ** pgmRead(char ** header, int *numRows, int *numCols) {
   }
 
   //sscanf parses the numRows and numCols
-  sscanf(header[ROWS - 2], "%d %d", numRows, numCols);
+  sscanf(header[ROWS - 2], "%d %d", numCols, numRows);
 
   //read in pixel map
   array = (int **)malloc(*numRows * sizeof(int *));
@@ -51,8 +51,10 @@ int ** pgmRead(char ** header, int *numRows, int *numCols) {
 int pgmDrawCircle(int **pixels, int numRows, int numCols, int centerRow, int centerCol, int radius, char **header) {
 
   int r, c;
-  int p1[] = {centerRow, centerCol};
-  int p2[] = {0, 0};
+  int p1[2];
+  p1[0] = centerRow;
+  p1[1] = centerCol;
+  int p2[2];
 
   //int oldMaxIntensity = atoi(header[ROWS - 1]); //gets orriginal max intensity value 
   // int newMaxIntensity;
