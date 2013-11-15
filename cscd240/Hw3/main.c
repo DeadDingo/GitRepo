@@ -17,8 +17,8 @@
 void usage( void ) {
   printf("Usage\n");
   printf(" -h Help Dialog\n");
-  printf(" -e < OldImageFile > NewImageFile\n");
-  printf(" -c < OldImageFile > NewImageFile\n");
+  printf(" -e edgeWidth < OldImageFile > NewImageFile\n");
+  printf(" -c centerRow centerCol radius < OldImageFile > NewImageFile\n");
   exit (8);
 }
 
@@ -28,7 +28,7 @@ int main(int argc, const char * argv[]) {
   int i, j;
   int flag1 = 0; //-e switch (edge draw)
   int flag2 = 0; //-c switch (circle draw)
-  int numRows, numCols, centerRow, centerCols, radius, edgeWidth;
+  int numRows, numCols, centerRow, centerCol, radius, edgeWidth;
   
   char **header;
   int **pixels;
@@ -42,11 +42,15 @@ int main(int argc, const char * argv[]) {
     if(strncmp(argv[i], "-e", 2) == 0) {
       //set flag on
       //get edge with values
+      edgeWidth = atoi(argv[i+1]);
       flag1 = 1;
     }
     if(strncmp(argv[i], "-c", 2) == 0) {
       //set flag on
       //get radius and center values
+      radius = atoi(argv[i+1]);
+      centerRow = atoi(argv[i+2]);
+      centerCol = atoi(argv[i+3]);
       flag2 = 1;
     }
     if(strncmp(argv[i], "-h", 2) == 0) {
@@ -79,7 +83,7 @@ int main(int argc, const char * argv[]) {
   case 0 :
       if(flag2 == 1) {
 	//execute circle draw
-	pgmDrawCircle(pixels, numRows, numCols, 100, 400, 50, header);
+	pgmDrawCircle(pixels, numRows, numCols, centerRow, centerCol, radius, header);
       }
     break;
   default : 
