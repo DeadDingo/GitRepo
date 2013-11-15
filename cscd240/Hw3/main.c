@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <ctype.h>
 #include "pgmUtility.h"
 
 #define ROWS 4
@@ -38,11 +38,14 @@ int main(int argc, const char * argv[]) {
   //command line argument parsing
   //turn flag switches on or off
 
+  if(argc == 1)
+    usage();
+
   for(i = 1; i < argc; i++) {
 
     if(strncmp(argv[i], "-e", 2) == 0) {
       //set flag on
-      //get edge with values
+      //get edge with values)
       edgeWidth = atoi(argv[i+1]);
       flag1 = 1;
     }
@@ -55,9 +58,6 @@ int main(int argc, const char * argv[]) {
       flag2 = 1;
     }
     if(strncmp(argv[i], "-h", 2) == 0) {
-      usage();
-    }
-    else {
       usage();
     }
 
@@ -75,7 +75,6 @@ int main(int argc, const char * argv[]) {
   pixels = pgmRead(header, &numRows, &numCols);
   if(pixels == NULL)
     usage();
-
 
   switch(flag1) {
   case 1 :
@@ -105,8 +104,8 @@ int main(int argc, const char * argv[]) {
   pgmWrite((const char **)header, (const int **)pixels, numRows, numCols);
 
 
-  free(header);
   free(pixels);
+  free(header);
 
   return 0;
 

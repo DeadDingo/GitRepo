@@ -29,7 +29,7 @@ int ** pgmRead(char ** header, int *numRows, int *numCols) {
       header[r] = (char *)malloc(COLS * sizeof(char));
     }
     fgets(header[r], COLS, stdin);
-    if(header[r] == NULL)
+    if(header == NULL)
       return NULL;
   }
 
