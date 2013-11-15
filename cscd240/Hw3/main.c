@@ -49,9 +49,9 @@ int main(int argc, const char * argv[]) {
     if(strncmp(argv[i], "-c", 2) == 0) {
       //set flag on
       //get radius and center values
-      radius = atoi(argv[i+1]);
-      centerRow = atoi(argv[i+2]);
-      centerCol = atoi(argv[i+3]);
+      centerRow = atoi(argv[i+1]);
+      centerCol = atoi(argv[i+2]);
+      radius = atoi(argv[i+3]);
       flag2 = 1;
     }
     if(strncmp(argv[i], "-h", 2) == 0) {

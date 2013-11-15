@@ -56,9 +56,6 @@ int pgmDrawCircle(int **pixels, int numRows, int numCols, int centerRow, int cen
   p1[1] = centerCol;
   int p2[2];
 
-  //int oldMaxIntensity = atoi(header[ROWS - 1]); //gets orriginal max intensity value 
-  // int newMaxIntensity;
-
   for(r = 0; r < numRows; r++) {
     for(c = 0; c < numCols; c++) {
       p2[0] = r;
@@ -81,8 +78,13 @@ int pgmDrawEdge(int **pixels, int numRows, int numCols, int edgeWidth, char **he
       if(r <= edgeWidth || c <= edgeWidth) {
 	pixels[r][c] = 0;
       }
+      if(r >= (numRows-edgeWidth) || c >= (numCols-edgeWidth)) {
+	pixels[r][c] = 0;
+      }
     }
   }
+
+  return 0;
 
 }
 int pgmWrite(const char **header, const int **pixels, int numRows, int numCols) {
