@@ -19,6 +19,7 @@ void usage( void ) {
   printf(" -h Help Dialog\n");
   printf(" -e edgeWidth < OldImageFile > NewImageFile\n");
   printf(" -c centerRow centerCol radius < OldImageFile > NewImageFile\n");
+  printf(" -e edgeWidth -c radius centerRow centerCol < OldImageFile > NewImageFile\n");
   exit (8);
 }
 
@@ -75,9 +76,12 @@ int main(int argc, const char * argv[]) {
   case 1 :
     if(flag2 == 1) {
       //execute circle draw and edge draw
+      pgmDrawCircle(pixels, numRows, numCols, centerRow, centerCol, radius, header);
+      pgmDrawEdge(pixels, numRows, numCols, edgeWidth, header);
     }
     else { 
       //execute only edge draw only
+      pgmDrawEdge(pixels, numRows, numCols, edgeWidth, header);
     }
     break;
   case 0 :

@@ -74,7 +74,15 @@ int pgmDrawCircle(int **pixels, int numRows, int numCols, int centerRow, int cen
 }
 int pgmDrawEdge(int **pixels, int numRows, int numCols, int edgeWidth, char **header) {
 
-  //function
+  int r, c;
+
+  for(r = 0; r < numRows; r++) {
+    for(c = 0; c < numCols; c++) {
+      if(r <= edgeWidth || c <= edgeWidth) {
+	pixels[r][c] = 0;
+      }
+    }
+  }
 
 }
 int pgmWrite(const char **header, const int **pixels, int numRows, int numCols) {
