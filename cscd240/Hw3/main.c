@@ -73,6 +73,8 @@ int main(int argc, const char * argv[]) {
 
   //read pgm file
   pixels = pgmRead(header, &numRows, &numCols);
+  if(pixels == NULL)
+    usage();
 
 
   switch(flag1) {

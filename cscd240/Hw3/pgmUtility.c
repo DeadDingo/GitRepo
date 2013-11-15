@@ -29,6 +29,8 @@ int ** pgmRead(char ** header, int *numRows, int *numCols) {
       header[r] = (char *)malloc(COLS * sizeof(char));
     }
     fgets(header[r], COLS, stdin);
+    if(header[r] == NULL)
+      return NULL;
   }
 
   //sscanf parses the numRows and numCols
