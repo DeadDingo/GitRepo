@@ -38,7 +38,7 @@ int main(int argc, const char * argv[]) {
   //command line argument parsing
   //turn flag switches on or off
 
-  if(argc <= 2)
+  if(argc < 3)
     usage();
 
   for(i = 1; i < argc; i++) {
@@ -46,12 +46,18 @@ int main(int argc, const char * argv[]) {
     if(strncmp(argv[i], "-e", 2) == 0) {
       //set flag on
       //get edge with values)
+      if(atoi(argv[i+1]) == 0) {
+	usage();
+      }
       edgeWidth = atoi(argv[i+1]);
       flag1 = 1;
     }
     if(strncmp(argv[i], "-c", 2) == 0) {
       //set flag on
       //get radius and center values
+      if(atoi(argv[i+1]) == 0) {
+	usage();
+      }
       centerRow = atoi(argv[i+1]);
       centerCol = atoi(argv[i+2]);
       radius = atoi(argv[i+3]);
@@ -104,6 +110,7 @@ int main(int argc, const char * argv[]) {
   pgmWrite((const char **)header, (const int **)pixels, numRows, numCols);
 
   //Garbage Collection
+  //Fix this
   free(pixels);
   free(header);
 
