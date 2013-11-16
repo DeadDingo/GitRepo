@@ -53,7 +53,7 @@ int pgmDrawCircle(int **pixels, int numRows, int numCols, int centerRow, int cen
   int p1[2];
   p1[0] = centerRow;
   p1[1] = centerCol;
-  int p2[2];)
+  int p2[2];
 
   for(r = 0; r < numRows; r++) {
     for(c = 0; c < numCols; c++) {
