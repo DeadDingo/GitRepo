@@ -113,6 +113,57 @@ int *fillArray(int month, FILE *fin) {
     fscanf(fin, "%d", &array[r]);
   }
 
+
+  for(r = 0; r < numDays; r++) {
+    printf("%d\n", array[r]);
+  }
+
   return array;
+
+}
+/*Displays Menu
+* */
+int menu( void ) {
+
+  int choice;
+
+  do {
+
+    printf("1. Find Max Temperature\n");
+    printf("2. Find Min Temperature\n");
+    printf("3. Find Average Temperature\n");
+    printf("4. Find Median Temperature\n");
+    printf("5. Find the mode Temperature\n");
+    printf("6. Enter a different file\n");
+    printf("7. Quit\n");
+
+    printf("~~> ");
+    scanf("%d", &choice);
+
+  } while(choice != 7);
+
+  return choice;
+
+}
+/*Find the Maximum Temperature
+* */
+void displayMaxTemp(int *temps) {
+
+  int r, size, max = -30;
+
+  for(r = 0; r < size; r++) {
+    if(temps[r] > max) {
+      max = temps[r];
+    }
+  }
+
+  printf("The Max Value is: %d\n", max);
+
+}
+/*Find the Minimum Temperature
+* */
+void displayMinTemp(int *temps) {
+
+  //function
 
 }

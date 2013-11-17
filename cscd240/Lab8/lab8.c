@@ -114,6 +114,10 @@ int *fillArray(int month, FILE *fin) {
   }
 
 
+  //special stopping value at end of array
+  array[numDays] = 900;
+
+
   for(r = 0; r < numDays; r++) {
     printf("%d\n", array[r]);
   }
@@ -149,9 +153,10 @@ int menu( void ) {
 * */
 void displayMaxTemp(int *temps) {
 
-  int r, size, max = -30;
+  int r, max;
+  max = 0;
 
-  for(r = 0; r < size; r++) {
+  for(r = 0; temps[r] != 900; r++) {
     if(temps[r] > max) {
       max = temps[r];
     }
