@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "lab8.h"
+#include "lab10.h"
 
 #define MAX 100
-
 
 int main(int argc, char *argv[])
 {
@@ -14,14 +13,13 @@ int main(int argc, char *argv[])
 	char fn[MAX];
 
 	fin = openFile(argc, argv);
-	
+
 	month = readMonth(fin);
 	temps = fillArray(month, fin);
-	/*
 
 	do
 	{
-	  choice = menu();
+		choice = menu();
 
 		if(choice == 1)
 		{
@@ -74,6 +72,6 @@ int main(int argc, char *argv[])
 
 	cleanUp(temps);
 	temps = NULL;
-	*/
+
 }// end main
 

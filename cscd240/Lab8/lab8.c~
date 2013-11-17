@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "lab8.h"
+
+
+/*Open File For reading
+* */
+FILE *openFile(int argc, char *argv[]) {
+
+  int i;
+  FILE *file;
+
+
+  if(argc < 2 || argc > 7) {
+    usage();
+  }
+  else {
+
+    for(i = 0; i < argc; i++) {
+      //test arguments
+      if(strncmp(argv[i], "-f", 2) == 0) {
+	if(argv[i+1] != NULL) {
+	  file = fopen(argv[i+1], "r");
+	}
+      }
+      if(strncmp(argv[i], "-h", 2) == 0) {
+	usage();
+      }
+    }
+
+  }
+
+}//end openFile( )
