@@ -117,11 +117,6 @@ int *fillArray(int month, FILE *fin) {
   //special stopping value at end of array
   array[numDays] = 900;
 
-
-  for(r = 0; r < numDays; r++) {
-    printf("%d\n", array[r]);
-  }
-
   return array;
 
 }
@@ -162,13 +157,48 @@ void displayMaxTemp(int *temps) {
     }
   }
 
-  printf("The Max Value is: %d\n", max);
+  printf("The maximum temperature reached was: %d\n", max);
 
 }
 /*Find the Minimum Temperature
 * */
 void displayMinTemp(int *temps) {
 
-  //function
+  int r, min;
+  min = 300;
+
+  for(r = 0; temps[r] != 900; r++) {
+    if(temps[r] < min) {
+      min = temps[r];
+    }
+  }
+  printf("The minimum temperature reached was: %d\n", min);
+
+}
+/*Find the Average Temperature
+* */
+void displayAverageValue(int *temps) {
+
+  int r, avg, num;
+  int count = 0;
+  for(r = 0; temps[r] != 900; r++) {
+    num += temps[r];
+    count++;
+  }
+  avg = num/count;
+
+  printf("The average temperature for the month is: %d\n", avg);
+
+}
+/*Find the Median Temp
+* */
+void displayMedianTemp(int *temps) {
+
+  int r, c, median, count = 0;
+
+  for(r = 0; temps[r] != 900; r++) {
+    count++;
+  }
+
 
 }

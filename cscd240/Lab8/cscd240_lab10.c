@@ -17,8 +17,7 @@ int main(int argc, char *argv[])
 	
 	month = readMonth(fin);
 	temps = fillArray(month, fin);
-
-	displayMaxTemp(temps);
+	displayMedianTemp(temps);
 	/*
 
 	do

@@ -40,3 +40,5 @@ int *fillArray(int month, FILE *fin);
 void displayMaxTemp(int *temps);
 
 void displayMinTemp(int *temps);
+
+void displayMedianTemp(int *temps);
