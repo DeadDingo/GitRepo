@@ -1,34 +1,26 @@
 #ifndef cscd240_lab8_h
 #define cscd240_lab8_h
 
+#define null NULL
+#include <string.h>
+
 #endif
 
 
+/*Displays Usage*/
+void usage( void );
+
+/*Displays file format error*/
+void fileFormatError( void );
+
 /*Opens file for reading and returns file pointer
 * */
-FILE *fileOpen(int argc, char *argv[]);
+FILE *openFile(int argc, char *argv[]);
 
-/*Reads first entry in file.  Returns the month of the year
+/*Reads the first element in the file and returns it
 * */
 int readMonth(FILE *fin);
 
-/*Reads temperatures from rest of file and returns pointer to array
+/*Populates the Array
 * */
 int *fillArray(int month, FILE *fin);
-
-
-
-/*Display Methods*/
-
-void displayMaxTemp(int *temps);
-
-void displayMinTemp(int *temps);
-
-void displayAvgTemp(int *temps);
-
-void displayMedianTemp(int *temps);
-
-void displayModeTemp(int *temps);
-
-
-/*Garbage Collection*/
