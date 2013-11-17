@@ -61,7 +61,8 @@ int readMonth(FILE *fin) {
 * */
 int *fillArray(int month, FILE *fin) {
 
-  int r, numDays, *array;
+  int r, numDays;
+  int *array;
 
   switch (month) {
   case 12 :
@@ -107,7 +108,7 @@ int *fillArray(int month, FILE *fin) {
   }
 
 
-  array = (int *)sizeof(numDays * sizeof(int));
+  array = (int *)malloc(sizeof(numDays * sizeof(int)));
   for(r = 0; r < numDays; r++) {
     fscanf(fin, "%d", &array[r]);
   }
