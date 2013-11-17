@@ -1,3 +1,8 @@
+//CSCD240 Lab8
+//
+//Written By Josh Harshman
+//
+
 #ifndef cscd240_lab8_h
 #define cscd240_lab8_h
 
@@ -19,6 +24,8 @@ void fileFormatError( void );
 //Displays Menu
 int menu( void );
 
+void readFileName(char fn[]);
+
 //================================
 
 
@@ -34,6 +41,7 @@ int readMonth(FILE *fin);
 * */
 int *fillArray(int month, FILE *fin);
 
+FILE *openInputFile(char fn[]);
 
 //=================================
 
@@ -41,4 +49,14 @@ void displayMaxTemp(int *temps);
 
 void displayMinTemp(int *temps);
 
+void displayAvgTemp(int *temps);
+
 void displayMedianTemp(int *temps);
+
+void displayModeTemp(int *temps);
+
+//===================================
+
+/*Clean up function
+* */
+void cleanUp(int *temps);

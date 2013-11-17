@@ -114,9 +114,8 @@ int *fillArray(int month, FILE *fin) {
   }
 
 
-  for(r = 0; r < numDays; r++) {
-    printf("%d\n", array[r]);
-  }
+  //special stopping value at end of array
+  array[numDays] = 900;
 
   return array;
 
@@ -126,8 +125,6 @@ int *fillArray(int month, FILE *fin) {
 int menu( void ) {
 
   int choice;
-
-  do {
 
     printf("1. Find Max Temperature\n");
     printf("2. Find Min Temperature\n");
@@ -140,8 +137,6 @@ int menu( void ) {
     printf("~~> ");
     scanf("%d", &choice);
 
-  } while(choice != 7);
-
   return choice;
 
 }
@@ -149,21 +144,111 @@ int menu( void ) {
 * */
 void displayMaxTemp(int *temps) {
 
-  int r, size, max = -30;
+  int r, max;
+  max = 0;
 
-  for(r = 0; r < size; r++) {
+  for(r = 0; temps[r] != 900; r++) {
     if(temps[r] > max) {
       max = temps[r];
     }
   }
 
-  printf("The Max Value is: %d\n", max);
+  printf("The maximum temperature reached was: %d\n", max);
 
 }
 /*Find the Minimum Temperature
 * */
 void displayMinTemp(int *temps) {
 
-  //function
+  int r, min;
+  min = 300;
+
+  for(r = 0; temps[r] != 900; r++) {
+    if(temps[r] < min) {
+      min = temps[r];
+    }
+  }
+  printf("The minimum temperature reached was: %d\n", min);
+
+}
+/*Find the Average Temperature
+* */
+void displayAvgTemp(int *temps) {
+
+  int r, num;
+  int avg;
+  int count = 0;
+  for(r = 0; temps[r] != 900; r++) {
+    num += temps[r];
+    count++;
+  }
+  avg = num/count;
+
+  printf("The average temperature for the month is: %d\n", avg);
+
+}
+/*Find the Median Temp
+* */
+void displayMedianTemp(int *temps) {
+
+  int r, c, mid, len = 0;
+
+  for(r = 0; temps[r] != 900; r++) {
+    len++;
+  }
+
+  mid = len / 2;
+
+  if(len & 1) {
+    printf("The median temperature value is: %d\n", temps[mid]);
+  }
+  else {
+    printf("The median temperature value is: %d\n", ( temps[mid] + temps[mid-1] )/2 );
+  }
+
+}
+/*Find the Mode Temp... This was a pain for some reason...
+* */
+void displayModeTemp(int *temps) {
+
+  int r, c, num, mode, counter = 0;
+  int tally[31];
+  for(r = 0; temps[r] != 900; r++) {
+    for(c = 0; temps[c] != 900; c++) {
+      if(temps[r] == temps[c]) {
+	counter++;
+      }
+    }
+    tally[r] = counter;
+    counter = 0; //reset counter
+  }
+
+  num = -300;
+  for(r = 0; temps[r] != 900; r++) {
+    if(num < tally[r]) {
+      num = r;
+    }
+  }
+
+  printf("The mode temperature is: %d\n", temps[num]);
+
+}
+/*Clean up function
+* */
+void cleanUp(int *temps) {
+  free(temps);
+}
+/*Read a filename directly from user
+* */
+void readFileNamme(char fn[]) {
+
+  printf("Enter File Name: ");
+  scanf("%s", fn);
+
+}
+
+FILE *openInputFile(char fn[]) {
+
+  return fopen();
 
 }

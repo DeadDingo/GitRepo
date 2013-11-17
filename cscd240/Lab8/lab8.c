@@ -1,3 +1,9 @@
+//CSCD240 Lab8
+//
+//Written By Josh Harshman
+//
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "lab8.h"
@@ -126,8 +132,6 @@ int menu( void ) {
 
   int choice;
 
-  do {
-
     printf("1. Find Max Temperature\n");
     printf("2. Find Min Temperature\n");
     printf("3. Find Average Temperature\n");
@@ -138,8 +142,6 @@ int menu( void ) {
 
     printf("~~> ");
     scanf("%d", &choice);
-
-  } while(choice != 7);
 
   return choice;
 
@@ -177,9 +179,10 @@ void displayMinTemp(int *temps) {
 }
 /*Find the Average Temperature
 * */
-void displayAverageValue(int *temps) {
+void displayAvgTemp(int *temps) {
 
-  int r, avg, num;
+  int r, num;
+  int avg;
   int count = 0;
   for(r = 0; temps[r] != 900; r++) {
     num += temps[r];
@@ -194,11 +197,64 @@ void displayAverageValue(int *temps) {
 * */
 void displayMedianTemp(int *temps) {
 
-  int r, c, median, count = 0;
+  int r, c, mid, len = 0;
 
   for(r = 0; temps[r] != 900; r++) {
-    count++;
+    len++;
   }
 
+  mid = len / 2;
+
+  if(len & 1) {
+    printf("The median temperature value is: %d\n", temps[mid]);
+  }
+  else {
+    printf("The median temperature value is: %d\n", ( temps[mid] + temps[mid-1] )/2 );
+  }
+
+}
+/*Find the Mode Temp... This was a pain for some reason...
+* */
+void displayModeTemp(int *temps) {
+
+  int r, c, num, mode, counter = 0;
+  int tally[31];
+  for(r = 0; temps[r] != 900; r++) {
+    for(c = 0; temps[c] != 900; c++) {
+      if(temps[r] == temps[c]) {
+	counter++;
+      }
+    }
+    tally[r] = counter;
+    counter = 0; //reset counter
+  }
+
+  num = -300;
+  for(r = 0; temps[r] != 900; r++) {
+    if(num < tally[r]) {
+      num = r;
+    }
+  }
+
+  printf("The mode temperature is: %d\n", temps[num]);
+
+}
+/*Clean up function
+* */
+void cleanUp(int *temps) {
+  free(temps);
+}
+/*Read a filename directly from user
+* */
+void readFileName(char fn[]) {
+
+  printf("Enter File Name: ");
+  scanf("%s", fn);
+
+}
+
+FILE *openInputFile(char fn[]) {
+
+  return fopen(fn, "r");
 
 }

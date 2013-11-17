@@ -17,8 +17,6 @@ int main(int argc, char *argv[])
 	
 	month = readMonth(fin);
 	temps = fillArray(month, fin);
-	displayMedianTemp(temps);
-	/*
 
 	do
 	{
@@ -67,7 +65,7 @@ int main(int argc, char *argv[])
 			temps = fillArray(month, fin);
 
 		}// end choice == 6
-
+		
 	}while(choice != 7);
 
 	if(fin != NULL)
@@ -75,6 +73,7 @@ int main(int argc, char *argv[])
 
 	cleanUp(temps);
 	temps = NULL;
-	*/
+
+
 }// end main
 
