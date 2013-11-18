@@ -181,16 +181,16 @@ void displayMinTemp(int *temps) {
 * */
 void displayAvgTemp(int *temps) {
 
-  int r, num;
-  int avg;
+  int r;
+  float avg;
   int count = 0;
   for(r = 0; temps[r] != 900; r++) {
-    num += temps[r];
+    avg += temps[r];
     count++;
   }
-  avg = num/count;
+  avg = avg/count;
 
-  printf("The average temperature for the month is: %d\n", avg);
+  printf("The average temperature for the month is: %.2f\n", avg);
 
 }
 /*Find the Median Temp
@@ -203,15 +203,23 @@ void displayMedianTemp(int *temps) {
     len++;
   }
 
+  //qsort sorting method from stdlib.h
+  qsort(temps, len, sizeof(int), cmpfunc);
+
   mid = len / 2;
 
   if(len & 1) {
-    printf("The median temperature value is: %d\n", temps[mid]);
+    printf("The shit temperature value is: %.2d\n", temps[mid]);
   }
   else {
-    printf("The median temperature value is: %d\n", ( temps[mid] + temps[mid-1] )/2 );
+    printf("The median temperature value is: %.2f\n", ( temps[mid] + temps[mid-1] )/2.0 );
   }
 
+}
+/*Qsort Compare function
+* */
+int cmpfunc(const void * a, const void * b) {
+  return ( *(int *)a - *(int *)b );
 }
 /*Find the Mode Temp... This was a pain for some reason...
 * */

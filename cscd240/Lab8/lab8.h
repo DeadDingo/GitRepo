@@ -60,3 +60,8 @@ void displayModeTemp(int *temps);
 /*Clean up function
 * */
 void cleanUp(int *temps);
+
+
+/*Sorting Support
+* */
+int cmpfunc(const void * a, const void * b);
