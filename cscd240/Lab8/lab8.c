@@ -28,7 +28,7 @@ FILE *openFile(int argc, char *argv[]) {
 
   int i;
   FILE *file;
-
+  char fn[100];
 
   if(argc < 2 || argc > 7) {
     usage();
@@ -40,6 +40,10 @@ FILE *openFile(int argc, char *argv[]) {
       if(strncmp(argv[i], "-f", 2) == 0) {
 	if(argv[i+1] != NULL) {
 	  file = fopen(argv[i+1], "r");
+	}
+	else if(argv[i+1] == NULL){
+	  readFileName(fn);
+	  return openInputFile(fn);
 	}
       }
       if(strncmp(argv[i], "-h", 2) == 0) {
@@ -197,7 +201,8 @@ void displayAvgTemp(int *temps) {
 * */
 void displayMedianTemp(int *temps) {
 
-  int r, c, mid, len = 0;
+  int r, c, mid;
+  int len = 0;
 
   for(r = 0; temps[r] != 900; r++) {
     len++;
@@ -208,10 +213,10 @@ void displayMedianTemp(int *temps) {
 
 
   if(len%2 == 0) {
-    printf("The median temperature value is: %.2f\n", ( temps[len/2] + temps[len/2-1] )/2 );
+    printf("The median temperature value is: %.2f\n", (float)( temps[len/2] + temps[len/2-1] )/2 );
   }
   else {
-    printf("The median temperature value is: %.2f\n", temps[len/2]);
+    printf("The median temperature value is: %.2f\n", (float)temps[len/2]);
   }
 
 }
