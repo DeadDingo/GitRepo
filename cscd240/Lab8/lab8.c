@@ -206,13 +206,12 @@ void displayMedianTemp(int *temps) {
   //qsort sorting method from stdlib.h
   qsort(temps, len, sizeof(int), cmpfunc);
 
-  mid = len / 2;
 
-  if(len & 1) {
-    printf("The shit temperature value is: %.2d\n", temps[mid]);
+  if(len%2 == 0) {
+    printf("The median temperature value is: %.2f\n", ( temps[len/2] + temps[len/2-1] )/2 );
   }
   else {
-    printf("The median temperature value is: %.2f\n", ( temps[mid] + temps[mid-1] )/2.0 );
+    printf("The median temperature value is: %.2f\n", temps[len/2]);
   }
 
 }
