@@ -1,0 +1,170 @@
+DeadDingos-MacBook-Air:Lab8 dingo$ ./a.out -f temps.txt 
+1. Find Max Temperature
+2. Find Min Temperature
+3. Find Average Temperature
+4. Find Median Temperature
+5. Find the mode Temperature
+6. Enter a different file
+7. Quit
+~~> 1
+The maximum temperature reached was: 28
+1. Find Max Temperature
+2. Find Min Temperature
+3. Find Average Temperature
+4. Find Median Temperature
+5. Find the mode Temperature
+6. Enter a different file
+7. Quit
+~~> 2
+The minimum temperature reached was: -5
+1. Find Max Temperature
+2. Find Min Temperature
+3. Find Average Temperature
+4. Find Median Temperature
+5. Find the mode Temperature
+6. Enter a different file
+7. Quit
+~~> 3
+The average temperature for the month is: 17.04
+1. Find Max Temperature
+2. Find Min Temperature
+3. Find Average Temperature
+4. Find Median Temperature
+5. Find the mode Temperature
+6. Enter a different file
+7. Quit
+~~> 4
+The median temperature value is: 18.50
+1. Find Max Temperature
+2. Find Min Temperature
+3. Find Average Temperature
+4. Find Median Temperature
+5. Find the mode Temperature
+6. Enter a different file
+7. Quit
+~~> 5
+The mode temperature is: 12
+1. Find Max Temperature
+2. Find Min Temperature
+3. Find Average Temperature
+4. Find Median Temperature
+5. Find the mode Temperature
+6. Enter a different file
+7. Quit
+~~> 6
+Enter File Name: temps.txt
+1. Find Max Temperature
+2. Find Min Temperature
+3. Find Average Temperature
+4. Find Median Temperature
+5. Find the mode Temperature
+6. Enter a different file
+7. Quit
+~~> 1
+The maximum temperature reached was: 28
+1. Find Max Temperature
+2. Find Min Temperature
+3. Find Average Temperature
+4. Find Median Temperature
+5. Find the mode Temperature
+6. Enter a different file
+7. Quit
+~~> 2
+The minimum temperature reached was: -5
+1. Find Max Temperature
+2. Find Min Temperature
+3. Find Average Temperature
+4. Find Median Temperature
+5. Find the mode Temperature
+6. Enter a different file
+7. Quit
+~~> 3
+The average temperature for the month is: 17.04
+1. Find Max Temperature
+2. Find Min Temperature
+3. Find Average Temperature
+4. Find Median Temperature
+5. Find the mode Temperature
+6. Enter a different file
+7. Quit
+~~> 7
+
+-----------------------
+End first test run
+
+DeadDingos-MacBook-Air:Lab8 dingo$ ./a.out -f 
+Enter File Name: temps.txt
+1. Find Max Temperature
+2. Find Min Temperature
+3. Find Average Temperature
+4. Find Median Temperature
+5. Find the mode Temperature
+6. Enter a different file
+7. Quit
+~~> 1
+The maximum temperature reached was: 28
+1. Find Max Temperature
+2. Find Min Temperature
+3. Find Average Temperature
+4. Find Median Temperature
+5. Find the mode Temperature
+6. Enter a different file
+7. Quit
+~~> 2
+The minimum temperature reached was: -5
+1. Find Max Temperature
+2. Find Min Temperature
+3. Find Average Temperature
+4. Find Median Temperature
+5. Find the mode Temperature
+6. Enter a different file
+7. Quit
+~~> 3
+The average temperature for the month is: 17.04
+1. Find Max Temperature
+2. Find Min Temperature
+3. Find Average Temperature
+4. Find Median Temperature
+5. Find the mode Temperature
+6. Enter a different file
+7. Quit
+~~> 4
+The median temperature value is: 18.50
+1. Find Max Temperature
+2. Find Min Temperature
+3. Find Average Temperature
+4. Find Median Temperature
+5. Find the mode Temperature
+6. Enter a different file
+7. Quit
+~~> 5
+The mode temperature is: 12
+1. Find Max Temperature
+2. Find Min Temperature
+3. Find Average Temperature
+4. Find Median Temperature
+5. Find the mode Temperature
+6. Enter a different file
+7. Quit
+~~> 6
+Enter File Name: temps.txt
+1. Find Max Temperature
+2. Find Min Temperature
+3. Find Average Temperature
+4. Find Median Temperature
+5. Find the mode Temperature
+6. Enter a different file
+7. Quit
+~~> 1
+The maximum temperature reached was: 28
+1. Find Max Temperature
+2. Find Min Temperature
+3. Find Average Temperature
+4. Find Median Temperature
+5. Find the mode Temperature
+6. Enter a different file
+7. Quit
+~~> 7
+
+----------------------------
+End second test run
