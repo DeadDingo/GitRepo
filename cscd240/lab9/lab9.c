@@ -3,7 +3,7 @@
 #include "lab9.h"
 
 
-FILE *openFile() {
+FILE *openFile(void) {
 
   char *fileName;
   FILE *file;
@@ -19,7 +19,7 @@ FILE *openFile() {
   return file;
 
 }
-int fillArray(struct Address array[], File *fin) {
+int fillArray(struct Address array[], FILE *fin) {
 
   int i;
   int count = 0;
@@ -33,3 +33,4 @@ int fillArray(struct Address array[], File *fin) {
   return count;
 
 }
+

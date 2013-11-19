@@ -22,18 +22,16 @@ struct Address {
 }
 
 
-FILE *openFile();
+FILE *openFile(void);
 
 int fillArray(struct Address *array, FILE *fin);
-/*
+
 void menu (void);
 
-void printStreetSortedArray(Address array[], int total);
+void printStreetSortedArray(struct Address array[], int total);
 
-void printCitySortedArray(Address array[], int total);
+void printCitySortedArray(struct Address array[], int total);
 
-void printStateCitySortedArray(Address array[], int total);
+void printStateCitySortedArray(struct Address array[], int total);
 
-void printZipSortedArray(Address array[], int total);
-
-*/
+void printZipSortedArray(struct Address array[], int total);

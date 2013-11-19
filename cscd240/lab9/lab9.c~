@@ -3,23 +3,23 @@
 #include "lab9.h"
 
 
-FILE *openFile() {
+FILE *openFile(void) {
 
   char *fileName;
   FILE *file;
   
   //
   printf("Enter File Name: ");
-  scanf("%c", fileName);
+  scanf("%s", fileName);
   do {
-    file = fopen(filename, "r");
+    file = fopen(fileName, "r");
 
   }while(file != NULL);
 
   return file;
 
 }
-int fillArray(Address array[], File *fin) {
+int fillArray(struct Address array[], File *fin) {
 
   int i;
   int count = 0;
@@ -33,3 +33,4 @@ int fillArray(Address array[], File *fin) {
   return count;
 
 }
+
