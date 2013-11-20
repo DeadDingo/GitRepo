@@ -4,25 +4,22 @@
 //
 //
 
-#ifndef cscd240lab9_h
-#define cscd240lab9_h
+#ifndef cscd240_lab9_h
+#define cscd240_lab9_h
 
 #include <stdio.h>
+#include <stdlib.h>
 
+typedef struct info {
 
-#endif
-
-struct Address {
-
-  char street[100];
-  char city[100];
-  char state[3];
+  char Street[100];
+  char City[100];
+  char State[3];
   int zip;
 
-}
+}Address;
 
-
-FILE *openFile(void);
+FILE *openFile();
 
 int fillArray(struct Address *array, FILE *fin);
 
@@ -35,3 +32,6 @@ void printCitySortedArray(struct Address array[], int total);
 void printStateCitySortedArray(struct Address array[], int total);
 
 void printZipSortedArray(struct Address array[], int total);
+
+
+#endif
