@@ -1,19 +1,8 @@
 #include "lab9.h"
+#include <stdio.h>
+
+FILE *fileOpen() {
 
 
-FILE *openFile(void) {
-
-  char *fileName;
-  FILE *file;
-  
-  //
-  printf("Enter File Name: ");
-  scanf("%s", fileName);
-  do {
-    file = fopen(fileName, "r");
-
-  }while(file != NULL);
-
-  return file;
 
 }
