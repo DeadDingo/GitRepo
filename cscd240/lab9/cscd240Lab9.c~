@@ -18,11 +18,10 @@ int main()
         {
 	case 1 :
 	  printStreetSortedArray(array, total);
-	  printf("Now in switch case 1");
 	  break;
 
 	case 2 : 
-	  // printCitySortedArray(array, total);
+	  printCitySortedArray(array, total);
 	  break;
 
 	case 3 : 
@@ -30,7 +29,7 @@ int main()
 	  break;
 
 	case 4 :
-	  //printZipSortedArray(total, array);
+	  printZipSortedArray(total, array);
 	  break;
 	}
 

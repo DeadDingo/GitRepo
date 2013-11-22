@@ -35,9 +35,6 @@ int fillArray(Address array[ ], FILE *fin) {
     fgets(buffer, 100, fin);
     strcpy(array[i].city, buffer);
 
-    //fgets(buffer, 100, fin);
-    //strcpy(array[i].state, buffer);
-
     fscanf(fin, "%s\n", array[i].state);
 
     fscanf(fin, "%d\n", &array[i].zip);
@@ -52,7 +49,6 @@ int fillArray(Address array[ ], FILE *fin) {
 int menu(void) {
 
   int choice;
-  do {
 
   printf("1.  Print the array sorted by street.\n");
   printf("2.  Print the array sorted by city.\n");
@@ -63,8 +59,6 @@ int menu(void) {
   printf("~~> ");
 
   scanf("%d", &choice);
-
-  }while(choice <= 5 || choice >= 1);
 
   return choice;
 
@@ -87,5 +81,33 @@ void printStreetSortedArray(Address array[ ], int total) {
     printf("%s\n", array[i].street);
 
   }
+
+}
+void printCitySortedArray(Address array[ ], int total) {
+
+
+
+}
+void printStateCitySortedArray(Address array[ ], int total) {
+
+
+}
+void printZipSortedArray(int total, Address array[ ]) {
+  int i;
+  
+  for(i = 0; i <  total; i++) {
+    if(array[i].zip > array[i+1].zip) {
+      Address temp = array[i];
+      array[i] = array[i+i];
+      array[i+1] = temp;
+
+    }
+
+  }
+
+  for(i = 0; i < total; i++) {
+    printf("%d\n", array[i].zip);
+  }
+
 
 }

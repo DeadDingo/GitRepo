@@ -24,7 +24,7 @@ void printStreetSortedArray(Address array[ ], int total);
 
 void printCitySortedArray(Address array[ ], int total);
 
-void printStateCitySortedArray(Address array[ ], int total);
+void printStateCitySortedArray(int total, Address array[ ]);
 
 void printZipSortedArray(int total, Address array[ ]);
 
