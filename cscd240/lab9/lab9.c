@@ -22,15 +22,23 @@ FILE *openFile() {
 }
 int fillArray(Address array[ ], FILE *fin) {
   
-  int i = 0;, total = 0;
+  int i = 0, total = 0;
   char buffer[100];
   //
   while( fgets(buffer, 100, fin ) != NULL ) {
 
     //process each line
-    
+    if(strrchr(buffer, ' ') != NULL) {
+      strcpy(array[i].street, buffer);
+    }
     if(strlen(buffer) < 3) {
-      strncpy(array[i].state, buffer);
+      strcpy(array[i].state, buffer);
+    }
+    if(atoi(buffer)) {
+      scanf("%d", &array[i].zip);
+    }
+    else {
+      strcpy(array[i].city, buffer);
     }
 
     //
