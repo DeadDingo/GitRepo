@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct Address {
+typedef struct {
 
   char *Street[100];
   char *City[100];

@@ -1,8 +1,39 @@
+//lab9.c
+//cscd240
+//
+//Written by Josh Harshman
+//
+//
+
 #include "lab9.h"
-#include <stdio.h>
 
-FILE *fileOpen() {
+FILE *openFile() {
+  char name[20];
+  FILE *fin;
 
+  do {
+    printf("Enter File Name: ");
+    scanf("%s", name);
+    fin = fopen(name, "r");
+  }while(fin == NULL);
 
+  return fin;
+
+}
+int fillArray(Address array[ ], FILE *fin) {
+  
+  int i, j, total, size;
+
+  size = sizeof(array)/sizeof(array[0]);
+
+  //
+  for(i = 0; i < size; i++) {
+    for(j = 0; j < 4; j++) {
+      fgets( array[i], 10, fin );
+    }
+
+  }
+
+  return total;
 
 }
