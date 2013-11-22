@@ -3,12 +3,13 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct {
 
-  char *Street[100];
-  char *City[100];
-  char *State[3];
+  char street[100];
+  char city[100];
+  char state[3];
   int zip;
 
 }Address;

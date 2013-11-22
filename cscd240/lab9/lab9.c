@@ -22,17 +22,17 @@ FILE *openFile() {
 }
 int fillArray(Address array[ ], FILE *fin) {
   
-  int count;
+  int i, total = 0;
   char buffer[100];
   //
   while( fgets(buffer,100,fin ) != NULL ) {
 
     //process the line
-    strncpy(array[i], temp);
-    count++;
+    strcpy(array[i].street, buffer);
+    total++;
 
   }
 
-  return total;
+  return (total/4);
 
 }
