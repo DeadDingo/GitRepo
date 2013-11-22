@@ -66,47 +66,87 @@ int menu(void) {
 void printStreetSortedArray(Address array[ ], int total) {
 
   int i, j;
-
-  for(j = 0; j < total; j++) {
-    if(array[j].street > array[j+1].street) {
-	Address temp = array[j];
-	array[j] = array[j+1];
-	array[j+1] = temp;
-    }
-  }
-  
+  char temp[100];
 
   for(i = 0; i < total; i++) {
+    for(j = 0; j < total-1; j++) {
+      
+      if(strcmp( array[j].street, array[j+1].street ) > 0 ) {
+	strcpy( temp, array[j+1] );
+	strcpy( array[j+1], array[j] );
+	strcpy( array[j], temp );
+      }
+    }
 
-    printf("%s\n", array[i].street);
+  }
 
+  for(i = 0; i < total; i++) {
+    printf("%s", array[i].street);
   }
 
 }
 void printCitySortedArray(Address array[ ], int total) {
 
+  int i, j;
+  char temp[100];
 
+  for(i = 0; i < total; i++) {
+    for(j = 0; j < total-1; j++) {
+      if(strcmp( array[j].city, array[j+1].city ) > 0 ) {
+	strcpy( temp, array[j+1].city );
+	strcpy( array[j+1].city, array[j].city );
+	strcpy( array[j].city, temp);
+      }
+    }
+  }
+
+  for(i = 0; i < total; i++) {
+    printf("%s", array[i].city);
+  }
 
 }
-void printStateCitySortedArray(Address array[ ], int total) {
+void printStateCitySortedArray(int total, Address array[ ]) {
 
+  int i, j;
+  char temp[100];
+  
+  /*Something is wrong here.  I need to figure out how to take along the correlating state with the city durring the sort
+  * */
+  
+  for(i = 0; i < total; i++) {
+    for(j = 0; j < total-1; j++) {
+      if( strcmp( array[j].city, array[j+1].city ) > 0 ) {
+	strcpy( temp, array[j+1].city );
+	strcpy( array[j+1].city, array[j].city );
+	strcpy( array[j].city, temp);
+      }
+    }
+  }
+  
+  for(i = 0; i < total; i++) {
+    printf("%s %s", array[i].state, array[i].city);
+  }
 
 }
 void printZipSortedArray(int total, Address array[ ]) {
-  int i;
   
-  for(i = 0; i <  total; i++) {
-    if(array[i].zip > array[i+1].zip) {
-      Address temp = array[i];
-      array[i] = array[i+i];
-      array[i+1] = temp;
+  int i, j;
 
+  for(i = 0; i < total; i++) {
+    for(j = 0; j < total-1; j++) {
+      if(array[j].zip > array[j+1].zip) {
+	Address temp = array[j+1];
+	array[j+1] = array[j];
+	array[j] = temp;
+      }
     }
 
   }
 
   for(i = 0; i < total; i++) {
+
     printf("%d\n", array[i].zip);
+
   }
 
 
