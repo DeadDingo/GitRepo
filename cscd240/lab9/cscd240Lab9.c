@@ -7,12 +7,11 @@ int main()
     Address array[10]; // guaranteed 1 to 10 inclusive
 
     fin = openFile();
-    /*
+    
     total = fillArray(array, fin);
-
     fclose(fin);
     fin = NULL;
-
+    /*
     do
     {
         switch(choice = menu())

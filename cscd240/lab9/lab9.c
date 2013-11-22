@@ -25,20 +25,20 @@ int fillArray(Address array[ ], FILE *fin) {
   int i = 0, total = 0;
   char buffer[100];
   //
-  while( fgets(buffer, 100, fin ) != NULL ) {
+  while( fgets(buffer, 100, fin ) != NULL) {
 
     //process each line
-    if(strrchr(buffer, ' ') != NULL) {
-      strcpy(array[i].street, buffer);
-    }
-    if(strlen(buffer) < 3) {
+    if(strlen(buffer) < 3)
       strcpy(array[i].state, buffer);
-    }
-    if(atoi(buffer)) {
-      scanf("%d", &array[i].zip);
-    }
-    else {
+
+    if(strchr(buffer, ' '))
+      strcpy(array[i].street, buffer);
+
+    if(strlen(buffer) > 3 && strlen(buffer) < 12)
       strcpy(array[i].city, buffer);
+
+    else {
+      sscanf(buffer, "%d", &array[i].zip);
     }
 
     //
