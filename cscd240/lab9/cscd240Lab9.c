@@ -11,6 +11,7 @@ int main()
     total = fillArray(array, fin);
     fclose(fin);
     fin = NULL;
+    printf("%d\n", total);
     /*
     do
     {

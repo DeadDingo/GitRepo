@@ -10,11 +10,9 @@ int main()
     
     total = fillArray(array, fin);
     fclose(fin);
-    printf("%d\n", array->zip);
-    printf("%d\n", total);
-    /*
     fin = NULL;
-
+    printf("%d", total);
+    /*
     do
     {
         switch(choice = menu())
