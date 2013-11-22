@@ -14,9 +14,18 @@ typedef struct {
 
 }Address;
 
-FILE *openFile();
+FILE *openFile(void);
 
 int fillArray(Address array[ ], FILE *fin);
 
+int menu(void);
+
+void printStreetSortedArray(Address array[ ], int total);
+
+void printCitySortedArray(Address array[ ], int total);
+
+void printStateCitySortedArray(Address array[ ], int total);
+
+void printZipSortedArray(int total, Address array[ ]);
 
 #endif
