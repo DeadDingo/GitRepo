@@ -32,7 +32,7 @@ Address *fillArray(int *total, FILE *fin) {
   array = (Address *)malloc(10 * sizeof(Address));
   
   while( !feof(fin) ) {
-    
+
     //read street
     fgets(buffer, 100, fin);
     array[i].street = (char *)malloc(100 * sizeof(char));
