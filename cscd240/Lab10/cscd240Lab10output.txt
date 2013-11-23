@@ -1,0 +1,40 @@
+DeadDingos-MacBook-Air:Lab10 dingo$ ./a.out 
+Enter File Name: input.txt
+1.  Print the array sorted by street.
+2.  Print the array sorted by city.
+3.  Print the array sorted by state then city
+4.  Print the array sorrted by zip.
+5.  Quit~~> 1
+123 Anywhere
+319F CEB
+500 Sprague Ave
+1.  Print the array sorted by street.
+2.  Print the array sorted by city.
+3.  Print the array sorted by state then city
+4.  Print the array sorrted by zip.
+5.  Quit~~> 2
+Cheney
+Spokane
+Spokane
+1.  Print the array sorted by street.
+2.  Print the array sorted by city.
+3.  Print the array sorted by state then city
+4.  Print the array sorrted by zip.
+5.  Quit~~> 3
+WA Cheney
+WA Spokane
+WA Spokane
+1.  Print the array sorted by street.
+2.  Print the array sorted by city.
+3.  Print the array sorted by state then city
+4.  Print the array sorrted by zip.
+5.  Quit~~> 4
+99004
+99201
+99223
+1.  Print the array sorted by street.
+2.  Print the array sorted by city.
+3.  Print the array sorted by state then city
+4.  Print the array sorrted by zip.
+5.  Quit~~> 5
+
