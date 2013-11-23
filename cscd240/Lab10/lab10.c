@@ -81,7 +81,6 @@ void printStreetSortedArray(Address *array, int total) {
 
   int i, j;
   char temp[100];
-  //
 
   for(i = 0; i < total; i++) {
     for(j = 0; j < total-1; j++) {
