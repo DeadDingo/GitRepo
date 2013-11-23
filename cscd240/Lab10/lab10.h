@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct {
+typedef struct Address {
 
   char *street;
   char *city;

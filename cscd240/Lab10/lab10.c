@@ -30,24 +30,31 @@ Address *fillArray(int *total, FILE *fin) {
 
   //allocate memory array
   array = (Address *)malloc(10 * sizeof(Address));
-
+  
   while( !feof(fin) ) {
-
+    
+    //read street
     fgets(buffer, 100, fin);
     array[i].street = (char *)malloc(100 * sizeof(char));
     strcpy(array[i].street, buffer);
 
+    //read city
     fgets(buffer, 100, fin);
     array[i].city = (char *)malloc(100 * sizeof(char));
     strcpy(array[i].city, buffer);
 
-    // read state
+    //read state
+    array[i].state = (char *)malloc(3 * sizeof(char));
+    fscanf(fin, "%s\n", array[i].state);
 
-    // read zip
+    //read zip
+    
 
     i++;
     total++;
   }
+
+  
 
   return array;
 
@@ -73,7 +80,7 @@ void printStreetSortedArray(Address array[ ], int total) {
 
   int i, j;
   char temp[100];
-  int keyIndex[total]; //key index for sorting
+  //
 
   for(i = 0; i < total; i++) {
     for(j = 0; j < total-1; j++) {

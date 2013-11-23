@@ -3,7 +3,8 @@
 //
 //Written by Josh Harshman
 //
-//
+//============================
+//=========================
 
 #include "lab10.h"
 
@@ -20,30 +21,35 @@ FILE *openFile() {
   return fin;
 
 }
-int fillArray(Address array[ ], FILE *fin) {
+Address *fillArray(int *total, FILE *fin) {
   
-  int i = 0, total = 0;
+  int i = 0;
+  Address *array;
   char buffer[100];
   //
-  
 
-  while(!feof(fin)) {
+  //allocate memory array
+  array = (Address *)malloc(10 * sizeof(Address));
+
+  while( !feof(fin) ) {
 
     fgets(buffer, 100, fin);
+    array[i].street = (char *)malloc(100 * sizeof(char));
     strcpy(array[i].street, buffer);
 
     fgets(buffer, 100, fin);
+    array[i].city = (char *)malloc(100 * sizeof(char));
     strcpy(array[i].city, buffer);
 
-    fscanf(fin, "%s\n", array[i].state);
+    // read state
 
-    fscanf(fin, "%d\n", &array[i].zip);
+    // read zip
 
-    total++;
     i++;
+    total++;
   }
 
-  return total;
+  return array;
 
 }
 int menu(void) {
@@ -67,6 +73,7 @@ void printStreetSortedArray(Address array[ ], int total) {
 
   int i, j;
   char temp[100];
+  int keyIndex[total]; //key index for sorting
 
   for(i = 0; i < total; i++) {
     for(j = 0; j < total-1; j++) {

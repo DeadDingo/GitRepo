@@ -1,3 +1,9 @@
+//lab10.h
+//cscd240
+//
+//Josh Harshman
+//
+
 #ifndef lab10_h
 #define lab10_h
 
@@ -16,7 +22,7 @@ typedef struct {
 
 FILE *openFile(void);
 
-int fillArray(Address *array, FILE *fin);
+Address *fillArray(int *total, FILE *fin);
 
 int menu(void);
 
@@ -27,5 +33,7 @@ void printCitySortedArray(Address array[ ], int total);
 void printStateCitySortedArray(int total, Address array[ ]);
 
 void printZipSortedArray(int total, Address array[ ]);
+
+void cleanUp(Address *array, int *total);
 
 #endif
