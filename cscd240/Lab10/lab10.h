@@ -26,13 +26,13 @@ Address *fillArray(int *total, FILE *fin);
 
 int menu(void);
 
-void printStreetSortedArray(Address array[ ], int total);
+void printStreetSortedArray(Address *array, int total);
 
-void printCitySortedArray(Address array[ ], int total);
+void printCitySortedArray(Address *array, int total);
 
-void printStateCitySortedArray(int total, Address array[ ]);
+void printStateCitySortedArray(int total, Address *array);
 
-void printZipSortedArray(int total, Address array[ ]);
+void printZipSortedArray(int total, Address *array);
 
 void cleanUp(Address *array, int *total);
 

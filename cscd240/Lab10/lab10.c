@@ -54,12 +54,8 @@ Address *fillArray(int *total, FILE *fin) {
     i++;
     count++;
   }
-  *total = count;
 
-  printf("%s\n", array[0].street);
-  printf("%s\n", array[0].city);
-  printf("%s\n", array[0].state);
-  printf("%d\n", array[0].zip);
+  *total = count;
 
   return array;
 
@@ -81,7 +77,7 @@ int menu(void) {
   return choice;
 
 }
-void printStreetSortedArray(Address array[ ], int total) {
+void printStreetSortedArray(Address *array, int total) {
 
   int i, j;
   char temp[100];
@@ -104,7 +100,7 @@ void printStreetSortedArray(Address array[ ], int total) {
   }
 
 }
-void printCitySortedArray(Address array[ ], int total) {
+void printCitySortedArray(Address *array, int total) {
 
   int i, j;
   char temp[100];
@@ -124,7 +120,7 @@ void printCitySortedArray(Address array[ ], int total) {
   }
 
 }
-void printStateCitySortedArray(int total, Address array[ ]) {
+void printStateCitySortedArray(int total, Address *array) {
 
   int i, j;
   char temp[100];
@@ -147,7 +143,7 @@ void printStateCitySortedArray(int total, Address array[ ]) {
   }
 
 }
-void printZipSortedArray(int total, Address array[ ]) {
+void printZipSortedArray(int total, Address *array) {
   
   int i, j;
 
