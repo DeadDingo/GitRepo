@@ -1,3 +1,9 @@
+//lab10.h
+//cscd240
+//
+//Josh Harshman
+//
+
 #ifndef lab10_h
 #define lab10_h
 

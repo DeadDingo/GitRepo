@@ -37,6 +37,14 @@ Address *fillArray(int *total, FILE *fin) {
     array[i].street = (char *)malloc(100 * sizeof(char));
     strcpy(array[i].street, buffer);
 
+    fgets(buffer, 100, fin);
+    array[i].city = (char *)malloc(100 * sizeof(char));
+    strcpy(array[i].city, buffer);
+
+    // read state
+
+    // read zip
+
     i++;
     total++;
   }
