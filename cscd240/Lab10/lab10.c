@@ -24,6 +24,7 @@ FILE *openFile() {
 Address *fillArray(int *total, FILE *fin) {
   
   int i = 0;
+  int count = 0;
   Address *array;
   char buffer[100];
   //
@@ -48,13 +49,17 @@ Address *fillArray(int *total, FILE *fin) {
     fscanf(fin, "%s\n", array[i].state);
 
     //read zip
-    
+    fscanf(fin, "%d\n", &array[i].zip);
 
     i++;
-    total++;
+    count++;
   }
+  *total = count;
 
-  
+  printf("%s\n", array[0].street);
+  printf("%s\n", array[0].city);
+  printf("%s\n", array[0].state);
+  printf("%d\n", array[0].zip);
 
   return array;
 
