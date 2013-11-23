@@ -146,11 +146,12 @@ void printStateCitySortedArray(int total, Address *array) {
 void printZipSortedArray(int total, Address *array) {
   
   int i, j;
+  Address temp;
 
   for(i = 0; i < total; i++) {
     for(j = 0; j < total-1; j++) {
       if(array[j].zip > array[j+1].zip) {
-	Address temp = array[j+1];
+	temp = array[j+1];
 	array[j+1] = array[j];
 	array[j] = temp;
       }
@@ -164,5 +165,15 @@ void printZipSortedArray(int total, Address *array) {
 
   }
 
+}
+void cleanUp(Address *array, int total) {
+
+  int i;
+  for(i = 0; i < total; i++) {
+    free(array[i].street);
+    free(array[i].city);
+    free(array[i].state);
+  }
+  free(array);
 
 }

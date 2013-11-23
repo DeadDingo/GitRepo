@@ -34,6 +34,6 @@ void printStateCitySortedArray(int total, Address *array);
 
 void printZipSortedArray(int total, Address *array);
 
-void cleanUp(Address *array, int *total);
+void cleanUp(Address *array, int total);
 
 #endif

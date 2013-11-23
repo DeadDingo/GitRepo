@@ -31,7 +31,7 @@ int main()
 
 	}while(choice != 5);
 
-    //cleanUp(array, total);
+    cleanUp(array, total);
 	array = NULL;
 
     return 0;
