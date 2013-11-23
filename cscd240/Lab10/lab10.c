@@ -28,11 +28,14 @@ Address *fillArray(int *total, FILE *fin) {
   char buffer[100];
   //
 
-
+  //allocate memory array
+  array = (Address *)malloc(10 * sizeof(Address));
 
   while( !feof(fin) ) {
 
-    
+    fgets(buffer, 100, fin);
+    array[i].street = (char *)malloc(100 * sizeof(char));
+    strcpy(array[i].street, buffer);
 
     i++;
     total++;
