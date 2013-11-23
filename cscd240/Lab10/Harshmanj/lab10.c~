@@ -5,8 +5,6 @@
 //
 //============================
 //=========================
-//NOTE: Sorting is not perfected yet.  Sorting with a keyindex would be more efficient.
-
 
 #include "lab10.h"
 
@@ -80,7 +78,7 @@ int menu(void) {
 
 }
 void printStreetSortedArray(Address *array, int total) {
-  
+
   int i, j;
   char temp[100];
 
@@ -91,15 +89,6 @@ void printStreetSortedArray(Address *array, int total) {
 	strcpy( temp, array[j+1].street );
 	strcpy( array[j+1].street, array[j].street );
 	strcpy( array[j].street, temp );
-	//
-	strcpy( temp, array[j+1].city );
-	strcpy( array[j+1].city, array[j].city);
-	strcpy( array[j].city, temp);
-	//
-	strcpy( temp, array[j+1].state );
-	strcpy( array[j+1].state, array[j].state );
-	strcpy( array[j].state, temp);
-	//
       }
     }
 
@@ -108,7 +97,6 @@ void printStreetSortedArray(Address *array, int total) {
   for(i = 0; i < total; i++) {
     printf("%s", array[i].street);
   }
-  
 
 }
 void printCitySortedArray(Address *array, int total) {
@@ -122,8 +110,6 @@ void printCitySortedArray(Address *array, int total) {
 	strcpy( temp, array[j+1].city );
 	strcpy( array[j+1].city, array[j].city );
 	strcpy( array[j].city, temp);
-
-	//copy everything else
       }
     }
   }
