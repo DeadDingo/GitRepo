@@ -80,8 +80,6 @@ int menu(void) {
 void printStreetSortedArray(Address *array, int total) {
 
   int i, j;
-  char temp[100];
-  int t;
 
   for(i = 0; i < total; i++) {
     for(j = 0; j < total-1; j++) {
@@ -89,20 +87,15 @@ void printStreetSortedArray(Address *array, int total) {
 	structBubbleSort(array, j);
       }
     }
-
   }
 
-  for(i = 0; i < total; i++) {
-    printf("------------\n");
-    printf("%s %s %s\n %d\n", array[i].street, array[i].city, array[i].state, array[i].zip);
-  }
+  printAll(array, total);
+
 
 }
 void printCitySortedArray(Address *array, int total) {
 
   int i, j;
-  char temp[100];
-  int t;
 
   for(i = 0; i < total; i++) {
     for(j = 0; j < total-1; j++) {
@@ -112,17 +105,13 @@ void printCitySortedArray(Address *array, int total) {
     }
   }
 
-  for(i = 0; i < total; i++) {
-    printf("----------\n");
-    printf("%s %s %s\n %d\n", array[i].street, array[i].city, array[i].state, array[i].zip);
-  }
+  printAll(array, total);
 
 }
 void printStateCitySortedArray(int total, Address *array) {
 
   int i, j;
-  char temp[100];
-  
+
   for(i = 0; i < total; i++) {
     for(j = 0; j < total-1; j++) {
       if( strcmp( array[j].city, array[j+1].city ) > 0 ) {
@@ -131,15 +120,12 @@ void printStateCitySortedArray(int total, Address *array) {
     }
   }
   
-  for(i = 0; i < total; i++) {
-    printf("%s %s", array[i].state, array[i].city);
-  }
+  printAll(array, total);
 
 }
 void printZipSortedArray(int total, Address *array) {
 
   int i, j;
-  int temp;
 
   for(i = 0; i < total; i++) {
     for(j = 0; j < total-1; j++) {
@@ -147,17 +133,11 @@ void printZipSortedArray(int total, Address *array) {
 	structBubbleSort(array, j);
       }
     }
-
-    printf("Zips sorted in decending order.\n");
-
-    for(i = 0; i < total; i++) {
-
-      printf("------------\n");
-      printf("%s %s %s\n %d\n", array[i].street, array[i].city, array[i].state, array[i].zip);
-
-    }
-
   }
+
+  printf("Zips are sorted in decending order\n");
+
+  printAll(array, total);
 
 }
 void structBubbleSort(Address *array, int index) {
@@ -183,7 +163,12 @@ void structBubbleSort(Address *array, int index) {
 }
 void printAll(Address array, int total) {
 
+  int i;
 
+  for(i = 0; i < total; i++) {
+    printf("---------------\n");
+    printf("%s %s %s\n %d\n", array[i].street, array[i].city, array[i].state, array[i].zip);
+  }
 
 }
 void cleanUp(Address *array, int total) {
