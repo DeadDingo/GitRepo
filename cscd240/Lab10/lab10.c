@@ -135,7 +135,7 @@ void printZipSortedArray(int total, Address *array) {
     }
   }
 
-  printf("Zips are sorted in decending order\n");
+  printf("\nZips are sorted in decending order\n");
 
   printAll(array, total);
 
@@ -161,7 +161,7 @@ void structBubbleSort(Address *array, int index) {
   array[index].zip = t;
 
 }
-void printAll(Address array, int total) {
+void printAll(Address *array, int total) {
 
   int i;
 
