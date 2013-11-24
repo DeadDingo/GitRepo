@@ -34,6 +34,10 @@ void printStateCitySortedArray(int total, Address *array);
 
 void printZipSortedArray(int total, Address *array);
 
+void structBubbleSort(Address *array, int index);
+
+void printAll(Address *array, int total);
+
 void cleanUp(Address *array, int total);
 
 #endif

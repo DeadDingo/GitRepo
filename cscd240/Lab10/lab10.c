@@ -85,23 +85,8 @@ void printStreetSortedArray(Address *array, int total) {
 
   for(i = 0; i < total; i++) {
     for(j = 0; j < total-1; j++) {
-      
       if(strcmp( array[j].street, array[j+1].street ) > 0 ) {
-	strcpy( temp, array[j+1].street );
-	strcpy( array[j+1].street, array[j].street );
-	strcpy( array[j].street, temp );
-	//
-	strcpy( temp, array[j+1].city );
-	strcpy( array[j+1].city, array[j].city );
-	strcpy( array[j].city, temp );
-	//
-	strcpy( temp, array[j+1].state );
-	strcpy( array[j+1].state, array[j].state );
-	strcpy( array[j].state, temp);
-	//
-	t = array[j+1].zip;
-	array[j+1].zip = array[j].zip;
-	array[j].zip = t;
+	structBubbleSort(array, j);
       }
     }
 
@@ -122,21 +107,7 @@ void printCitySortedArray(Address *array, int total) {
   for(i = 0; i < total; i++) {
     for(j = 0; j < total-1; j++) {
       if(strcmp( array[j].city, array[j+1].city ) > 0 ) {
-	strcpy( temp, array[j+1].city );
-	strcpy( array[j+1].city, array[j].city );
-	strcpy( array[j].city, temp);
-	//
-	strcpy( temp, array[j+1].street );
-	strcpy( array[j+1].street, array[j].street );
-	strcpy( array[j].street, temp);
-	//
-	strcpy( temp, array[j+1].state );
-	strcpy( array[j+1].state, array[j].state );
-	strcpy( array[j].state, temp );
-	//
-	t = array[j+1].zip;
-	array[j+1].zip = array[j].zip;
-	array[j].zip = t;
+	structBubbleSort(array, j);
       }
     }
   }
@@ -155,9 +126,7 @@ void printStateCitySortedArray(int total, Address *array) {
   for(i = 0; i < total; i++) {
     for(j = 0; j < total-1; j++) {
       if( strcmp( array[j].city, array[j+1].city ) > 0 ) {
-	strcpy( temp, array[j+1].city );
-	strcpy( array[j+1].city, array[j].city );
-	strcpy( array[j].city, temp);
+	structBubbleSort(array, j);
       }
     }
   }
@@ -175,9 +144,7 @@ void printZipSortedArray(int total, Address *array) {
   for(i = 0; i < total; i++) {
     for(j = 0; j < total-1; j++) {
       if(array[j].zip < array[j+1].zip) {
-	temp = array[j+1].zip;
-	array[j+1].zip = array[j].zip;
-	array[j].zip = temp;
+	structBubbleSort(array, j);
       }
     }
 
@@ -193,19 +160,30 @@ void printZipSortedArray(int total, Address *array) {
   }
 
 }
-void modBubbleSort(Address *array, int index) {
+void structBubbleSort(Address *array, int index) {
   char temp[100];
   int t;
 
-  strcpy( temp, array[i+1].street );
-  strcpy( array[i+1].street, array[i].street);
-  strcpy( array[i].street, temp );
+  strcpy( temp, array[index+1].street );
+  strcpy( array[index+1].street, array[index].street);
+  strcpy( array[index].street, temp );
   //
-  strcpy( temp, array[i+1].city );
-  strcpy( array[i+1].city, array[i].city );
-  strcpy( array[i].city, temp );
+  strcpy( temp, array[index+1].city );
+  strcpy( array[index+1].city, array[index].city );
+  strcpy( array[index].city, temp );
   //
-  
+  strcpy( temp, array[index+1].state );
+  strcpy( array[index+1].state, array[index].state );
+  strcpy( array[index].state, temp );
+  //
+  t = array[index+1].zip;
+  array[index+1].zip = array[index].zip;
+  array[index].zip = t;
+
+}
+void printAll(Address array, int total) {
+
+
 
 }
 void cleanUp(Address *array, int total) {
