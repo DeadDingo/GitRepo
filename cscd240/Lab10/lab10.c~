@@ -24,30 +24,38 @@ FILE *openFile() {
 Address *fillArray(int *total, FILE *fin) {
   
   int i = 0;
+  int count = 0;
   Address *array;
   char buffer[100];
   //
 
   //allocate memory array
   array = (Address *)malloc(10 * sizeof(Address));
-
+  
   while( !feof(fin) ) {
 
+    //read street
     fgets(buffer, 100, fin);
     array[i].street = (char *)malloc(100 * sizeof(char));
     strcpy(array[i].street, buffer);
 
+    //read city
     fgets(buffer, 100, fin);
     array[i].city = (char *)malloc(100 * sizeof(char));
     strcpy(array[i].city, buffer);
 
-    // read state
+    //read state
+    array[i].state = (char *)malloc(3 * sizeof(char));
+    fscanf(fin, "%s\n", array[i].state);
 
-    // read zip
+    //read zip
+    fscanf(fin, "%d\n", &array[i].zip);
 
     i++;
-    total++;
+    count++;
   }
+
+  *total = count;
 
   return array;
 
@@ -69,11 +77,10 @@ int menu(void) {
   return choice;
 
 }
-void printStreetSortedArray(Address array[ ], int total) {
+void printStreetSortedArray(Address *array, int total) {
 
   int i, j;
   char temp[100];
-  int keyIndex[total]; //key index for sorting
 
   for(i = 0; i < total; i++) {
     for(j = 0; j < total-1; j++) {
@@ -92,7 +99,7 @@ void printStreetSortedArray(Address array[ ], int total) {
   }
 
 }
-void printCitySortedArray(Address array[ ], int total) {
+void printCitySortedArray(Address *array, int total) {
 
   int i, j;
   char temp[100];
@@ -112,13 +119,10 @@ void printCitySortedArray(Address array[ ], int total) {
   }
 
 }
-void printStateCitySortedArray(int total, Address array[ ]) {
+void printStateCitySortedArray(int total, Address *array) {
 
   int i, j;
   char temp[100];
-  
-  /*Something is wrong here.  I need to figure out how to take along the correlating state with the city durring the sort
-  * */
   
   for(i = 0; i < total; i++) {
     for(j = 0; j < total-1; j++) {
@@ -135,14 +139,15 @@ void printStateCitySortedArray(int total, Address array[ ]) {
   }
 
 }
-void printZipSortedArray(int total, Address array[ ]) {
+void printZipSortedArray(int total, Address *array) {
   
   int i, j;
+  Address temp;
 
   for(i = 0; i < total; i++) {
     for(j = 0; j < total-1; j++) {
       if(array[j].zip > array[j+1].zip) {
-	Address temp = array[j+1];
+	temp = array[j+1];
 	array[j+1] = array[j];
 	array[j] = temp;
       }
@@ -156,5 +161,15 @@ void printZipSortedArray(int total, Address array[ ]) {
 
   }
 
+}
+void cleanUp(Address *array, int total) {
+
+  int i;
+  for(i = 0; i < total; i++) {
+    free(array[i].street);
+    free(array[i].city);
+    free(array[i].state);
+  }
+  free(array);
 
 }

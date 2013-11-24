@@ -81,6 +81,7 @@ void printStreetSortedArray(Address *array, int total) {
 
   int i, j;
   char temp[100];
+  int t;
 
   for(i = 0; i < total; i++) {
     for(j = 0; j < total-1; j++) {
@@ -89,13 +90,26 @@ void printStreetSortedArray(Address *array, int total) {
 	strcpy( temp, array[j+1].street );
 	strcpy( array[j+1].street, array[j].street );
 	strcpy( array[j].street, temp );
+	//
+	strcpy( temp, array[j+1].city );
+	strcpy( array[j+1].city, array[j].city );
+	strcpy( array[j].city, temp );
+	//
+	strcpy( temp, array[j+1].state );
+	strcpy( array[j+1].state, array[j].state );
+	strcpy( array[j].state, temp);
+	//
+	t = array[j+1].zip;
+	array[j+1].zip = array[j].zip;
+	array[j].zip = t;
       }
     }
 
   }
 
   for(i = 0; i < total; i++) {
-    printf("%s", array[i].street);
+    printf("------------\n");
+    printf("%s %s %s\n %d\n", array[i].street, array[i].city, array[i].state, array[i].zip);
   }
 
 }
@@ -103,6 +117,7 @@ void printCitySortedArray(Address *array, int total) {
 
   int i, j;
   char temp[100];
+  int t;
 
   for(i = 0; i < total; i++) {
     for(j = 0; j < total-1; j++) {
@@ -110,12 +125,25 @@ void printCitySortedArray(Address *array, int total) {
 	strcpy( temp, array[j+1].city );
 	strcpy( array[j+1].city, array[j].city );
 	strcpy( array[j].city, temp);
+	//
+	strcpy( temp, array[j+1].street );
+	strcpy( array[j+1].street, array[j].street );
+	strcpy( array[j].street, temp);
+	//
+	strcpy( temp, array[j+1].state );
+	strcpy( array[j+1].state, array[j].state );
+	strcpy( array[j].state, temp );
+	//
+	t = array[j+1].zip;
+	array[j+1].zip = array[j].zip;
+	array[j].zip = t;
       }
     }
   }
 
   for(i = 0; i < total; i++) {
-    printf("%s", array[i].city);
+    printf("----------\n");
+    printf("%s %s %s\n %d\n", array[i].street, array[i].city, array[i].state, array[i].zip);
   }
 
 }
@@ -140,26 +168,44 @@ void printStateCitySortedArray(int total, Address *array) {
 
 }
 void printZipSortedArray(int total, Address *array) {
-  
+
   int i, j;
-  Address temp;
+  int temp;
 
   for(i = 0; i < total; i++) {
     for(j = 0; j < total-1; j++) {
-      if(array[j].zip > array[j+1].zip) {
-	temp = array[j+1];
-	array[j+1] = array[j];
-	array[j] = temp;
+      if(array[j].zip < array[j+1].zip) {
+	temp = array[j+1].zip;
+	array[j+1].zip = array[j].zip;
+	array[j].zip = temp;
       }
+    }
+
+    printf("Zips sorted in decending order.\n");
+
+    for(i = 0; i < total; i++) {
+
+      printf("------------\n");
+      printf("%s %s %s\n %d\n", array[i].street, array[i].city, array[i].state, array[i].zip);
+
     }
 
   }
 
-  for(i = 0; i < total; i++) {
+}
+void modBubbleSort(Address *array, int index) {
+  char temp[100];
+  int t;
 
-    printf("%d\n", array[i].zip);
-
-  }
+  strcpy( temp, array[i+1].street );
+  strcpy( array[i+1].street, array[i].street);
+  strcpy( array[i].street, temp );
+  //
+  strcpy( temp, array[i+1].city );
+  strcpy( array[i+1].city, array[i].city );
+  strcpy( array[i].city, temp );
+  //
+  
 
 }
 void cleanUp(Address *array, int total) {
