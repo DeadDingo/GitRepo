@@ -21,13 +21,12 @@ listnode *extract( const char *line, listnode *oldHead ) {
   char buffer[MAXWORDLEN];
 
   while(line[i] != '\0') {
-
+    //use strtok to check for delimiting characters
     if( isLetter(line[i]) ) {
       strcpy( buffer[i], line[i]);
     }
   }
 
-  //create and return node pointer
 }
 int isLetter( char c ) {
 
