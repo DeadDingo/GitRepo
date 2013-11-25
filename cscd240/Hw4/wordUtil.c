@@ -20,12 +20,13 @@ listnode *extract( const char *line, listnode *oldHead ) {
   int i;
   char buffer[MAXWORDLEN];
 
-  while(line[i] != '\0') {
-    //use strtok to check for delimiting characters
+  for(i = 0; line[i] != '\0'; i++) {
     if( isLetter(line[i]) ) {
-      strcpy( buffer[i], line[i]);
+      strcpy(buffer[i], line[i]);
     }
   }
+
+  //
 
 }
 int isLetter( char c ) {
@@ -38,3 +39,13 @@ int isLetter( char c ) {
   return 0; //returns if not a character
 
 }
+
+
+/*How to make a new node
+* listNode *createNode(char word[], int count) {
+*   listNode * ret = new (listNode *)malloc(sizeoof(listNode));
+*    ret->word = (char *)malloc(MAXLENWORD * sizeof(char));
+*    strcpy(ret->word, word);
+*    ret->count = count;
+*    return ret;
+}*/
