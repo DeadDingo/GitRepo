@@ -18,19 +18,24 @@
 listnode *extract( const char *line, listnode *oldHead ) {
 
   int i;
-  int size = strlen(line);
   char buffer[MAXWORDLEN];
 
   while(line[i] != '\0') {
 
-    if(isLetter( line[i] ) {
-	strcpy(buffer[i], line[i]); //copy into temporary word buffer
+    if( isLetter(line[i]) ) {
+      strcpy( buffer[i], line[i]);
     }
-
   }
 
-    //insert word into node
+  //create and return node pointer
+}
+int isLetter( char c ) {
 
-    //return new pointer to linked list
+  if( c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' ) {
+    //the character is a letter!
+    return 1;
+  }
+  
+  return 0; //returns if not a character
 
 }
