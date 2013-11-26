@@ -18,6 +18,8 @@ int main () {
   curPos = &line[0];
 
   strncpy(buffer, curPos, len);
+
+  buffer[len] = '\0';
   
   printf("%s\n", buffer);
 

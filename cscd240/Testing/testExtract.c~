@@ -17,7 +17,7 @@ int main () {
 
   curPos = &line[0];
 
-  strncpy(buffer, curPos, len-2);
+  strncpy(buffer, curPos, len);
   
   printf("%s\n", buffer);
 

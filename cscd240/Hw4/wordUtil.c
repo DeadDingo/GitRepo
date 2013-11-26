@@ -21,14 +21,40 @@ listnode *extract( const char *line, listnode *oldHead ) {
   int len = 0; //length of word
   int inword = 0; //start of word flag
   int wordstart;
+  char *curPos;
+  char *buffer;
+
+  buffer = (char *)malloc(MAXWORDLEN * sizeof(char));
 
 
   //tokenize!
   while ( 1 ) {
 
-    
+    curPos = &line[i];
 
+    if( isLetter(curPos) ) {
 
+      if( ! inword ) {
+	inword = 1;
+	wordstart = i;
+      }
+      len++;
+
+    }
+    else if( inword ) {
+
+      curPos = &line[wordstart];
+      strncpy(buffer, curPos, len);
+      buffer[len] = '\0';
+      inword = 0;
+      len = 0;
+
+    }
+
+    i++;
+
+    if(strcmp(line[i], '\0') == 0)
+      break;
 
   }
 
