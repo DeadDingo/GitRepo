@@ -48,6 +48,19 @@ listNode *extract( const char *line, listNode *oldHead ) {
 
       strncpy(buffer, wordstart, len);
       buffer[len] = '\0';
+      if(strlen(buffer) == 1) {
+
+	if(buffer == 'a' || buffer == 'A' || buffer == 'I') {
+	  //add to list
+	}
+
+      }
+      else {
+
+	//it is a word greater than 1 character in length.  Add to list
+
+      }
+
       inword = 0;
       len = 0;
 
