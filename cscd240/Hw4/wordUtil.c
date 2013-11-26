@@ -15,7 +15,7 @@
 
 //define all funcions in wordUtil.h here
 
-listnode *extract( const char *line, listnode *oldHead ) {
+listNode *extract( const char *line, listNode *oldHead ) {
 
   int i;
   int len = 0; //length of word
@@ -32,7 +32,7 @@ listnode *extract( const char *line, listnode *oldHead ) {
 
     curPos = &line[i];
 
-    if( isLetter(curPos) ) {
+    if( isLetter( *curPos ) ) {
 
       if( ! inword ) {
 	inword = 1;
@@ -63,7 +63,7 @@ listnode *extract( const char *line, listnode *oldHead ) {
 }
 int isLetter( char c ) {
 
-  if( c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' ) {
+  if( (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ) {
     //the character is a letter!
     return 1;
   }
