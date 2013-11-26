@@ -18,12 +18,18 @@
 listnode *extract( const char *line, listnode *oldHead ) {
 
   int i;
-  char buffer[MAXWORDLEN];
+  int len = 0; //length of word
+  int inword = 0; //start of word flag
+  int wordstart;
 
-  for(i = 0; line[i] != '\0'; i++) {
-    if( isLetter(line[i]) ) {
-      strcpy(buffer[i], line[i]);
-    }
+
+  //tokenize!
+  while ( 1 ) {
+
+    
+
+
+
   }
 
   //
@@ -41,6 +47,9 @@ int isLetter( char c ) {
 }
 
 
+
+
+//NOTES
 /*How to make a new node
 * listNode *createNode(char word[], int count) {
 *   listNode * ret = new (listNode *)malloc(sizeoof(listNode));
@@ -49,3 +58,16 @@ int isLetter( char c ) {
 *    ret->count = count;
 *    return ret;
 }*/
+
+
+/*
+listNode * addFirst(listNode *oldhead, listNode *toAdd) {
+
+if(oldhead == NULL)
+  return toAdd;
+else {
+  toAdd->next = oldhead;
+  return toAdd;
+}
+
+} */
