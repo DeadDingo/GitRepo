@@ -30,7 +30,7 @@ listNode *extract( const char *line, listNode *oldHead ) {
   //tokenize!
   while ( 1 ) {
 
-    curPos = &line[i];
+    *curPos = *line + i;
 
     if( isLetter( *curPos ) ) {
 
@@ -43,7 +43,7 @@ listNode *extract( const char *line, listNode *oldHead ) {
     }
     else if( inword ) {
 
-      curPos = &line[wordstart];
+      *curPos = *line + wordstart;
       strncpy(buffer, curPos, len);
       buffer[len] = '\0';
       inword = 0;
