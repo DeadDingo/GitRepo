@@ -15,23 +15,24 @@
 
 //define all funcions in wordUtil.h here
 
+/**
+ *Function Extracts each word from a line
+ */
 listNode *extract( const char *line, listNode *oldHead ) {
 
   int i;
   int len = 0; //length of word
   int inword = 0; //start of word flag
   char * wordstart;
-  //char *curPos;
   char *buffer;
+  char *sentence;
 
-  buffer = (char *)malloc(MAXWORDLEN * sizeof(char));
+  buffer = (char *)malloc(MAXWORDLEN * sizeof(char)); //allocate memory for buffer. Memory freed at end of function
   
-  char * sentence = line;
+  sentence = line;
 
   //tokenize!
   while ( *sentence != '\n' ) {
-
-    //curPos = line + i;
 
     if( isLetter( *sentence ) ) {
 
@@ -44,7 +45,6 @@ listNode *extract( const char *line, listNode *oldHead ) {
     }
     else if( inword ) {
 
-      //curPos = line + wordstart;
 
       strncpy(buffer, wordstart, len);
       buffer[len] = '\0';
@@ -66,17 +66,17 @@ listNode *extract( const char *line, listNode *oldHead ) {
 
     }
 
-    //i++;
     sentence++;
-
-    // if(line[i] == '\0')
-    //  break;
 
   }
 
-  //
+  //Free the allocated buffer
+  free(buffer);
 
 }
+/**
+ * Function Tests for valid character
+ */
 int isLetter( char c ) {
 
   if( (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ) {
@@ -85,6 +85,17 @@ int isLetter( char c ) {
   }
   
   return 0; //returns if not a character
+
+}
+/**
+ * Function Adds word into node
+ * Functions used:
+ *   
+ */
+listNode *addWord(const char *word, listNode *head) {
+
+  //
+
 
 }
 
