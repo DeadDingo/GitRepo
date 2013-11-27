@@ -115,6 +115,8 @@ listNode *hasRepeat(const char *word, listNode *head) {
 	return curPos;
       break;
     }
+    //move to next node
+    curPos = curPos->next;
 
   }while(curPos != NULL);
 
