@@ -52,13 +52,13 @@ listNode *extract( const char *line, listNode *oldHead ) {
 
 	if(*buffer == 'a' || *buffer == 'A' || *buffer == 'I') {
 	  //call to addWord.  Will return new head pointer
-	  return addWord(buffer, head);
+	  return addWord(buffer, oldHead);
 	}
 
       }
       else {
 	//call to addWord.  Will return new head pointer
-	return addWord(buffer, head);
+	return addWord(buffer, oldHead);
 
       }
 
@@ -132,7 +132,7 @@ listNode *addPos(const char *word, listNode *head) {
   do {
 
     if(strcmp(curPos->word, word) > 0 )
-      return curPos->next;
+      return curPos;
 
     curPos = curPos->next;
 
