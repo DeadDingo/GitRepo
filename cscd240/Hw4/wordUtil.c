@@ -113,19 +113,12 @@ listNode *addWord(const char *word, listNode *head) {
   
   temp = addPos(word, head);
 
-  if (temp == head) {
-    //add at start
-    )
+  //now add temp into list
 
-  }
-
-  //otherwise create and add at specified position
   newNode = createNode(word, 1);
-  newNode->next = temp->next;
+  newNode = temp->next;
   temp->next = newNode;
-  
   return head;
-
 
 }
 listNode *hasRepeat(const char *word, listNode *head) {
@@ -196,7 +189,17 @@ listNode *createNode(const char *word, int count) {
   return newNode;
 
 }
+listNode *showList(listNode *head) {
 
+  listNode *walker = head;
+
+  do {
+
+    printf("%s %d", walker->word, walker->count);
+    walker = walker->next;
+  }while(walker != NULL);
+
+}
 
 //NOTES
 /*How to make a new node
