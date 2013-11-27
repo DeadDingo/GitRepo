@@ -124,6 +124,23 @@ listNode *hasRepeat(const char *word, listNode *head) {
   return NULL;
 
 }
+listNode *addPos(const char *word, listNode *head) {
+
+  listNode *curPos = head;
+
+  do {
+
+    if(strcmp(curPos->word, word) > 0 )
+      return curPos->next;
+
+    curPos = curPos->next;
+
+  }while(curPos->next != NULL);
+
+  //return end of list
+  return curPos;
+
+}
 
 
 
