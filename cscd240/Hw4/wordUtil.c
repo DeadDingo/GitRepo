@@ -95,6 +95,21 @@ int isLetter( char c ) {
  */
 listNode *addWord(const char *word, listNode *head) {
 
+  //Start the list from a NULL pointer
+  if(head == NULL) {
+    listNode *newNode = createNode(word, 1); //create node
+    return addFirst(head, newNode);
+  }
+
+  //Now that the list is started, check for repeated words
+  listNode *temp = hasRepeat(word, head);
+  if(temp != NULL) {
+    //has repeat
+    temp->count += 1;
+    return head;
+  }
+  
+
   
 
 
