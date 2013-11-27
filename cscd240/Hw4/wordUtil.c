@@ -142,7 +142,7 @@ listNode *hasRepeat(const char *word, listNode *head) {
     //move to next node
     curPos = curPos->next;
 
-  }while(curPos != NULL);
+  }while(curPos->next != NULL);
 
   return NULL;
 
@@ -189,7 +189,7 @@ listNode *createNode(const char *word, int count) {
   return newNode;
 
 }
-listNode *showList(listNode *head) {
+void showList(const listNode *head) {
 
   listNode *walker = head;
 
