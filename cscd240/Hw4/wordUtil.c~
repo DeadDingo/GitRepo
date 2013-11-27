@@ -27,6 +27,8 @@ listNode *extract( const char *line, listNode *oldHead ) {
   char *buffer;
   char *sentence;
 
+  listNode *listHead;
+
   buffer = (char *)malloc(MAXWORDLEN * sizeof(char)); //allocate memory for buffer. Memory freed at end of function
   
   sentence = line;
@@ -45,21 +47,21 @@ listNode *extract( const char *line, listNode *oldHead ) {
     }
     else if( inword ) {
 
-
       strncpy(buffer, wordstart, len);
       buffer[len] = '\0';
+      printf("%s\n", buffer);
       if(strlen(buffer) == 1) {
-
-	if(buffer == 'a' || buffer == 'A' || buffer == 'I') {
-	  //add to list
+	if(*buffer == 'a' || *buffer == 'A' || *buffer == 'I') {
+	  //call to addWord.  Will return new head pointer
+	  //listHead =  addWord(buffer, oldHead);
 	}
 
       }
       else {
+	//call to addWord.  Will return new head pointer
+	//listHead = addWord(buffer, oldHead);
 
-	//it is a word greater than 1 character in length.  Add to list
-
-      }
+	}
 
       inword = 0;
       len = 0;
@@ -72,6 +74,9 @@ listNode *extract( const char *line, listNode *oldHead ) {
 
   //Free the allocated buffer
   free(buffer);
+
+
+  return listHead;
 
 }
 /**
@@ -94,38 +99,123 @@ int isLetter( char c ) {
  */
 listNode *addWord(const char *word, listNode *head) {
 
+  listNode *newNode;
+
+  //Start the list from a NULL pointer
+  if(head == NULL) {
+    newNode = createNode(word, 1); //create node
+    return addFirst(head, newNode);
+  }
+  /*
+  //Now that the list is started, check for repeated words
+  listNode *temp = hasRepeat(word, head);
+  if(temp != NULL) {
+    //has repeat
+    temp->count += 1;
+    return head;
+  }
   
+  temp = addPos(word, head);
 
+  //now add temp into list
 
+  newNode = createNode(word, 1);
+  newNode = temp->next;
+  temp->next = newNode;
+  return head;
+  */
 }
 listNode *hasRepeat(const char *word, listNode *head) {
 
-  char *curPos = head;
-  int len;
+  listNode *curPos = head;
+  int len = strlen(word);
 
   do {
-    len = strlen(word);
 
     switch(len) {
-    case len == 1 :
-      
+    case ( 1 ) :
+      if(curPos->word == word)
+	return curPos;
       break;
-    case len > 1 :
+    default :
+      if(strcmp(curPos->word, word) == 0)
+	return curPos;
       break;
     }
+
+    //move to next node
+    curPos = curPos->next;
 
   }while(curPos != NULL);
 
   return NULL;
 
 }
+listNode *addPos(const char *word, listNode *head) {
+
+  listNode *curPos = head;
+
+  do {
+
+    if(strcmp(curPos->word, word) > 0 )
+      return curPos;
+
+    curPos = curPos->next;
+
+  }while(curPos != NULL);
+
+  //return end of list
+  return curPos;
+
+}
+listNode *addFirst(listNode *head, listNode *toAdd) {
+
+  if(head == NULL) {
+    return toAdd;
+  }
+  else {
+
+    toAdd->next = head;
+    return toAdd;
+
+  }
+
+}
+/**
+ * Helper function to create new nodes
+ * */
+listNode *createNode(const char *word, int count) {
+
+  listNode *newNode = (listNode *)malloc(sizeof(listNode));
+  newNode->word = (char *)malloc(sizeof(listNode));
+  strcpy(newNode->word, word);
+  newNode->count = count;
+  return newNode;
+
+}
+void showList(const listNode *head) {
+  listNode *crawl = head;
+  while(crawl != NULL) {
+
+    printf("%s\n", crawl->word);
+
+  }
+
+}
+
+
+
+
+
+
+
 
 
 
 //NOTES
 /*How to make a new node
 * listNode *createNode(char word[], int count) {
-*   listNode * ret = new (listNode *)malloc(sizeoof(listNode));
+*   listNode * ret =  (listNode *)malloc(sizeoof(listNode));
 *    ret->word = (char *)malloc(MAXLENWORD * sizeof(char));
 *    strcpy(ret->word, word);
 *    ret->count = count;
