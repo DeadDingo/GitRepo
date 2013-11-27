@@ -49,19 +49,17 @@ listNode *extract( const char *line, listNode *oldHead ) {
 
       strncpy(buffer, wordstart, len);
       buffer[len] = '\0';
-      printf("%s\n", buffer);
       if(strlen(buffer) == 1) {
 	if(*buffer == 'a' || *buffer == 'A' || *buffer == 'I') {
 	  //call to addWord.  Will return new head pointer
-	  //listHead =  addWord(buffer, oldHead);
+	  listHead =  addWord(buffer, oldHead);
 	}
 
       }
       else {
 	//call to addWord.  Will return new head pointer
-	//listHead = addWord(buffer, oldHead);
-
-	}
+	listHead = addWord(buffer, oldHead);
+      }
 
       inword = 0;
       len = 0;
@@ -84,8 +82,11 @@ listNode *extract( const char *line, listNode *oldHead ) {
  */
 int isLetter( char c ) {
 
-  if( (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ) {
+  if( c >= 'a' && c <= 'z' ) {
     //the character is a letter!
+    return 1;
+  }
+  if(c >= 'A' && c <= 'Z') {
     return 1;
   }
   
@@ -104,9 +105,10 @@ listNode *addWord(const char *word, listNode *head) {
   //Start the list from a NULL pointer
   if(head == NULL) {
     newNode = createNode(word, 1); //create node
+    printf("%s %d\n", newNode->word, newNode->count);
     return addFirst(head, newNode);
   }
-  /*
+  
   //Now that the list is started, check for repeated words
   listNode *temp = hasRepeat(word, head);
   if(temp != NULL) {
@@ -123,7 +125,7 @@ listNode *addWord(const char *word, listNode *head) {
   newNode = temp->next;
   temp->next = newNode;
   return head;
-  */
+  
 }
 listNode *hasRepeat(const char *word, listNode *head) {
 
@@ -195,9 +197,10 @@ listNode *createNode(const char *word, int count) {
 }
 void showList(const listNode *head) {
   listNode *crawl = head;
-  while(crawl != NULL) {
+  while(crawl->next != NULL) {
 
-    printf("%s\n", crawl->word);
+    printf("%s %d", crawl->word, crawl->count);
+    crawl = crawl->next;
 
   }
 
