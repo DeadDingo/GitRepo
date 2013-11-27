@@ -50,7 +50,7 @@ listNode *extract( const char *line, listNode *oldHead ) {
       buffer[len] = '\0';
       if(strlen(buffer) == 1) {
 
-	if(buffer == 'a' || buffer == 'A' || buffer == 'I') {
+	if(*buffer == 'a' || *buffer == 'A' || *buffer == 'I') {
 	  //add to list
 	}
 
@@ -115,6 +115,7 @@ listNode *hasRepeat(const char *word, listNode *head) {
 	return curPos;
       break;
     }
+
     //move to next node
     curPos = curPos->next;
 
