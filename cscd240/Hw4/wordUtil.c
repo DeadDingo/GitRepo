@@ -95,9 +95,11 @@ int isLetter( char c ) {
  */
 listNode *addWord(const char *word, listNode *head) {
 
+  listNode *newNode;
+
   //Start the list from a NULL pointer
   if(head == NULL) {
-    listNode *newNode = createNode(word, 1); //create node
+    newNode = createNode(word, 1); //create node
     return addFirst(head, newNode);
   }
 
@@ -109,8 +111,20 @@ listNode *addWord(const char *word, listNode *head) {
     return head;
   }
   
+  temp = addPos(word, head);
 
+  if (temp == head) {
+    //add at start
+    )
+
+  }
+
+  //otherwise create and add at specified position
+  newNode = createNode(word, 1);
+  newNode->next = temp->next;
+  temp->next = newNode;
   
+  return head;
 
 
 }
