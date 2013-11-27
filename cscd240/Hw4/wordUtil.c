@@ -154,17 +154,25 @@ listNode *addFirst(listNode *head, listNode *toAdd) {
 
   }
 
+}
+/**
+ * Helper function to create new nodes
+ * */
+listNode *createNode(const char *word, int count) {
 
-
+  listNode *newNode = (listNode *)malloc(sizeof(listNode));
+  newNode->word = (char *)malloc(sizeof(listNode));
+  strcpy(newNode-word, word);
+  newNode->count = count;
+  return newNode;
 
 }
-
 
 
 //NOTES
 /*How to make a new node
 * listNode *createNode(char word[], int count) {
-*   listNode * ret = new (listNode *)malloc(sizeoof(listNode));
+*   listNode * ret =  (listNode *)malloc(sizeoof(listNode));
 *    ret->word = (char *)malloc(MAXLENWORD * sizeof(char));
 *    strcpy(ret->word, word);
 *    ret->count = count;
