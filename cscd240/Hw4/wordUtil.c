@@ -94,11 +94,33 @@ int isLetter( char c ) {
  */
 listNode *addWord(const char *word, listNode *head) {
 
-  //
+  
 
 
 }
+listNode *hasRepeat(const char *word, listNode *head) {
 
+  listNode *curPos = head;
+  int len = strlen(word);
+
+  do {
+
+    switch(len) {
+    case ( 1 ) :
+      if(curPos->word == word)
+	return curPos;
+      break;
+    default :
+      if(strcmp(curPos->word, word) == 0)
+	return curPos;
+      break;
+    }
+
+  }while(curPos != NULL);
+
+  return NULL;
+
+}
 
 
 

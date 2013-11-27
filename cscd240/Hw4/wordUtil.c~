@@ -15,55 +15,71 @@
 
 //define all funcions in wordUtil.h here
 
-listnode *extract( const char *line, listnode *oldHead ) {
+/**
+ *Function Extracts each word from a line
+ */
+listNode *extract( const char *line, listNode *oldHead ) {
 
   int i;
   int len = 0; //length of word
   int inword = 0; //start of word flag
-  int wordstart;
-  char *curPos;
+  char * wordstart;
   char *buffer;
+  char *sentence;
 
-  buffer = (char *)malloc(MAXWORDLEN * sizeof(char));
-
+  buffer = (char *)malloc(MAXWORDLEN * sizeof(char)); //allocate memory for buffer. Memory freed at end of function
+  
+  sentence = line;
 
   //tokenize!
-  while ( 1 ) {
+  while ( *sentence != '\n' ) {
 
-    curPos = &line[i];
-
-    if( isLetter(curPos) ) {
+    if( isLetter( *sentence ) ) {
 
       if( ! inword ) {
 	inword = 1;
-	wordstart = i;
+	wordstart = sentence;
       }
       len++;
 
     }
     else if( inword ) {
 
-      curPos = &line[wordstart];
-      strncpy(buffer, curPos, len);
+
+      strncpy(buffer, wordstart, len);
       buffer[len] = '\0';
+      if(strlen(buffer) == 1) {
+
+	if(buffer == 'a' || buffer == 'A' || buffer == 'I') {
+	  //add to list
+	}
+
+      }
+      else {
+
+	//it is a word greater than 1 character in length.  Add to list
+
+      }
+
       inword = 0;
       len = 0;
 
     }
 
-    i++;
-
-    if(strcmp(line[i], '\0') == 0)
-      break;
+    sentence++;
 
   }
 
-  //
+  //Free the allocated buffer
+  free(buffer);
 
 }
+/**
+ * Function Tests for valid character
+ */
 int isLetter( char c ) {
 
-  if( c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' ) {
+  if( (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ) {
     //the character is a letter!
     return 1;
   }
@@ -71,7 +87,38 @@ int isLetter( char c ) {
   return 0; //returns if not a character
 
 }
+/**
+ * Function Adds word into node
+ * Functions used:
+ *   
+ */
+listNode *addWord(const char *word, listNode *head) {
 
+  
+
+
+}
+listNode *hasRepeat(const char *word, listNode *head) {
+
+  char *curPos = head;
+  int len;
+
+  do {
+    len = strlen(word);
+
+    switch(len) {
+    case len == 1 :
+      
+      break;
+    case len > 1 :
+      break;
+    }
+
+  }while(curPos != NULL);
+
+  return NULL;
+
+}
 
 
 
