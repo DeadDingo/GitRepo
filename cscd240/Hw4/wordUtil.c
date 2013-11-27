@@ -51,13 +51,14 @@ listNode *extract( const char *line, listNode *oldHead ) {
       if(strlen(buffer) == 1) {
 
 	if(*buffer == 'a' || *buffer == 'A' || *buffer == 'I') {
-	  //add to list
+	  //call to addWord.  Will return new head pointer
+	  return addWord(buffer, head);
 	}
 
       }
       else {
-
-	//it is a word greater than 1 character in length.  Add to list
+	//call to addWord.  Will return new head pointer
+	return addWord(buffer, head);
 
       }
 
@@ -139,6 +140,22 @@ listNode *addPos(const char *word, listNode *head) {
 
   //return end of list
   return curPos;
+
+}
+listNode *addFirst(listNode *head, listNode *toAdd) {
+
+  if(head == NULL) {
+    return toAdd;
+  }
+  else {
+
+    toAdd->next = head;
+    return toAdd;
+
+  }
+
+
+
 
 }
 
