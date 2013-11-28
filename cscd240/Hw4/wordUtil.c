@@ -234,10 +234,17 @@ void showList(const listNode *head) {
  * writeList() function writes the list to file specified in parameter
  * */
 void writeList(const listNode *head, const char *outFile) {
-
+  
+  listNode *curPos = head;
   FILE *fout = fopen(outFile, "w");
 
-  
+  fprintf(fout, "-----------------------------------\n|\t word\t | count\t |\n");
+  while(curPos != NULL) {
+
+    fprintf(fout, "---------------------------------\n");
+    fprintf(fout, "|%-15s | %-5d | \n", curPos->word, curPos->count);
+
+  }
 
   //at end close file
   fclose(fout);
