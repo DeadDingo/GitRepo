@@ -214,6 +214,9 @@ listNode *createNode(const char *word, int count) {
   return newNode;
 
 }
+/**
+ *showList() function prints out neatly organized listing of all the words in the linked list
+ * */
 void showList(const listNode *head) {
   listNode *crawl = head;
 
@@ -227,6 +230,20 @@ void showList(const listNode *head) {
   }
 
 }
+/**
+ * writeList() function writes the list to file specified in parameter
+ * */
+void writeList(const listNode *head, const char *outFile) {
+
+  FILE *fout = fopen(outFile, "w");
+
+  
+
+  //at end close file
+  fclose(fout);
+
+}
+
 
 
 
