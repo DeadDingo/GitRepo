@@ -99,39 +99,42 @@ int isLetter( char c ) {
  *   
  */
 listNode *addWord(const char *word, listNode *head) {
-  
+
   listNode *temp;
+  printf("Word being passed in currently: %s\n", word);
 
   //start off the list
   if(head == NULL) {
+    printf("head is null.  create first node with word %s\n", word);
     head = createNode(word, 1);
-    return head;
+    //return head;
   }
-  
-  //Now that the list is started, check for repeated words
-  temp = hasRepeat(word, head);
-  if(temp != NULL) {
-    temp->count += 1;
-    return head;
+  else {
+    temp = hasRepeat(word, head);
+    if(temp != NULL) {
+      printf("Duplicate word detected.  The word is %s\n", word);
+      temp->count += 1;
+    }
+    //continue
+    
+    //get the position for the word insertion
+    //temp = addPos(word, head);
+    //now attempt to add the node to the list
+    //listNode *newNode = createNode(word, 1);
+    //newNode = temp->next;
+    //temp->next = newNode;
   }
-  /*
-  temp = addPos(word, head);
 
-  //now add temp into list
-
-  newNode = createNode(word, 1);
-  neewNode = temp->next;
-  temp->next = newNode; */
   return head;
   
 }
 listNode *hasRepeat(const char *word, listNode *head) {
 
   listNode *curPos = head;
-  printf("%s", head->word);
+  //printf("%s", head->word);
   int len = strlen(word);
 
-  while(curPos->next != NULL) {
+  while(curPos != NULL) {
 
     switch(len) {
     case ( 1 ) :
