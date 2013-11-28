@@ -105,7 +105,6 @@ listNode *addWord(const char *word, listNode *head) {
   //start off the list
   if(head == NULL) {
     head = createNode(word, 1);
-    printf("%s\n", head->word);
     return head;
   }
   
