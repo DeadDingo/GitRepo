@@ -107,7 +107,7 @@ listNode *addWord(const char *word, listNode *head) {
     head = createNode(word, 1);
     return head;
   }
-  /*
+  
   //Now that the list is started, check for repeated words
   temp = hasRepeat(word, head);
   if(temp != NULL) {
@@ -121,8 +121,8 @@ listNode *addWord(const char *word, listNode *head) {
 
   newNode = createNode(word, 1);
   neewNode = temp->next;
-  temp->next = newNode;*/
-  //return head;
+  temp->next = newNode; */
+  return head;
   
 }
 listNode *hasRepeat(const char *word, listNode *head) {
