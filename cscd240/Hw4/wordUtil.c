@@ -168,20 +168,31 @@ listNode *hasRepeat(const char *word, listNode *head) {
 }
 listNode *addPos(const char *word, listNode *head) {
 
-  listNode *curPos = head;
-  listNode *prev;
+  listNode *curPos = head->next;
+  listNode *prev = head;
   int len = strlen(word);
 
   while(curPos != NULL) {
+    if(len == 1) {
+      if(curPos->word > word)
+	return prev;
 
+    }
+    else {
+      if(strcmp(curPos->word, word) > 0)
+	return prev;
+    }
+
+    /*
     switch( len ) {
     case ( 1 ) :
-      if(strncmp(curPos->word, word, 1) < 0)
+      if(*curPos->word >*word)
+	printf("COMPARING %c and %c\n", *curPos->word, *word);
 	return curPos;
     default:
-      if(strcmp(curPos->word, word) < 0)
-      break;
-    }
+      if(strcmp(curPos->word, word) > 0)
+	return curPos;
+	}*/
     prev = curPos;
     curPos = curPos->next;
 
