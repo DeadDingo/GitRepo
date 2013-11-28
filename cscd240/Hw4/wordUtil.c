@@ -171,7 +171,7 @@ listNode *addPos(const char *word, listNode *head) {
       if(strcmp(curPos->word, word) < 0)
       break;
     }
-
+    prev = curPos;
     curPos = curPos->next;
 
   }
