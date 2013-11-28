@@ -19,7 +19,7 @@ int main(int argc, const char * argv[])
     const char *s = "Basically Basically, I'm scanning in the strings from a file using fscanf, then for each string calling my function From a file FILE \n";
     listNode *oldHead = NULL;
     listNode * head = extract( s, oldHead );
-    printf("%s %d\n", head->word, head->count);
+    // printf("%s %d\n", head->word, head->count);
     //showList(head);
     /*
     char line[MAXLINESIZE];

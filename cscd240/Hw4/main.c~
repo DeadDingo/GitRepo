@@ -16,7 +16,7 @@ int main(int argc, const char * argv[])
 
     
     //the following commented out piece of code demonstrates the unit test of extract() function
-    const char *s = "Basically Basically \n, I'm scanning in the strings from a file using fscanf, then for each string calling my function From a file FILE \n";
+    const char *s = "Basically Basically, I'm scanning in the strings from a file using fscanf, then for each string calling my function From a file FILE \n";
     listNode *oldHead = NULL;
     listNode * head = extract( s, oldHead );
     printf("%s %d\n", head->word, head->count);
