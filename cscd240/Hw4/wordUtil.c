@@ -102,12 +102,11 @@ listNode *addWord(const char *word, listNode *head) {
 
   listNode *temp;
   printf("Word being passed in currently: %s\n", word);
+  printf("Length of word being passed currently: %lu\n", strlen(word));
 
   //start off the list
   if(head == NULL) {
-    printf("head is null.  create first node with word %s\n", word);
     head = createNode(word, 1);
-    //return head;
   }
   else {
     temp = hasRepeat(word, head);
@@ -133,7 +132,6 @@ listNode *addWord(const char *word, listNode *head) {
 listNode *hasRepeat(const char *word, listNode *head) {
 
   listNode *curPos = head;
-  //printf("%s", head->word);
   int len = strlen(word);
 
   while(curPos != NULL) {
@@ -161,11 +159,18 @@ listNode *addPos(const char *word, listNode *head) {
 
   listNode *curPos = head;
   listNode *prev;
+  int len = strlen(word);
 
   while(curPos != NULL) {
 
-    if(strcmp(curPos->word, word) < 0 )
-      return curPos;
+    switch( len ) {
+    case ( 1 ) :
+      if(curPos->word > word)
+	return curPos;
+    default:
+      if(strcmp(curPos->word, word) < 0)
+      break;
+    }
 
     curPos = curPos->next;
 

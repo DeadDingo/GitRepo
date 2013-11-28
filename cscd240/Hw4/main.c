@@ -20,7 +20,7 @@ int main(int argc, const char * argv[])
     listNode *oldHead = NULL;
     listNode * head = extract( s, oldHead );
     printf("The head node looks like this: %s %d\n", head->word, head->count);
-    //showList(head);
+    showList(head);
     /*
     char line[MAXLINESIZE];
     listNode *oldHead = NULL;
