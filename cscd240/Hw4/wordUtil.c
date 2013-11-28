@@ -114,8 +114,6 @@ listNode *addWord(const char *word, listNode *head) {
     temp->count += 1;
     return head;
   }
-
-
   /*
   temp = addPos(word, head);
 
