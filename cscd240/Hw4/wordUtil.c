@@ -102,12 +102,8 @@ listNode *addWord(const char *word, listNode *head) {
 
 
   //start off the list
-  
-
-  //Start the list from a NULL pointer
   if(head == NULL) {
-    head = (listNode *)malloc(sizeof(listNode));
-    head = newNode;
+    head = createNode(word, 1);
     return head;
   }
   
