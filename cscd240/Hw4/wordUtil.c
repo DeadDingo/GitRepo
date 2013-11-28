@@ -115,6 +115,15 @@ listNode *addWord(const char *word, listNode *head) {
       printf("Duplicate word detected.  The word is %s\n", word);
       temp->count += 1;
     }
+    else {
+
+      //get the position to insert new node
+      temp = addPos(word, head);
+      
+
+
+
+    }
     //continue
     
     //get the position for the word insertion
