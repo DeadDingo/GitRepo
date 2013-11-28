@@ -115,6 +115,11 @@ listNode *addWord(const char *word, listNode *head) {
       temp->count += 1;
     }
     else {
+      if(strncmp(head->word, word, 1) > 0) {
+        temp = createNode(word, 1);
+	return addFirst(head, temp);
+	//create node and add first
+      }
       //get the position to insert new node
       temp = addPos(word, head);
 
