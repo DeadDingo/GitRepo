@@ -116,7 +116,6 @@ listNode *addWord(const char *word, listNode *head) {
       temp->count += 1;
     }
     else {
-
       //get the position to insert new node
       temp = addPos(word, head);
 
@@ -166,18 +165,18 @@ listNode *hasRepeat(const char *word, listNode *head) {
 listNode *addPos(const char *word, listNode *head) {
 
   listNode *curPos = head;
+  listNode *prev;
 
   while(curPos != NULL) {
 
-    if(strcmp(curPos->word, word) > 0 )
+    if(strcmp(curPos->word, word) < 0 )
       return curPos;
 
     curPos = curPos->next;
 
   }
 
-  //return end of list
-  return curPos;
+  return prev;
 
 }
 listNode *addFirst(listNode *head, listNode *toAdd) {
