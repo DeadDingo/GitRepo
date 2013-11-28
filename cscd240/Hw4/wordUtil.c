@@ -120,6 +120,17 @@ listNode *addWord(const char *word, listNode *head) {
       temp->count += 1;
     }
     else {
+      temp = addPos(word, head);
+      if(temp == head) {
+	temp = createNode(word, 1);
+	return addFirst(head, temp);
+      }
+      else {
+	listNode *newNode = createNode(word, 1);
+	newNode->next = temp->next;
+	temp->next = newNode;
+      }
+      /*
       if(strncmp(head->word, word, 1) > 0) {
         temp = createNode(word, 1);
 	return addFirst(head, temp);
@@ -132,7 +143,7 @@ listNode *addWord(const char *word, listNode *head) {
       listNode *newNode = createNode(word, 1);
       newNode->next = temp->next;
       temp->next = newNode;
-      }
+      }*/
     }
 
   }
@@ -149,7 +160,7 @@ listNode *hasRepeat(const char *word, listNode *head) {
     
     switch(len) {
     case ( 1 ) :
-      if(strcasecmp(curPos->word, word) == 0)
+      if(*curPos->word == *word)
 	return curPos;
       break;
     default :
@@ -174,9 +185,8 @@ listNode *addPos(const char *word, listNode *head) {
 
   while(curPos != NULL) {
     if(len == 1) {
-      if(curPos->word > word)
+      if(*curPos->word > *word)
 	return prev;
-
     }
     else {
       if(strcmp(curPos->word, word) > 0)
