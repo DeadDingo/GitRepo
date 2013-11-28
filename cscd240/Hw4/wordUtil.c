@@ -100,13 +100,15 @@ int isLetter( char c ) {
  */
 listNode *addWord(const char *word, listNode *head) {
 
-  listNode *newNode;
-  newNode = createNode(word, 1); //create the new node in memory.  It is now pointed to by the newNode pointer.
-  newNode->next = NULL;
+
+  //start off the list
+  
 
   //Start the list from a NULL pointer
   if(head == NULL) {
-    return addFirst(head, newNode);
+    head = (listNode *)malloc(sizeof(listNode));
+    head = newNode;
+    return head;
   }
   
   //Now that the list is started, check for repeated words
