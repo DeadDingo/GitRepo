@@ -52,13 +52,13 @@ listNode *extract( const char *line, listNode *oldHead ) {
       if(strlen(buffer) == 1) {
 	if(*buffer == 'a' || *buffer == 'A' || *buffer == 'I') {
 	  //call to addWord.  Will return new head pointer
-	  listHead =  addWord(buffer, oldHead);
+	  oldHead =  addWord(buffer, oldHead);
 	}
 
       }
       else {
 	//call to addWord.  Will return new head pointer
-	listHead = addWord(buffer, oldHead);
+	oldHead = addWord(buffer, oldHead);
       }
 
       inword = 0;
@@ -74,7 +74,7 @@ listNode *extract( const char *line, listNode *oldHead ) {
   free(buffer);
 
 
-  return listHead;
+  return oldHead;
 
 }
 /**
@@ -101,10 +101,11 @@ int isLetter( char c ) {
 listNode *addWord(const char *word, listNode *head) {
 
   listNode *newNode;
+  newNode = createNode(word, 1); //create the new node in memory.  It is now pointed to by the newNode pointer.
+
 
   //Start the list from a NULL pointer
   if(head == NULL) {
-    newNode = createNode(word, 1); //create node
     return addFirst(head, newNode);
   }
   
