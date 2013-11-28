@@ -100,12 +100,12 @@ int isLetter( char c ) {
 }
 /**
  * Function Adds word into node
- * Functions used:
- *   
+ * 
  */
 listNode *addWord(const char *word, listNode *head) {
 
   listNode *temp;
+
   printf("Word being passed in currently: %s\n", word);
   printf("Length of word being passed currently: %lu\n", strlen(word));
 
@@ -126,12 +126,13 @@ listNode *addWord(const char *word, listNode *head) {
 	//create node and add first
       }
       //get the position to insert new node
+      else {
       temp = addPos(word, head);
 
       listNode *newNode = createNode(word, 1);
       newNode->next = temp->next;
       temp->next = newNode;
-
+      }
     }
 
   }
