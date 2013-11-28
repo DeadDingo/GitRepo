@@ -216,9 +216,12 @@ listNode *createNode(const char *word, int count) {
 }
 void showList(const listNode *head) {
   listNode *crawl = head;
-  while(crawl->next != NULL) {
 
-    printf("%s %d\n", crawl->word, crawl->count);
+  printf("---------------------------------\n|\t word\t | count\t |\n");
+  while(crawl != NULL) {
+    printf("----------------------------------\n");
+    printf("|%-15s | %-5d\t | \n", crawl->word, crawl->count);
+
     crawl = crawl->next;
 
   }
