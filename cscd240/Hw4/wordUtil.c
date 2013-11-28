@@ -102,7 +102,7 @@ listNode *addWord(const char *word, listNode *head) {
 
   listNode *newNode;
   newNode = createNode(word, 1); //create the new node in memory.  It is now pointed to by the newNode pointer.
-
+  newNode->next = NULL;
 
   //Start the list from a NULL pointer
   if(head == NULL) {
@@ -116,16 +116,16 @@ listNode *addWord(const char *word, listNode *head) {
     temp->count += 1;
     return head;
   }
-  /*  
+  /*
   temp = addPos(word, head);
 
   //now add temp into list
 
   newNode = createNode(word, 1);
-  newNode = temp->next;
-  temp->next = newNode;
+  neewNode = temp->next;
+  temp->next = newNode; */
   return head;
-  */
+  
 }
 listNode *hasRepeat(const char *word, listNode *head) {
 
@@ -199,7 +199,7 @@ void showList(const listNode *head) {
   listNode *crawl = head;
   while(crawl->next != NULL) {
 
-    printf("%s %d", crawl->word, crawl->count);
+    printf("%s %d\n", crawl->word, crawl->count);
     crawl = crawl->next;
 
   }
