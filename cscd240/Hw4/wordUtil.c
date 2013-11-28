@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <limits.h>
-
+#include <ctype.h>
 #include "wordUtil.h"
 
 //define all funcions in wordUtil.h here
@@ -49,6 +49,10 @@ listNode *extract( const char *line, listNode *oldHead ) {
 
       strncpy(buffer, wordstart, len);
       buffer[len] = '\0';
+      int i;
+      for(i = 0; buffer[i] != '\0'; i++) {
+	buffer[i] = tolower(buffer[i]);
+      }
       if(strlen(buffer) == 1) {
 	if(*buffer == 'a' || *buffer == 'A' || *buffer == 'I') {
 	  //call to addWord.  Will return new head pointer
