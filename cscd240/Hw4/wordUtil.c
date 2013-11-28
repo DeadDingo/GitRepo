@@ -136,6 +136,16 @@ listNode *hasRepeat(const char *word, listNode *head) {
 
   while(curPos != NULL) {
 
+    if(len < 2) {
+      printf("Comparing word %s\n", word);
+      if(strncmp(curPos->word, word, 1) == 0)
+	return curPos;
+    }
+    else {
+      if(strcmp(curPos->word, word) == 0)
+	return curPos;
+    }
+    /*
     switch(len) {
     case ( 1 ) :
       if(curPos->word == word)
@@ -145,7 +155,7 @@ listNode *hasRepeat(const char *word, listNode *head) {
       if(strcmp(curPos->word, word) == 0)
 	return curPos;
       break;
-    }
+      }*/
 
     //move to next node
     curPos = curPos->next;
