@@ -130,20 +130,7 @@ listNode *addWord(const char *word, listNode *head) {
 	newNode->next = temp->next;
 	temp->next = newNode;
       }
-      /*
-      if(strncmp(head->word, word, 1) > 0) {
-        temp = createNode(word, 1);
-	return addFirst(head, temp);
-	//create node and add first
-      }
-      //get the position to insert new node
-      else {
-      temp = addPos(word, head);
 
-      listNode *newNode = createNode(word, 1);
-      newNode->next = temp->next;
-      temp->next = newNode;
-      }*/
     }
 
   }
@@ -193,16 +180,6 @@ listNode *addPos(const char *word, listNode *head) {
 	return prev;
     }
 
-    /*
-    switch( len ) {
-    case ( 1 ) :
-      if(*curPos->word >*word)
-	printf("COMPARING %c and %c\n", *curPos->word, *word);
-	return curPos;
-    default:
-      if(strcmp(curPos->word, word) > 0)
-	return curPos;
-	}*/
     prev = curPos;
     curPos = curPos->next;
 
