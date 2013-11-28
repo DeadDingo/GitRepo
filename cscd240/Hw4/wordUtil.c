@@ -49,12 +49,13 @@ listNode *extract( const char *line, listNode *oldHead ) {
 
       strncpy(buffer, wordstart, len);
       buffer[len] = '\0';
-      int i;
+
       for(i = 0; buffer[i] != '\0'; i++) {
 	buffer[i] = tolower(buffer[i]);
       }
+
       if(strlen(buffer) == 1) {
-	if(*buffer == 'a' || *buffer == 'A' || *buffer == 'I') {
+	if(*buffer == 'a' || *buffer == 'i') {
 	  //call to addWord.  Will return new head pointer
 	  oldHead =  addWord(buffer, oldHead);
 	}
