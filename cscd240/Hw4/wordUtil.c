@@ -119,7 +119,6 @@ listNode *addWord(const char *word, listNode *head) {
 
       //get the position to insert new node
       temp = addPos(word, head);
-      
 
 
 
@@ -168,14 +167,14 @@ listNode *addPos(const char *word, listNode *head) {
 
   listNode *curPos = head;
 
-  do {
+  while(curPos != NULL) {
 
     if(strcmp(curPos->word, word) > 0 )
       return curPos;
 
     curPos = curPos->next;
 
-  }while(curPos != NULL);
+  }
 
   //return end of list
   return curPos;
