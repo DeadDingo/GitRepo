@@ -125,11 +125,11 @@ listNode *addWord(const char *word, listNode *head) {
     //continue
     
     //get the position for the word insertion
-    //temp = addPos(word, head);
+    temp = addPos(word, head);
     //now attempt to add the node to the list
-    //listNode *newNode = createNode(word, 1);
-    //newNode = temp->next;
-    //temp->next = newNode;
+    listNode *newNode = createNode(word, 1);
+    newNode->next = temp->next;
+    temp->next = newNode;
   }
 
   return head;
