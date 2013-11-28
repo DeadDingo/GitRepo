@@ -250,6 +250,14 @@ void writeList(const listNode *head, const char *outFile) {
   fclose(fout);
 
 }
+void nodeCopy(listNode *source, listNode **target) {
+
+  listNode *copy;
+
+  copy = createNode(source->word, source->count);
+
+
+}
 
 
 
