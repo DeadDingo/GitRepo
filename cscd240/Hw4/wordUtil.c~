@@ -52,13 +52,13 @@ listNode *extract( const char *line, listNode *oldHead ) {
       if(strlen(buffer) == 1) {
 	if(*buffer == 'a' || *buffer == 'A' || *buffer == 'I') {
 	  //call to addWord.  Will return new head pointer
-	  listHead =  addWord(buffer, oldHead);
+	  oldHead =  addWord(buffer, oldHead);
 	}
 
       }
       else {
 	//call to addWord.  Will return new head pointer
-	listHead = addWord(buffer, oldHead);
+	oldHead = addWord(buffer, oldHead);
       }
 
       inword = 0;
@@ -74,7 +74,7 @@ listNode *extract( const char *line, listNode *oldHead ) {
   free(buffer);
 
 
-  return listHead;
+  return oldHead;
 
 }
 /**
@@ -100,30 +100,32 @@ int isLetter( char c ) {
  */
 listNode *addWord(const char *word, listNode *head) {
 
-  listNode *newNode;
+  listNode *temp;
+  printf("Word being passed in currently: %s\n", word);
+  printf("Length of word being passed currently: %lu\n", strlen(word));
 
-  //Start the list from a NULL pointer
+  //start off the list
   if(head == NULL) {
-    newNode = createNode(word, 1); //create node
-    printf("%s %d\n", newNode->word, newNode->count);
-    return addFirst(head, newNode);
+    head = createNode(word, 1);
   }
-  
-  //Now that the list is started, check for repeated words
-  listNode *temp = hasRepeat(word, head);
-  if(temp != NULL) {
-    //has repeat
-    temp->count += 1;
-    return head;
+  else {
+    temp = hasRepeat(word, head);
+    if(temp != NULL) {
+      printf("Duplicate word detected.  The word is %s\n", word);
+      temp->count += 1;
+    }
+    else {
+      //get the position to insert new node
+      temp = addPos(word, head);
+
+      listNode *newNode = createNode(word, 1);
+      newNode->next = temp->next;
+      temp->next = newNode;
+
+    }
+
   }
-  
-  temp = addPos(word, head);
 
-  //now add temp into list
-
-  newNode = createNode(word, 1);
-  newNode = temp->next;
-  temp->next = newNode;
   return head;
   
 }
@@ -132,23 +134,33 @@ listNode *hasRepeat(const char *word, listNode *head) {
   listNode *curPos = head;
   int len = strlen(word);
 
-  do {
-
+  while(curPos != NULL) {
+    /*
+    if(len < 2) {
+      printf("Comparing word %s\n", word);
+      if(strncmp(curPos->word, word, 1) == 0)
+	return curPos;
+    }
+    else {
+      if(strcmp(curPos->word, word) == 0)
+	return curPos;
+    }*/
+    
     switch(len) {
     case ( 1 ) :
-      if(curPos->word == word)
+      if(strncmp(curPos->word, word, 1) == 0)
 	return curPos;
       break;
     default :
       if(strcmp(curPos->word, word) == 0)
 	return curPos;
       break;
-    }
+      }
 
     //move to next node
     curPos = curPos->next;
 
-  }while(curPos != NULL);
+  }
 
   return NULL;
 
@@ -156,18 +168,25 @@ listNode *hasRepeat(const char *word, listNode *head) {
 listNode *addPos(const char *word, listNode *head) {
 
   listNode *curPos = head;
+  listNode *prev;
+  int len = strlen(word);
 
-  do {
+  while(curPos != NULL) {
 
-    if(strcmp(curPos->word, word) > 0 )
-      return curPos;
-
+    switch( len ) {
+    case ( 1 ) :
+      if(curPos->word > word)
+	return curPos;
+    default:
+      if(strcmp(curPos->word, word) < 0)
+      break;
+    }
+    prev = curPos;
     curPos = curPos->next;
 
-  }while(curPos != NULL);
+  }
 
-  //return end of list
-  return curPos;
+  return prev;
 
 }
 listNode *addFirst(listNode *head, listNode *toAdd) {
@@ -192,6 +211,7 @@ listNode *createNode(const char *word, int count) {
   newNode->word = (char *)malloc(sizeof(listNode));
   strcpy(newNode->word, word);
   newNode->count = count;
+  newNode->next = NULL;
   return newNode;
 
 }
@@ -199,7 +219,7 @@ void showList(const listNode *head) {
   listNode *crawl = head;
   while(crawl->next != NULL) {
 
-    printf("%s %d", crawl->word, crawl->count);
+    printf("%s %d\n", crawl->word, crawl->count);
     crawl = crawl->next;
 
   }
