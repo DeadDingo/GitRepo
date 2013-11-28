@@ -99,7 +99,8 @@ int isLetter( char c ) {
  *   
  */
 listNode *addWord(const char *word, listNode *head) {
-
+  
+  listNode *temp;
 
   //start off the list
   if(head == NULL) {
@@ -109,12 +110,13 @@ listNode *addWord(const char *word, listNode *head) {
   }
   
   //Now that the list is started, check for repeated words
-  listNode *temp = hasRepeat(word, head);
+  temp = hasRepeat(word, head);
   if(temp != NULL) {
-    //has repeat
     temp->count += 1;
     return head;
   }
+
+
   /*
   temp = addPos(word, head);
 
