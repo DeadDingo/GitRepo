@@ -143,7 +143,7 @@ listNode *hasRepeat(const char *word, listNode *head) {
     
     switch(len) {
     case ( 1 ) :
-      if(strncmp(curPos->word, word, 1) == 0)
+      if(strcasecmp(curPos->word, word) == 0)
 	return curPos;
       break;
     default :
