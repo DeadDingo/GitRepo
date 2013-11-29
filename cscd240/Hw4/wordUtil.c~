@@ -11,6 +11,8 @@
 #include <string.h>
 #include <limits.h>
 #include <ctype.h>
+
+#include "timing.h"
 #include "wordUtil.h"
 
 //define all funcions in wordUtil.h here
@@ -75,6 +77,7 @@ listNode *extract( const char *line, listNode *oldHead ) {
 
   }
 
+  
   //Free the allocated buffer
   free(buffer);
 
@@ -86,6 +89,7 @@ listNode *extract( const char *line, listNode *oldHead ) {
  * Function Tests for valid character
  */
 int isLetter( char c ) {
+
 
   if( c >= 'a' && c <= 'z' ) {
     //the character is a letter!
@@ -226,6 +230,7 @@ void showList(const listNode *head) {
     crawl = crawl->next;
 
   }
+  printf("|--------------------------------|\n");
 
 }
 /**
@@ -244,7 +249,7 @@ void writeList(const listNode *head, const char *outFile) {
 
     curPos = curPos->next;
   }
-
+  fprintf(fout, "|--------------------------------|\n");
   //at end close file
   fclose(fout);
 
@@ -257,7 +262,7 @@ void nodeCopy(listNode *source, listNode **target) {
   (*target)->word = (char *)malloc(sizeof(listNode));
   strcpy((*target)->word, source->word);
   (*target)->count = source->count;
-  (*target)->next = source->next;
+  (*target)->next = NULL;
 
   
 
@@ -268,6 +273,11 @@ void sortedCount( const listNode *head, listNode **newSortedHead ) {
   listNode *tempHead = NULL; //this will be the pointer to the new list
   listNode *prev = NULL; //This will keep track of copied nodes in the new list
   listNode *target = NULL;
+
+  //start the clock!
+
+  struct timeval before, after;
+  gettimeofday(&before, NULL);
 
 
   while(curPos != NULL) {
@@ -340,13 +350,19 @@ void sortedCount( const listNode *head, listNode **newSortedHead ) {
   
   *newSortedHead = tempHead; 
 
+  //report time taken
+  gettimeofday(&after, NULL);
+
+  float elapsed = elapsedTime(after, before);
+  printf("Selection Sort on entire list took: %f\n", elapsed);
+
 }
 /**
  * FreeMemory() function
  * Takes a parameter to the head of a linked list
  * Goes through the list putting it's foot through the memory as it goes :)
  * */
-void freeMemory(listNode *head) {
+void cleanUp(listNode *head) {
 
   listNode *curPos = head->next;
   listNode *prev = curPos;
