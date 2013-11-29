@@ -117,7 +117,7 @@ listNode *addWord(const char *word, listNode *head) {
     }
     else {
       temp = addPos(word, head);
-      if(temp == head && strcmp(temp->word, word) < 0) { //might be part of the alphabetical order fix
+      if(temp == head && strcmp(temp->word, word) > 0) { //might be part of the alphabetical order fix
 	temp = createNode(word, 1);
 	return addFirst(head, temp);
       }
