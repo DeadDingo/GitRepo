@@ -257,6 +257,7 @@ void nodeCopy(listNode *source, listNode **target) {
   *target = (listNode *)malloc(sizeof(listNode));
   (*target)->word = (char *)malloc(sizeof(listNode));
   strcpy((*target)->word, source->word);
+  (*target)->count = source->count;
   (*target)->next = source->next;
 
   
