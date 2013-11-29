@@ -9,7 +9,7 @@
 
 #ifndef TIMING_H
 #define TIMING_H
-
+#endif
 #include <sys/time.h>
 
 
@@ -20,5 +20,3 @@
 float elapsedTime(struct timeval now, struct timeval then);
 
 double currentTime();
-
-#endif

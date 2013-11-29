@@ -12,7 +12,7 @@
 #define MAXWORDLEN  36          //the max length of a word
 #define MAXLINESIZE 200000      //the max length of a line in a text file
 
-#endif
+//#endif
 
 // define the structure
 typedef struct node {
@@ -123,3 +123,10 @@ void sortedCount( const listNode *head, listNode ** newSortedHead );
  */
 listNode *createNode(const char *word, int count);
 
+
+/**
+ * cleanUp() Function
+ * Runs through the linked list putting it's foot through memory as it goes
+ * */
+void cleanUp(listNode *head);
+#endif

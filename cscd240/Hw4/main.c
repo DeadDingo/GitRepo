@@ -10,10 +10,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include "wordUtil.h"
+#include "timing.h"
 
 int main(int argc, const char * argv[])
 {
-
+  //start the clock
+  struct timeval entireBefore, entireAfter;
+  gettimeofday(&entireBefore, NULL);
     
     //the following commented out piece of code demonstrates the unit test of extract() function
     //const char *s = "Basically, A I'm scanning in the strings from a file using fscanf, then for each string calling my function From a file FILE \n";
@@ -60,10 +63,15 @@ int main(int argc, const char * argv[])
     
     showList( newHead );
 
-    freeMemory(newHead);
-    freeMemory(sortedFreq);
+    cleanUp(newHead);
+    cleanUp(sortedFreq);
     
     fclose(input);
+
+    //calculate execution time for entire program
+    gettimeofday(&entireAfter, NULL);
+    float elapsed = elapsedTime(entireAfter, entireBefore);
+    printf("Program Execution from start to finish took: %f\n", elapsed);
     return 0;
 }
 

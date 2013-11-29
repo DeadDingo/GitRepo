@@ -11,6 +11,8 @@
 #include <string.h>
 #include <limits.h>
 #include <ctype.h>
+
+#include "timing.h"
 #include "wordUtil.h"
 
 //define all funcions in wordUtil.h here
@@ -32,6 +34,10 @@ listNode *extract( const char *line, listNode *oldHead ) {
   buffer = (char *)malloc(MAXWORDLEN * sizeof(char)); //allocate memory for buffer. Memory freed at end of function
   
   sentence = line;
+
+  //Start the clock
+  struct timeval before, after;
+  gettimeofday(&before, NULL);
 
   //tokenize!
   while ( *sentence != '\n' ) {
@@ -75,6 +81,12 @@ listNode *extract( const char *line, listNode *oldHead ) {
 
   }
 
+  //report end time
+  gettimeofday(&after, NULL);
+  float elapsed = elapsedTime(after, before);
+
+  printf("Tokenized line in %f seconds.\n", elapsed);
+  
   //Free the allocated buffer
   free(buffer);
 
@@ -346,7 +358,7 @@ void sortedCount( const listNode *head, listNode **newSortedHead ) {
  * Takes a parameter to the head of a linked list
  * Goes through the list putting it's foot through the memory as it goes :)
  * */
-void freeMemory(listNode *head) {
+void cleanUp(listNode *head) {
 
   listNode *curPos = head->next;
   listNode *prev = curPos;
