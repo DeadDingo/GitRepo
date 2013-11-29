@@ -264,11 +264,12 @@ void nodeCopy(listNode *source, listNode **target) {
 
 }
 void sortedCount( const listNode *head, listNode **newSortedHead ) {
-  /*
+  
   listNode *curPos = head;
   listNode *tempHead = NULL; //this will be the pointer to the new list
   listNode *prev = NULL; //This will keep track of copied nodes in the new list
   listNode *target = NULL;
+
 
   while(curPos != NULL) {
 
@@ -287,50 +288,57 @@ void sortedCount( const listNode *head, listNode **newSortedHead ) {
   }
 
   //now sort and set newSortHead equal to the new head
-  */
-  //try adding in place :)
 
-  listNode *curPos = head;
-  listNode *prevPos = NULL;
-  listNode *prev = NULL;
-  listNode *target = NULL;
-  listNode *tempHead = NULL;
+  //add needed variables for selection sort
 
-  while(curPos != NULL) {
+  listNode *tmp = tempHead;
+  listNode *tmp2, *iLst, *jLst, *min;
+  
+  prev = tempHead;
+  for(iLst=tempHead; iLst && iLst->next; iLst=iLst->next) {
 
-    if(tempHead == NULL) {
-      printf("we are in the first if statement now\n");
-      nodeCopy(curPos, &target);
-      tempHead = target;
-      prev = target;
-      prevPos = target;
+    min = iLst;
+    for(jLst = iLst->next; jLst; jLst = jLst->next) {
+
+      //get the min node
+      if(jLst->count > min->count) {
+	//track min node
+	min = jLst;
+      }
     }
-    else {
-      if( ( curPos->count > prev->count ) && ( prev == tempHead ) ) {
-	nodeCopy(curPos, &target);
-	target->next = tempHead;
-	tempHead = target;
+
+    //swap nodes
+    if(iLst != min) {
+      tmp = min->next;
+
+      for(tmp2=iLst; tmp2->next; tmp2=tmp2->next) {
+	if(tmp2->next == min) {
+	  break;
+	}
+      }
+      //swap with head node??
+      if(prev != iLst) {
+	prev->next = min;
       }
       else {
-	if(curPos->count > prevPos->count) {
-	  nodeCopy(curPos, &target);
-	  target = prev->next;
-	  prev->next = target;
-	  prev = target;
-	}
-	else {
-	  nodeCopy(curPos, &target);
-	  prevPos->next = target;
-	  prev = prevPos;
-	  prevPos = target;
-	  
-	}
+	tempHead = min;
       }
-       
-    }
-    curPos = curPos->next;
-  }
+      if(iLst->next == min) {
 
+	min->next = iLst;
+	iLst->next = tmp;
+
+      }
+      else {
+	min ->next = iLst->next;
+	iLst->next = tmp;
+	tmp2->next = iLst;
+      }
+      iLst = min;
+    }
+    prev = iLst;
+  }
+  
   *newSortedHead = tempHead; 
 
 }

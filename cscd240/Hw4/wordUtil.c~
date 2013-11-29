@@ -298,25 +298,23 @@ void sortedCount( const listNode *head, listNode **newSortedHead ) {
 
   while(curPos != NULL) {
 
-    if(tempHead != NULL) {
+    if(tempHead == NULL) {
+      printf("we are in the first if statement now\n");
       nodeCopy(curPos, &target);
       tempHead = target;
       prev = target;
-      printf("attempting to print stuff");
-      printf("%d\n", tempHead->count);
-    }/*
+      prevPos = target;
+    }
     else {
       if( ( curPos->count > prev->count ) && ( prev == tempHead ) ) {
 	nodeCopy(curPos, &target);
 	target->next = tempHead;
 	tempHead = target;
-	prevPos = prev;
-	prev = target;
-      }/*
+      }
       else {
 	if(curPos->count > prevPos->count) {
 	  nodeCopy(curPos, &target);
-	  target->next = prevPos;
+	  target = prev->next;
 	  prev->next = target;
 	  prev = target;
 	}
@@ -325,11 +323,11 @@ void sortedCount( const listNode *head, listNode **newSortedHead ) {
 	  prevPos->next = target;
 	  prev = prevPos;
 	  prevPos = target;
+	  
 	}
-
       }
-       */
-    //}
+       
+    }
     curPos = curPos->next;
   }
 
