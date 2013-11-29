@@ -236,10 +236,10 @@ void writeList(const listNode *head, const char *outFile) {
   listNode *curPos = head;
   FILE *fout = fopen(outFile, "w");
 
-  fprintf(fout, "-----------------------------------\n|\t word\t | count\t |\n");
+  fprintf(fout, "|--------------------------------|\n|\t word\t | count\t |\n");
   while(curPos != NULL) {
 
-    fprintf(fout, "---------------------------------\n");
+    fprintf(fout, "|--------------------------------|\n");
     fprintf(fout, "|%-15s | %-5d\t | \n", curPos->word, curPos->count);
 
     curPos = curPos->next;
