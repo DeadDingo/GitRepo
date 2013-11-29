@@ -303,32 +303,31 @@ void sortedCount( const listNode *head, listNode **newSortedHead ) {
       nodeCopy(curPos, &target);
       tempHead = target;
       prev = target;
+      prevPos = target;
     }
     else {
       if( ( curPos->count > prev->count ) && ( prev == tempHead ) ) {
 	nodeCopy(curPos, &target);
 	target->next = tempHead;
 	tempHead = target;
-	prevPos = prev;
-	prev = target;
       }
       else {
-	if(curPos->count > prev->count) {
+	if(curPos->count > prevPos->count) {
 	  nodeCopy(curPos, &target);
-	  target->next = prevPos;
+	  target = prev->next;
 	  prev->next = target;
 	  prev = target;
-	}/*
+	}
 	else {
 	  nodeCopy(curPos, &target);
 	  prevPos->next = target;
 	  prev = prevPos;
 	  prevPos = target;
+	  
 	}
-	 */
       }
        
-      }
+    }
     curPos = curPos->next;
   }
 
