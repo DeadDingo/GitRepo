@@ -59,6 +59,9 @@ int main(int argc, const char * argv[])
     writeList( sortedFreq, argv[3] );
     
     showList( newHead );
+
+    freeMemory(newHead);
+    freeMemory(sortedFreq);
     
     fclose(input);
     return 0;
