@@ -286,9 +286,17 @@ void sortedCount( const listNode *head, listNode **newSortedHead ) {
     curPos = curPos->next;
   }
 
-  printf("%s %d\n", head->word, head->count);
-  printf("%s %d\n", tempHead->word, tempHead->count);
+  //now sort and set newSortHead equal to the new head
 
+  curPos = tempHead->next;
+  prev = tempHead;
+
+  while(curPos != NULL) {
+    if()
+
+
+
+  }
 
 }
 
