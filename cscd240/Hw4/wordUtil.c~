@@ -6,6 +6,11 @@
 //  Copyright (c) 2013. All rights reserved.
 //
 
+/*
+ *NOTE TO GRADER:
+ *Extra Credit was attempted.  Memory is freed at end of program. Verified with valgrind output in the pdf
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

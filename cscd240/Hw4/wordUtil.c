@@ -31,12 +31,12 @@ listNode *extract( const char *line, listNode *oldHead ) {
   int len = 0; //length of word
   int inword = 0; //start of word flag
   char * wordstart;
-  char *buffer;
+  char buffer[MAXWORDLEN];
   char *sentence;
 
   listNode *listHead;
 
-  buffer = (char *)malloc(MAXWORDLEN * sizeof(char)); //allocate memory for buffer. Memory freed at end of function
+  //buffer = (char *)malloc(MAXWORDLEN * sizeof(char)); //allocate memory for buffer. Memory freed at end of function
   
   sentence = line;
 
@@ -80,11 +80,12 @@ listNode *extract( const char *line, listNode *oldHead ) {
 
     sentence++;
 
+
   }
 
   
   //Free the allocated buffer
-  free(buffer);
+  //free(buffer);
 
 
   return oldHead;
