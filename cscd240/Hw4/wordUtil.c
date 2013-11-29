@@ -264,7 +264,7 @@ void nodeCopy(listNode *source, listNode **target) {
 
 }
 void sortedCount( const listNode *head, listNode **newSortedHead ) {
-
+  /*
   listNode *curPos = head;
   listNode *tempHead = NULL; //this will be the pointer to the new list
   listNode *prev = NULL; //This will keep track of copied nodes in the new list
@@ -287,15 +287,46 @@ void sortedCount( const listNode *head, listNode **newSortedHead ) {
   }
 
   //now sort and set newSortHead equal to the new head
+  */
+  //try adding in place :)
 
-  curPos = tempHead->next;
-  prev = tempHead;
+  listNode *curPos = head;
+  listNode *prevPos = NULL;
+  listNode *prev = NULL;
+  listNode *target = NULL;
+  listNode *tempHead = NULL;
 
   while(curPos != NULL) {
-    if()
 
+    if(tempHead != NULL) {
+      nodeCopy(curPos, &target);
+      tempHead = target;
+      prev = target;
+    }
+    else {
+      if( ( curPos->count > prev->count ) && ( prev == tempHead ) ) {
+	nodeCopy(curPos, &target);
+	target->next = tempHead;
+	tempHead = target;
+	curPrev = prev;
+	prev = target;
+      }
+      else {
+	if(curPos->count > curPrev->count) {
+	  nodeCopy(curPos, &target);
+	  target->next = curPos;
+	  prev->next = target;
+	  prev = target;
+	}
+	else {
+	  nodeCopy(curPos, &target);
+	  curPrev->next = target;
+	}
 
+      }
 
+    }
+    curPos = curPos->next;
   }
 
 }
