@@ -252,10 +252,14 @@ void writeList(const listNode *head, const char *outFile) {
 }
 void nodeCopy(listNode *source, listNode **target) {
 
-  listNode *copy;
+  //allocate memory and deeply clone a node
 
-  copy = createNode(source->word, source->count);
+  *target = (listNode *)malloc(sizeof(listNode));
+  (*target)->word = (char *)malloc(sizeof(listNode));
+  strcpy((*target)->word, source->word);
+  (*target)->next = source->next;
 
+  
 
 }
 
