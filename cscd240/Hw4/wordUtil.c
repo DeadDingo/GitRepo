@@ -35,7 +35,8 @@ listNode *extract( const char *line, listNode *oldHead ) {
   char *sentence;
 
   listNode *listHead;
-
+  
+  //statically allocating memory for the buffer allows for faster execution time
   //buffer = (char *)malloc(MAXWORDLEN * sizeof(char)); //allocate memory for buffer. Memory freed at end of function
   
   sentence = line;
