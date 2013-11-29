@@ -281,6 +281,11 @@ void sortedCount( const listNode *head, listNode **newSortedHead ) {
   listNode *prev = NULL; //This will keep track of copied nodes in the new list
   listNode *target = NULL;
 
+  //start the clock!
+
+  struct timeval before, after;
+  gettimeofday(&before, NULL);
+
 
   while(curPos != NULL) {
 
@@ -351,6 +356,12 @@ void sortedCount( const listNode *head, listNode **newSortedHead ) {
   }
   
   *newSortedHead = tempHead; 
+
+  //report time taken
+  gettimeofday(&after, NULL);
+
+  float elapsed = elapsedTime(after, before);
+  printf("Selection Sort on entire list took: %f\n", elapsed);
 
 }
 /**
