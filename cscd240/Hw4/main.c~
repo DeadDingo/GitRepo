@@ -16,11 +16,16 @@ int main(int argc, const char * argv[])
 
     
     //the following commented out piece of code demonstrates the unit test of extract() function
-    const char *s = "Basically, I'm scanning in the strings from a file using fscanf, then for each string calling my function From a file FILE \n";
+    const char *s = "Basically, A I'm scanning in the strings from a file using fscanf, then for each string calling my function From a file FILE \n";
     listNode *oldHead = NULL;
     listNode * head = extract( s, oldHead );
     printf("The head node looks like this: %s %d\n", head->word, head->count);
     showList(head);
+    //test clone
+    listNode *sortedFreq = NULL;
+    nodeCopy(head, &sortedFreq);
+    printf("%s %d", head->word, head->count);
+    printf("%s %d", sortedFreq->word, sortedFreq->count);
     /*
     char line[MAXLINESIZE];
     listNode *oldHead = NULL;
