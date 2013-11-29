@@ -388,29 +388,4 @@ void cleanUp(listNode *head) {
 }
 
 
-
-
-
-
-//NOTES
-/*How to make a new node
-* listNode *createNode(char word[], int count) {
-*   listNode * ret =  (listNode *)malloc(sizeoof(listNode));
-*    ret->word = (char *)malloc(MAXLENWORD * sizeof(char));
-*    strcpy(ret->word, word);
-*    ret->count = count;
-*    return ret;
-}*/
-
-
-/*
-listNode * addFirst(listNode *oldhead, listNode *toAdd) {
-
-if(oldhead == NULL)
-  return toAdd;
-else {
-  toAdd->next = oldhead;
-  return toAdd;
-}
-
-} */
+//End
