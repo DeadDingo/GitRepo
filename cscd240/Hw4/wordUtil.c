@@ -299,10 +299,11 @@ void sortedCount( const listNode *head, listNode **newSortedHead ) {
   while(curPos != NULL) {
 
     if(tempHead == NULL) {
+      printf("we are in the first if statement now\n");
       nodeCopy(curPos, &target);
       tempHead = target;
       prev = target;
-    }
+    }/*
     else {
       if( ( curPos->count > prev->count ) && ( prev == tempHead ) ) {
 	nodeCopy(curPos, &target);
@@ -327,7 +328,7 @@ void sortedCount( const listNode *head, listNode **newSortedHead ) {
 
       }
        
-    }
+      }*/
     curPos = curPos->next;
   }
 
