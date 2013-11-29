@@ -216,7 +216,7 @@ listNode *addFirst(listNode *head, listNode *toAdd) {
 listNode *createNode(const char *word, int count) {
 
   listNode *newNode = (listNode *)malloc(sizeof(listNode));
-  newNode->word = (char *)malloc(sizeof(listNode));
+  newNode->word = (char *)malloc(MAXWORDLEN * sizeof(char));
   strcpy(newNode->word, word);
   newNode->count = count;
   newNode->next = NULL;
