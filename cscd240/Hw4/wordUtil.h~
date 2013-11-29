@@ -117,3 +117,9 @@ void sortedCount( const listNode *head, listNode ** newSortedHead );
 
 
 
+/**
+ * Helper function to create new Nodes
+ * Returns a pointer to a new node
+ */
+listNode *createNode(const char *word, int count);
+

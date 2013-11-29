@@ -2,7 +2,7 @@
 //  wordUtil.c
 //  wordCount
 //
-//  Created by on 11/9/13.
+//  Created by Josh Harshman on 11/9/13.
 //  Copyright (c) 2013. All rights reserved.
 //
 
@@ -341,7 +341,26 @@ void sortedCount( const listNode *head, listNode **newSortedHead ) {
   *newSortedHead = tempHead; 
 
 }
+/**
+ * FreeMemory() function
+ * Takes a parameter to the head of a linked list
+ * Goes through the list putting it's foot through the memory as it goes :)
+ * */
+void freeMemory(listNode *head) {
 
+  listNode *curPos = head->next;
+  listNode *prev = curPos;
+
+  while(curPos != NULL) {
+    free(curPos->word);
+    curPos = curPos->next;
+    free(prev);
+    prev = curPos;
+  }
+  free(head->word);
+  free(head);
+
+}
 
 
 

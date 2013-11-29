@@ -123,3 +123,9 @@ void sortedCount( const listNode *head, listNode ** newSortedHead );
  */
 listNode *createNode(const char *word, int count);
 
+
+/**
+ * Free Memory Function
+ * Runs through the linked list putting it's foot through memory as it goes
+ * */
+void freeMemory(listNode *head);
