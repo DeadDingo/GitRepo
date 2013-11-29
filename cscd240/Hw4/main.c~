@@ -10,8 +10,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "wordUtil.h"
-#include "timing.h
-"
+#include "timing.h"
+
 int main(int argc, const char * argv[])
 {
   //start the clock

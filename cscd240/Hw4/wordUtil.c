@@ -35,10 +35,6 @@ listNode *extract( const char *line, listNode *oldHead ) {
   
   sentence = line;
 
-  //Start the clock
-  struct timeval before, after;
-  gettimeofday(&before, NULL);
-
   //tokenize!
   while ( *sentence != '\n' ) {
 
@@ -81,11 +77,6 @@ listNode *extract( const char *line, listNode *oldHead ) {
 
   }
 
-  //report end time
-  gettimeofday(&after, NULL);
-  float elapsed = elapsedTime(after, before);
-
-  printf("Tokenized line in %f seconds.\n", elapsed);
   
   //Free the allocated buffer
   free(buffer);

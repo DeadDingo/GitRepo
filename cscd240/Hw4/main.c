@@ -16,6 +16,7 @@ int main(int argc, const char * argv[])
 {
   //start the clock
   struct timeval entireBefore, entireAfter;
+  struct timeval extractBefore, extractAfter;
   gettimeofday(&entireBefore, NULL);
     
     //the following commented out piece of code demonstrates the unit test of extract() function
@@ -43,6 +44,7 @@ int main(int argc, const char * argv[])
         exit(1);
     }
     int c = 0;
+    gettimeofday(&extractBefore, NULL); //set timer function
     while ( fgets( line, MAXLINESIZE, input ) != NULL )
     {
         if( strlen(line) <= 1 )  //we do NOT need to process empty lines or lines with only '\n'
@@ -56,6 +58,9 @@ int main(int argc, const char * argv[])
 
         oldHead = newHead;
     }
+    gettimeofday(&extractAfter, NULL);
+    float total = elapsedTime(extractAfter, extractBefore);
+    printf("Time taken to extract each word and add in order to list: %f\n", total);
 
     sortedCount( newHead, &sortedFreq );
     writeList( newHead, argv[2] );
