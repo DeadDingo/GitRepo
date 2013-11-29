@@ -313,7 +313,7 @@ void sortedCount( const listNode *head, listNode **newSortedHead ) {
 	prev = target;
       }
       else {
-	if(curPos->count > prevPos->count) {
+	if(curPos->count > prev->count) {
 	  nodeCopy(curPos, &target);
 	  target->next = prevPos;
 	  prev->next = target;
