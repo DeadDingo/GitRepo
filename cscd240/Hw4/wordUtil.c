@@ -106,9 +106,6 @@ listNode *addWord(const char *word, listNode *head) {
 
   listNode *temp;
 
-  printf("Word being passed in currently: %s\n", word);
-  printf("Length of word being passed currently: %lu\n", strlen(word));
-
   //start off the list
   if(head == NULL) {
     head = createNode(word, 1);
@@ -116,12 +113,11 @@ listNode *addWord(const char *word, listNode *head) {
   else {
     temp = hasRepeat(word, head);
     if(temp != NULL) {
-      printf("Duplicate word detected.  The word is %s\n", word);
       temp->count += 1;
     }
     else {
       temp = addPos(word, head);
-      if(temp == head) {
+      if(temp == head && strcmp(temp->word, word) < 0) { //might be part of the alphabetical order fix
 	temp = createNode(word, 1);
 	return addFirst(head, temp);
       }
@@ -170,6 +166,7 @@ listNode *addPos(const char *word, listNode *head) {
   listNode *prev = head;
   int len = strlen(word);
 
+  
   while(curPos != NULL) {
     if(len == 1) {
       if(*curPos->word > *word)
@@ -178,15 +175,16 @@ listNode *addPos(const char *word, listNode *head) {
     else {
       if(strcmp(curPos->word, word) > 0)
 	return prev;
+	
     }
 
     prev = curPos;
     curPos = curPos->next;
 
-  }
+    }
 
-  return prev;
-
+    return prev; 
+  
 }
 listNode *addFirst(listNode *head, listNode *toAdd) {
 
@@ -220,9 +218,9 @@ listNode *createNode(const char *word, int count) {
 void showList(const listNode *head) {
   listNode *crawl = head;
 
-  printf("---------------------------------\n|\t word\t | count\t |\n");
+  printf("|--------------------------------|\n|\t word\t | count\t |\n");
   while(crawl != NULL) {
-    printf("----------------------------------\n");
+    printf("|--------------------------------|\n");
     printf("|%-15s | %-5d\t | \n", crawl->word, crawl->count);
 
     crawl = crawl->next;
@@ -242,8 +240,9 @@ void writeList(const listNode *head, const char *outFile) {
   while(curPos != NULL) {
 
     fprintf(fout, "---------------------------------\n");
-    fprintf(fout, "|%-15s | %-5d | \n", curPos->word, curPos->count);
+    fprintf(fout, "|%-15s | %-5d\t | \n", curPos->word, curPos->count);
 
+    curPos = curPos->next;
   }
 
   //at end close file
