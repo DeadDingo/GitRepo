@@ -21,13 +21,11 @@ int main(int argc, const char * argv[])
     listNode * head = extract( s, oldHead );
     printf("The head node looks like this: %s %d\n", head->word, head->count);
     showList(head);
-    //test clone
+    //test sorting function
+    printf("\n\n");
     listNode *sortedFreq = NULL;
-    nodeCopy(head, &sortedFreq);
-    printf("%s %d\n", head->word, head->count);
-    printf("%s %d\n", sortedFreq->word, sortedFreq->count);
-    sortedFreq = sortedFreq->next;
-    printf("%s %d\n", sortedFreq->word, sortedFreq->count);
+    sortedCount(head, &sortedFreq);
+    //   showList(sortedFreq);
     /*
     char line[MAXLINESIZE];
     listNode *oldHead = NULL;

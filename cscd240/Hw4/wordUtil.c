@@ -263,10 +263,34 @@ void nodeCopy(listNode *source, listNode **target) {
   
 
 }
+void sortedCount( const listNode *head, listNode **newSortedHead ) {
+
+  listNode *curPos = head;
+  listNode *tempHead = NULL; //this will be the pointer to the new list
+  listNode *prev = NULL; //This will keep track of copied nodes in the new list
+  listNode *target = NULL;
+
+  while(curPos != NULL) {
+
+    //take care of null pointer for start of new list
+    if(tempHead == NULL) {
+      nodeCopy(curPos, &target);
+      tempHead = target;
+      prev = target;
+    }
+    else {
+      nodeCopy(curPos, &target);
+      prev->next = target;
+      prev = target;
+    }
+    curPos = curPos->next;
+  }
+
+  printf("%s %d\n", head->word, head->count);
+  printf("%s %d\n", tempHead->word, tempHead->count);
 
 
-
-
+}
 
 
 
