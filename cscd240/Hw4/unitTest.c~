@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <limits.h>
+#include <ctype.h>
+
+#include "wordUtil.h"
+
+
+
+int main () {
+
+
+  //here we will unit test each function
+
+  //testing is Letter function
+  printf("%d\n", isLetter('A'));
+  printf("%d\n", isLetter('b'));
+  printf("%d\n", isLetter(','));
+
+}
+

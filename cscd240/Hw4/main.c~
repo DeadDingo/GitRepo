@@ -16,16 +16,22 @@ int main(int argc, const char * argv[])
 {
   //start the clock
   struct timeval entireBefore, entireAfter;
+  struct timeval extractBefore, extractAfter;
   gettimeofday(&entireBefore, NULL);
     
     //the following commented out piece of code demonstrates the unit test of extract() function
-    //const char *s = "Basically, A I'm scanning in the strings from a file using fscanf, then for each string calling my function From a file FILE \n";
+    //const char *s = "Basically, I'm scanning in the strings from a file using fscanf, then for each string calling my function From a file FILE \n";
     //listNode *oldHead = NULL;
     //listNode * head = extract( s, oldHead );
-    //printf("The head node looks like this: %s %d\n", head->word, head->count);
     //showList(head);
-    
-    
+
+  listNode *head = NULL;
+  const char *word = "a";
+  head = addWord(word, head);
+  const char *word2 = "b";
+  listNode *temp = addPos(word2, head);
+  printf("passed in word is less than head containing %s.  Insert after pos", head->word);
+    /*
     char line[MAXLINESIZE];
     listNode *oldHead = NULL;
     listNode *newHead = NULL;
@@ -43,6 +49,7 @@ int main(int argc, const char * argv[])
         exit(1);
     }
     int c = 0;
+    gettimeofday(&extractBefore, NULL); //set timer function
     while ( fgets( line, MAXLINESIZE, input ) != NULL )
     {
         if( strlen(line) <= 1 )  //we do NOT need to process empty lines or lines with only '\n'
@@ -56,6 +63,9 @@ int main(int argc, const char * argv[])
 
         oldHead = newHead;
     }
+    gettimeofday(&extractAfter, NULL);
+    float total = elapsedTime(extractAfter, extractBefore);
+    printf("Time taken to extract each word and add in order to list: %f\n", total);
 
     sortedCount( newHead, &sortedFreq );
     writeList( newHead, argv[2] );
@@ -71,7 +81,7 @@ int main(int argc, const char * argv[])
     //calculate execution time for entire program
     gettimeofday(&entireAfter, NULL);
     float elapsed = elapsedTime(entireAfter, entireBefore);
-    printf("Program Execution from start to finish took: %f\n", elapsed);
+    printf("Program Execution from start to finish took: %f\n", elapsed); */
     return 0;
 }
 

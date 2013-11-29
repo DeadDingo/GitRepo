@@ -230,7 +230,7 @@ void showList(const listNode *head) {
     crawl = crawl->next;
 
   }
-  printf("|--------------------------------|\n");
+  printf("|--------------------------------|\nmak");
 
 }
 /**
