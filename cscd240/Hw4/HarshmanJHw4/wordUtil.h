@@ -1,0 +1,131 @@
+//
+//  wordUtil.h
+//  wordCount
+//
+//  Created by Tony Tian on 11/9/13.
+//  Copyright (c) 2013 Tony Tian. All rights reserved.
+//
+
+#ifndef wordCount_wordUtil_h
+#define wordCount_wordUtil_h
+
+#define MAXWORDLEN  36          //the max length of a word
+#define MAXLINESIZE 200000      //the max length of a line in a text file
+
+#endif
+
+// define the structure
+typedef struct node {
+    char *word;
+    int count;
+    struct node * next;
+}listNode;
+
+
+/**             This function uses a lot of helper functions decalred below.
+ *
+ * @param[in]   line    A line of text in file, from which we like to extract english words
+ * @param[in]   oldHead     the list head that we like to insert our extracted word into
+ * @return      A pointer to the head of the new linked list after we have inserted our extracted words
+ *              into the old linked list.
+ *
+ *              NOTE: this funciton returns a linked list that has two properties:
+ *              1): each list node contains unique word, no duplicated words in the list
+ *              2): words in the returned list are arranged in an alphabetically ascending order.
+ */
+listNode * extract( const char *line, listNode *oldHead );
+
+
+
+/**
+ *  Check if the input character c is a Alphabetic letter or not
+ *  Return 1 if it is so, otherwise returns 0;
+ */
+int isLetter( char c );
+
+/**
+ *  Display the list content on the stdout
+ *  The display format is described in the project 2 description.
+ */
+void showList( const listNode *head );
+
+
+/**
+ *  Write all elements in the list (pointed by head) into a text file. 
+ *  The file name is a string pointed by outFile.
+ *  The format of the resultant file is described and specified in the project 2 description.
+ */
+void writeList( const listNode *head, const char *outFile );
+
+/**
+ *  Each time we extracted a new word from a line of text, we like to add it into the linked list.
+ *  addWord() does this task. It inserts the extracted word (string) into a given list
+ *  pointed by the head parameter. It returns a new linked list head (pointed by a listNode *)
+ *  after it inserts.
+ *  Note: you have to maintain an Alpabetically Ascending order
+ *  for all words in the new list after you insert.
+ */
+listNode * addWord( const char *word, listNode *head );
+
+
+/**
+ *  Check whether a word (specified by the first parameter) has been existing or not
+ *  in the linked list pointed by head parameter.
+ *  If the word exists, returns a pointer pointing to the list node that holds that word.
+ *  Otherwise returns NULL.
+ *
+ *  NOTE: when comparing word with the exising words in the list, use case-insensitive compare.
+ */
+listNode * hasRepeat( const char *word, listNode *head);
+
+
+
+/**
+ *  This function is called only after we know that 
+ *  there are no copy of the word in the list (pointed by the head parameter).
+ *   
+ *  addPos returns the node address after which we should insert the new word in order to maintain 
+ *  an alphabetically ascending order in the list.
+ */
+listNode * addPos( const char *word, listNode *head );
+
+
+/**
+ *  addFirst() adds a list node pointed by parameter toAdd into a list pointed by head
+ *  it returns the new head of the list after we add the new node.
+ */
+listNode * addFirst( listNode *head, listNode *toAdd );
+
+/**
+ *  nodeCopy() deeply clone a node, including all its members.
+ *  source is the node we like to copy, 
+ *  the cloned node is brought out by the target parameter.
+ *  the formal parameter listNode **target, means we can bring out of function (*target)
+ */
+void nodeCopy( listNode *source, listNode **target );
+
+/**
+ *  sortedCount() inputs a linked list pointed by a given head parameter.
+ *  it returns a new SORTED linked list specified by the second parameter, newSortedHead.
+ *  This is call by reference.
+ *  The the new returned Sorted list has two properties,
+ *      1) nodes in the list are arranged by the number of word occurrence in descending order
+ *      2) Each node in the returned list is a DEEP copy of the corresponding node in the source list.
+ *
+ */
+void sortedCount( const listNode *head, listNode ** newSortedHead );
+
+
+
+/**
+ * Helper function to create new Nodes
+ * Returns a pointer to a new node
+ */
+listNode *createNode(const char *word, int count);
+
+
+/**
+ * cleanUp() Function
+ * Runs through the linked list putting it's foot through memory as it goes
+ * */
+void cleanUp(listNode *head);
