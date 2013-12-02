@@ -215,8 +215,10 @@ listNode *addFirst(listNode *head, listNode *toAdd) {
  * */
 listNode *createNode(const char *word, int count) {
 
+  int len = strlen(word) + 1;
+
   listNode *newNode = (listNode *)malloc(sizeof(listNode));
-  newNode->word = (char *)malloc(sizeof(listNode));
+  newNode->word = (char *)malloc(len * sizeof(char));
   strcpy(newNode->word, word);
   newNode->count = count;
   newNode->next = NULL;
@@ -266,7 +268,7 @@ void nodeCopy(listNode *source, listNode **target) {
   //allocate memory and deeply clone a node
 
   *target = (listNode *)malloc(sizeof(listNode));
-  (*target)->word = (char *)malloc(sizeof(listNode));
+  (*target)->word = (char *)malloc(MAXWORDLEN * sizeof(char));
   strcpy((*target)->word, source->word);
   (*target)->count = source->count;
   (*target)->next = NULL;
@@ -386,29 +388,4 @@ void cleanUp(listNode *head) {
 }
 
 
-
-
-
-
-//NOTES
-/*How to make a new node
-* listNode *createNode(char word[], int count) {
-*   listNode * ret =  (listNode *)malloc(sizeoof(listNode));
-*    ret->word = (char *)malloc(MAXLENWORD * sizeof(char));
-*    strcpy(ret->word, word);
-*    ret->count = count;
-*    return ret;
-}*/
-
-
-/*
-listNode * addFirst(listNode *oldhead, listNode *toAdd) {
-
-if(oldhead == NULL)
-  return toAdd;
-else {
-  toAdd->next = oldhead;
-  return toAdd;
-}
-
-} */
+//End
