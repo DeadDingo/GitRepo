@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct Address {
+
+  char *street;
+
+}Address;
+
+int main( void ) {
+
+
+  Address *headnode = NULL;
+
+  //allocate memory
+  headnode = (Address *)malloc(sizeof(Address));
+  headnode->street = (char *)malloc(30 * sizeof(char));
+
+  //push values into member variable
+  strcpy(headnode->street, "201 Betz Road");
+  //
+
+  //access value
+  printf("Accessing via head pointer: %s\n", headnode->street);
+
+  return 0;
+
+}
+//end
