@@ -1,0 +1,6 @@
+a.out:	main.c
+	gcc main.c
+	./a.out
+
+clean:
+	rm -f a.out
