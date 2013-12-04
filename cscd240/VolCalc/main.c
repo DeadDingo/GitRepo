@@ -18,6 +18,8 @@
 float method1(float height, float radius);
 float method2(float height, float radius);
 void createChart(float radius);
+int menu();
+void eval(float radius);
 
 //Method 1 is for height < radius
 float method1(float height, float radius) {
@@ -67,33 +69,81 @@ void createChart(float radius) {
       leftover = fullVol - fluid;
     }
 
-    printf("|%-5d\t | %-.2f\t |\n", height, leftover);
+    //convert to gallons
+    leftover = leftover*0.0043290;
+    printf("|%-5d\t | %-5.2f\t |\n", height, leftover);
 
   }
+  printf("+------------------------+\n");
+
+}
+int menu() {
+ 
+  int choice;
+
+  printf("1.  Create Chart for tank\n");
+  printf("2.  Calc volume currently in tank\n");
+  printf("3.  quit\n");
+
+  scanf("%d", &choice);
+  return choice;
+
+
+}
+void eval(float radius) {
+  
+  float fullVol = PI * pow(radius, 2) * TANKLEN; 
+  float height;
+  float answer;
+
+  printf("Enter height: ");
+  scanf("%f", &height);
+
+  if(height < radius) {
+    answer = method1(height, radius);
+  }
+  else {
+    answer = method2(height, radius);
+  }
+
+  answer = answer * 0.0043290; //convert
+  fullVol = fullVol * 0.0043290; //convert
+  printf("-----------------------------------------------------\n");
+  printf("There is currently %.2f gallons of liquid in the tank\n", answer);
+  printf("%.2f gallons left before full\n", fullVol - answer);
+  printf("-----------------------------------------------------\n");
 
 }
 int main( void ) {
-
+  
+  int choice;
   float height, radius, answer;
 
   radius = (float)MAXCAP/2;
 
-  createChart(radius);
-  
-  printf("Enter height of fluid: ");
-  scanf("%f", &height);
-  
-  if(height < radius) {
-    //execute method 1
-    answer = method1(height, radius);
-  }
-  else {
-    //execute method 2
-    answer = method2(height, radius);
-  }
+  // createChart(radius);
 
-  printf("%.2f\n", answer);
+  do {
+
+    choice = menu();
+
+    switch(choice) {
+
+    case 1:
+      createChart(radius);
+      break;
+    case 2:
+      eval(radius);
+      break;
+    case 3:
+      printf("exiting...\n");
+    default:
+      printf("Invalid input");
+    }
+
+  }while(choice != 3);
   
+
   return 0;
 
 }
