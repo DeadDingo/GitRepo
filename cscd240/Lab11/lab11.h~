@@ -4,8 +4,8 @@
 //Josh Harshman
 //
 
-#ifndef lab10_h
-#define lab10_h
+#ifndef lab11_h
+#define lab11_h
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -34,6 +34,7 @@ void printStateCitySortedArray(int total, Address *array);
 
 void printZipSortedArray(int total, Address *array);
 
+//Replace structBubbleSort() with compare method for use with qsort()
 void structBubbleSort(Address *array, int index);
 
 void printAll(Address *array, int total);
