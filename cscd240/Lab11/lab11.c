@@ -90,13 +90,15 @@ void printStreetSortedArray(Address *array, int total) {
     }
   }
   */
-  qsort(array, 3, sizeof(Address), streetCompare);
+
+  //Simplified with qsort()
+  qsort(array, total, sizeof(Address), streetCompare);
   printAll(array, total);
   
 
 }
 void printCitySortedArray(Address *array, int total) {
-
+  /*
   int i, j;
 
   for(i = 0; i < total; i++) {
@@ -106,12 +108,13 @@ void printCitySortedArray(Address *array, int total) {
       }
     }
   }
-
+  */
+  qsort(array, total, sizeof(Address), cityCompare);
   printAll(array, total);
 
 }
 void printStateCitySortedArray(int total, Address *array) {
-
+  /*
   int i, j;
 
   for(i = 0; i < total; i++) {
@@ -121,7 +124,8 @@ void printStateCitySortedArray(int total, Address *array) {
       }
     }
   }
-  
+  */
+  qsort(array, total, sizeof(Address), stateCityCompare);
   printAll(array, total);
 
 }
@@ -184,15 +188,45 @@ void cleanUp(Address *array, int total) {
   free(array);
 
 }
+
+
 /**
  *Compare functions
  * */
-
 int streetCompare(const void *a, const void *b) {
 
   const Address *elem1 = a;
   const Address *elem2 = b;
 
   return strcmp(elem1->street, elem2->street);
+
+}
+int cityCompare(const void *a, const void *b) {
+
+  const Address *elem1 = a;
+  const Address *elem2 = b;
+
+  return strcmp(elem1->city, elem2->city);
+
+}
+int stateCityCompare(const void *a, const void *b) {
+
+  const Address *elem1 = a;
+  const Address *elem2 = b;
+
+  if( strcmp(elem1->state, elem2->state) > 0 ) {
+    return (1);
+  }
+  else if( strcmp(elem1->state, elem2->state) < 0 ) {
+    return (-1);
+  }
+  else if( strcmp(elem1->city, elem2->city) > 0 ) {
+    return (1);
+  }
+  else if( strcmp(elem1->city, elem2->city) < 0 ) {
+    return (-1);
+  }
+  else
+    return 0;
 
 }
