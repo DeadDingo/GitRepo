@@ -35,10 +35,15 @@ void printStateCitySortedArray(int total, Address *array);
 void printZipSortedArray(int total, Address *array);
 
 //Replace structBubbleSort() with compare method for use with qsort()
+//compare by Street function
+//compare by city function
+//compare by state function
+//compare by zip function
 void structBubbleSort(Address *array, int index);
 
 void printAll(Address *array, int total);
 
 void cleanUp(Address *array, int total);
+
 
 #endif

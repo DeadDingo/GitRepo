@@ -6,7 +6,7 @@
 //============================
 //=========================
 
-#include "lab10.h"
+#include "lab11.h"
 
 FILE *openFile() {
   char name[20];
@@ -79,6 +79,7 @@ int menu(void) {
 }
 void printStreetSortedArray(Address *array, int total) {
 
+  /*
   int i, j;
 
   for(i = 0; i < total; i++) {
@@ -88,9 +89,10 @@ void printStreetSortedArray(Address *array, int total) {
       }
     }
   }
-
+  */
+  qsort(array, sizeof(Address), 3, streetCompare);
   printAll(array, total);
-
+  
 
 }
 void printCitySortedArray(Address *array, int total) {
@@ -180,5 +182,17 @@ void cleanUp(Address *array, int total) {
     free(array[i].state);
   }
   free(array);
+
+}
+/**
+ *Compare functions
+ * */
+
+int streetCompare(const void *a, const void *b) {
+
+  const Address *elem1 = a;
+  const Address *elem2 = b;
+
+  return strcmp(elem1->street, elem2->street);
 
 }

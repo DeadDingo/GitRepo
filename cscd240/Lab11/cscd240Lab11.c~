@@ -5,7 +5,7 @@ int main()
     FILE * fin = NULL;
     int total;
     Address * array = NULL;
-    int choice;
+
     fin = openFile();
 
     array = fillArray(&total, fin);
