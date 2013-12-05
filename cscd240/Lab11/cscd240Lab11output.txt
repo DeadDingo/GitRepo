@@ -1,0 +1,97 @@
+Josh Harshman
+cscd240
+Lab11
+
+Lab 11 Output:
+
+
+DeadDingos-MacBook-Air:Lab11 dingo$ make
+gcc lab11.c cscd240Lab11.c
+./a.out
+Enter File Name: input.txt
+1.  Print the array sorted by street.
+2.  Print the array sorted by city.
+3.  Print the array sorted by state then city
+4.  Print the array sorrted by zip.
+5.  Quit~~> 1
+---------------
+123 Anywhere
+ Spokane
+ WA
+ 99223
+---------------
+319F CEB
+ Cheney
+ WA
+ 99004
+---------------
+500 Sprague Ave
+ Spokane
+ WA
+ 99201
+1.  Print the array sorted by street.
+2.  Print the array sorted by city.
+3.  Print the array sorted by state then city
+4.  Print the array sorrted by zip.
+5.  Quit~~> 2
+---------------
+319F CEB
+ Cheney
+ WA
+ 99004
+---------------
+123 Anywhere
+ Spokane
+ WA
+ 99223
+---------------
+500 Sprague Ave
+ Spokane
+ WA
+ 99201
+1.  Print the array sorted by street.
+2.  Print the array sorted by city.
+3.  Print the array sorted by state then city
+4.  Print the array sorrted by zip.
+5.  Quit~~> 3
+---------------
+319F CEB
+ Cheney
+ WA
+ 99004
+---------------
+123 Anywhere
+ Spokane
+ WA
+ 99223
+---------------
+500 Sprague Ave
+ Spokane
+ WA
+ 99201
+1.  Print the array sorted by street.
+2.  Print the array sorted by city.
+3.  Print the array sorted by state then city
+4.  Print the array sorrted by zip.
+5.  Quit~~> 4
+---------------
+319F CEB
+ Cheney
+ WA
+ 99004
+---------------
+500 Sprague Ave
+ Spokane
+ WA
+ 99201
+---------------
+123 Anywhere
+ Spokane
+ WA
+ 99223
+1.  Print the array sorted by street.
+2.  Print the array sorted by city.
+3.  Print the array sorted by state then city
+4.  Print the array sorrted by zip.
+5.  Quit~~> 5
+DeadDingos-MacBook-Air:Lab11 dingo$ 
