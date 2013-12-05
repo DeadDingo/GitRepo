@@ -34,16 +34,13 @@ void printStateCitySortedArray(int total, Address *array);
 
 void printZipSortedArray(int total, Address *array);
 
-//compare by Street function
 int streetCompare(const void *a, const void *b);
-//compare by city function
-int cityCompare(const void *a, const void *b);
-//compare by state function
-int stateCityCompare(const void *a, const void *b);
-//compare by zip function
-int zipCompare(const void *a, const void *b);
 
-void structBubbleSort(Address *array, int index);
+int cityCompare(const void *a, const void *b);
+
+int stateCityCompare(const void *a, const void *b);
+
+int zipCompare(const void *a, const void *b);
 
 void printAll(Address *array, int total);
 

@@ -1,4 +1,4 @@
-//lab9.c
+//lab11.c
 //cscd240
 //
 //Written by Josh Harshman
@@ -79,92 +79,27 @@ int menu(void) {
 }
 void printStreetSortedArray(Address *array, int total) {
 
-  /*
-  int i, j;
-
-  for(i = 0; i < total; i++) {
-    for(j = 0; j < total-1; j++) {
-      if(strcmp( array[j].street, array[j+1].street ) > 0 ) {
-	structBubbleSort(array, j);
-      }
-    }
-  }
-  */
-
-  //Simplified with qsort()
   qsort(array, total, sizeof(Address), streetCompare);
   printAll(array, total);
   
 
 }
 void printCitySortedArray(Address *array, int total) {
-  /*
-  int i, j;
 
-  for(i = 0; i < total; i++) {
-    for(j = 0; j < total-1; j++) {
-      if(strcmp( array[j].city, array[j+1].city ) > 0 ) {
-	structBubbleSort(array, j);
-      }
-    }
-  }
-  */
   qsort(array, total, sizeof(Address), cityCompare);
   printAll(array, total);
 
 }
 void printStateCitySortedArray(int total, Address *array) {
-  /*
-  int i, j;
 
-  for(i = 0; i < total; i++) {
-    for(j = 0; j < total-1; j++) {
-      if( strcmp( array[j].city, array[j+1].city ) > 0 ) {
-	structBubbleSort(array, j);
-      }
-    }
-  }
-  */
   qsort(array, total, sizeof(Address), stateCityCompare);
   printAll(array, total);
 
 }
 void printZipSortedArray(int total, Address *array) {
 
-  int i, j;
-
-  for(i = 0; i < total; i++) {
-    for(j = 0; j < total-1; j++) {
-      if(array[j].zip < array[j+1].zip) {
-	structBubbleSort(array, j);
-      }
-    }
-  }
-
-  printf("\nZips are sorted in decending order\n");
-
+  qsort(array, total, sizeof(Address), zipCompare);
   printAll(array, total);
-
-}
-void structBubbleSort(Address *array, int index) {
-  char temp[100];
-  int t;
-
-  strcpy( temp, array[index+1].street );
-  strcpy( array[index+1].street, array[index].street);
-  strcpy( array[index].street, temp );
-  //
-  strcpy( temp, array[index+1].city );
-  strcpy( array[index+1].city, array[index].city );
-  strcpy( array[index].city, temp );
-  //
-  strcpy( temp, array[index+1].state );
-  strcpy( array[index+1].state, array[index].state );
-  strcpy( array[index].state, temp );
-  //
-  t = array[index+1].zip;
-  array[index+1].zip = array[index].zip;
-  array[index].zip = t;
 
 }
 void printAll(Address *array, int total) {
@@ -228,5 +163,13 @@ int stateCityCompare(const void *a, const void *b) {
   }
   else
     return 0;
+
+}
+int zipCompare(const void *a, const void *b) {
+
+  const Address *elem1 = a;
+  const Address *elem2 = b;
+
+  return ( (elem1->zip) - (elem2->zip) );
 
 }
