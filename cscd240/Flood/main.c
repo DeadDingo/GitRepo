@@ -1,8 +1,15 @@
 /**
  * ICMP ping flood
  *
- * Written By Josh Harshman
+ * Version 1 Written by Silver-Moon
+ * Version 2 Written by Josh Harshman
  * All Rights Reserved 12.10.2013
+ *
+ * Version 2 ChannelLog:
+ * -Fixed socket initialization bug
+ * -Cut out extraneous memory error check
+ * -Modified to work on with OSX
+ *
  **/
 
 #include <stdio.h>

@@ -19,6 +19,7 @@
 
 void usage( void );
 unsigned short in_cksum(unsigned short *ptr, int nbytes);
+
 //= = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 void usage( void ) {
