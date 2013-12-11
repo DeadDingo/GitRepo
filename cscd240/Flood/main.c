@@ -57,7 +57,20 @@ int main(int argc, char *argv[]) {
     return 0;
   }
 
-  //provide ip header information
+  int on = 1;
 
+  //provide ip header information
+  if( setsockopt (lsocket, IPPROTO_IP, IP_HDRINCL, (const char *)&on, sizeof(on)) < 0 ) {
+    perror("setsockopt error"); //prints error message to stderr
+    return 0;
+  }
+
+  //allow packets to send datagrams
+  if( setsockopt(lsocket, SOL_SOCKET, SO_BROADCAST, (const char *)&on, sizeof(on)) < 0 ) {
+    perror("setsockopt error");
+    return 0;
+  }
+
+  //calc packet size
 
 }

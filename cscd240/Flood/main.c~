@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
     usage();
 
   int i;
-  for(i = 0; i < argc, i ++) {
+  for(i = 0; i < argc; i ++) {
     if(strncmp(argv[i], "-s", 2) == 0) {
       source = atol(argv[i+1]);
     }
