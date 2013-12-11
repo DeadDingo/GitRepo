@@ -27,11 +27,37 @@ void usage( void ) {
 }
 int main(int argc, char *argv[]) {
 
+  unsigned long dest;
+  unsigned long source;
+  int load_size, sent, sent_size;
+
   //argument parsing
   if(argc < 3)
     usage();
 
+  int i;
+  for(i = 0; i < argc; i ++) {
+    if(strncmp(argv[i], "-s", 2) == 0) {
+      source = atol(argv[i+1]);
+    }
+    if(strncmp(argv[i], "-d", 2) == 0) {
+      dest = atol(argv[i+1]);
+    }
+    if(strncmp(argv[i], "-p", 2) == 0) {
+      load_size = atoi(argv[i+1]);
+    }
+  }
+  //end arg parsing
 
-  //
+  //establish raw socket
+  int lsocket = socket(AF_INET, SOCK_RAW, IPPROTO_RAW);
+
+  if(lsocket < 0) {
+    puts("Error, could not create socket");
+    return 0;
+  }
+
+  //provide ip header information
+
 
 }
