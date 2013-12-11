@@ -5,16 +5,21 @@
  * All Rights Reserved 12.10.2013
  **/
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/time.h>
 #include <netinet/ip.h>
 #include <netinet/ip_icmp.h>
+#include <netinet/in.h>
 #include <unistd.h>
+#include <arpa/inet.h>
+#include <sys/socket.h>
+
 
 void usage( void );
+unsigned short in_cksum(unsigned short *ptr, int nbytes);
+
 //= = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 void usage( void ) {
@@ -50,9 +55,9 @@ int main(int argc, char *argv[]) {
   //end arg parsing
 
   //establish raw socket
-  int lsocket = socket(AF_INET, SOCK_RAW, IPPROTO_RAW);
+  int sockfd = socket(AF_INET, SOCK_RAW, IPPROTO_RAW);
 
-  if(lsocket < 0) {
+  if(sockfd < 0) {
     puts("Error, could not create socket");
     return 0;
   }
@@ -60,19 +65,19 @@ int main(int argc, char *argv[]) {
   int on = 1;
 
   //provide ip header information
-  if( setsockopt (lsocket, IPPROTO_IP, IP_HDRINCL, (const char *)&on, sizeof(on)) < 0 ) {
+  if( setsockopt (sockfd, IPPROTO_IP, IP_HDRINCL, (const char *)&on, sizeof(on)) == -1 ) {
     perror("setsockopt error"); //prints error message to stderr
     return 0;
   }
 
   //allow packets to send datagrams
-  if( setsockopt(lsocket, SOL_SOCKET, SO_BROADCAST, (const char *)&on, sizeof(on)) < 0 ) {
+  if( setsockopt(sockfd, SOL_SOCKET, SO_BROADCAST, (const char *)&on, sizeof(on)) == -1 ) {
     perror("setsockopt error");
     return 0;
   }
 
   //calc packet size
-  int packet_size = sizeof(struct iphdr) + sizeof(struct icmphdr) + payload_size;
+  int packet_size = sizeof(struct iphdr) + sizeof(struct icmphdr) + load_size;
   char *packet = (char *) malloc(packet_size);
 
   //no need to test for out of memory error on modern system
@@ -91,7 +96,7 @@ int main(int argc, char *argv[]) {
   ip->tot_len = htons(packet_size);
   ip->id = rand();
   ip->frag_off = 0;
-  ip->ttl = 225;
+  ip->ttl = 255;
   ip->protocol = IPPROTO_ICMP;
   ip->saddr = source;
   ip->daddr = dest;
@@ -111,11 +116,11 @@ int main(int argc, char *argv[]) {
 
   while (1) {
 
-    memset(packet + sizeof(struct iphdr) + sizeof(struct icmphdr), rand() % 255, payload_size);
+    memset(packet + sizeof(struct iphdr) + sizeof(struct icmphdr), rand() % 255, load_size);
     icmp->checksum = 0;
-    icmp->checksum = in_cksum((unsigned short *)icmp, sizeof(struct icmphdr) + payload_size);
+    icmp->checksum = in_cksum((unsigned short *)icmp, sizeof(struct icmphdr) + load_size);
 
-    if( (sent_size = sendto(lsocket, packet, packet_size, 0, (struct sockaddr *) &servaddr, sizeof(servaddr))) < 1) {
+    if( (sent_size = sendto(sockfd, packet, packet_size, 0, (struct sockaddr *) &servaddr, sizeof(servaddr))) < 1) {
       perror("Packet Send Failed");
       break;
     }
@@ -129,8 +134,37 @@ int main(int argc, char *argv[]) {
   }
 
   free(packet);
-  close(lsocket);
+  close(sockfd);
 
   return 0;
+
+}
+/**
+ *Calculate Checksum
+ * */
+unsigned short in_cksum(unsigned short *ptr, int nbytes) {
+
+  register long sum;
+  u_short oddbyte;
+  register u_short answer;
+
+  sum = 0;
+  while(nbytes > 1) {
+    sum += *ptr++;
+    nbytes -= 2;
+  }
+
+  if(nbytes == 1) {
+    oddbyte = 0;
+    *((u_char *) & oddbyte) = *(u_char *) ptr;
+    sum += oddbyte;
+  }
+
+  sum = (sum >> 16) + (sum & 0xffff);
+  sum += (sum >> 16);
+  answer = ~sum;
+  
+  return (answer);
+
 
 }
