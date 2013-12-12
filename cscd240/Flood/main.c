@@ -9,7 +9,7 @@
  * -Fixed socket initialization bug
  * -Cut out extraneous memory error check
  * -Modified to work on with OSX
- *
+ * -Modified Usage Output on bad args
  **/
 
 #include <stdio.h>
@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) {
   //end arg parsing
 
   //establish raw socket
-  int sockfd = socket(AF_INET, SOCK_RAW, IPPROTO_RAW);
+  int sockfd = socket(PF_INET, SOCK_RAW, IPPROTO_RAW);
 
   if(sockfd < 0) {
     puts("Error, could not create socket");
