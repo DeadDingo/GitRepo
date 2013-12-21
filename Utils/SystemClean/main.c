@@ -1,6 +1,6 @@
 /**
  * Easy Run System Cleaner
- * Utilized currently existing software in the system to clean system
+ * Utilizes currently existing software to clean the system
  * 
  * Written By Josh Harshman (DeadDingo)
  * All Rights Reserved 12.20.2013
@@ -12,7 +12,7 @@
 
 int menu( void );
 
-//======================
+//============================
 
 int menu( void ) {
 
@@ -21,6 +21,7 @@ int menu( void ) {
   puts("2.  Run Anti Malware");
   puts("3.  Run Defrag");
   puts("4.  Quit");
+
   scanf("%d", &choice);
   return choice;
 
@@ -60,5 +61,6 @@ int main( void ) {
 
   }while(choice != 4);
 
+  return 0;
 
 }
