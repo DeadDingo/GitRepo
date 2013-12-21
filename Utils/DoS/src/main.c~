@@ -25,24 +25,38 @@ int main ( int argc, char *argv[ ] ) {
     Usage();
   }
 
-  for( i = 0; i < argc; i ++ ) {
+  for( i = 1; i < argc; i ++ ) {
     
     if(strncmp(argv[i], "-s", 2) == 0) {
-      saddr = argv[i] + 1;
+      saddr = inet_addr(argv[i+1]);
     }
     if(strncmp(argv[i], "-d", 2) == 0) {
-      daddr = argv[i] + 1;
+      daddr = inet_addr(argv[i+1]);
     }
     if(strncmp(argv[i], "-p", 2) == 0) {
-      payload_size = atoi(argv[i] + 1);
+      payload_size = atoi(argv[i+1]);
     }
   } //end for loop
   //end arg parsing
 
+
   //echo back arguments for testing
+  /*
   printf("Source Address (saddr): %lu\n", saddr);
   printf("Destination Address (daddr) %lu\n", daddr);
   printf("Payload Size (payload_size) %d\n", payload_size);
+  */
+
+  //Get Raw Socket
+  int sockfd = socket(AF_INET, SOCK_RAW, IPPTROTO_RAW);
+
+  if(sockfd < 0) {
+    perror("Could not create socket:");
+    return 0;
+  }
+  else {
+    puts("Socket live!");
+  }
 
   return 0;
 }

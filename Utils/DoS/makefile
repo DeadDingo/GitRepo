@@ -4,7 +4,7 @@ FloodTarget.out:	src/main.c
 clean:	
 			rm -f FloodTarget.out
 
-BuildClean:
+buildclean:
 			rm -f FloodTarget.out
-			gcc src/main.c src/packetsoupt.c -o FloodTarget.out
+			gcc src/main.c src/packetsoup.c -o FloodTarget.out
 			./FloodTarget.out
