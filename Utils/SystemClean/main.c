@@ -37,12 +37,12 @@ int main( void ) {
     switch(choice) {
     case (1) :
       //run cleaner
-      if(system("CCleaner") == -1)
+      if(system("Progs/CCleaner") == -1)
 	puts("Could not run C-Cleaner");
       break;
     case (2) :
       //run Malware Bytes
-      if(system("mbytes") == -1)
+      if(system("Progs/mbytes") == -1)
 	puts("Could not run MalwareBytes");
       break;
     case (3) :
