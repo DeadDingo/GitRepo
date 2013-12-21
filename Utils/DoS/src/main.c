@@ -15,7 +15,7 @@ int main ( int argc, char *argv[ ] ) {
 
   unsigned long daddr;
   unsigned long saddr;
-  int payload_size = 0, sent, sent_size, i;
+  int payload_size = 0, sent, sent_size, on, i;
 
 
   /*
@@ -54,8 +54,19 @@ int main ( int argc, char *argv[ ] ) {
     perror("Could not create socket:");
     return 0;
   }
-  else {
-    puts("Socket live!");
+
+  puts("Socket Is Live!");
+
+  //provide packet headers
+  if( setsockopt(sockfd, IPPROTO_IP, IP_HDRINCL, (const char *)&on, sizeof(on)) == -1 ) {
+    perror("setsockopt:");
+    return 0;
+  }
+
+  //allow socket to send datagrams to broadcast addresses
+  if( setsockopt(sockfd, SOL_SOCKET, SO_BROADCAST, (const char *)&on, sizeof(on)) == -1 ) {
+    perror("setsockopt");
+    return 0;
   }
 
   return 0;

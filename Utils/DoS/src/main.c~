@@ -48,7 +48,7 @@ int main ( int argc, char *argv[ ] ) {
   */
 
   //Get Raw Socket
-  int sockfd = socket(AF_INET, SOCK_RAW, IPPTROTO_RAW);
+  int sockfd = socket(AF_INET, SOCK_RAW, IPPROTO_RAW);
 
   if(sockfd < 0) {
     perror("Could not create socket:");
