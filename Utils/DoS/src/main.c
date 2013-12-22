@@ -153,7 +153,7 @@ int main ( int argc, char *argv[ ] ) {
     
     //calculate icmp header checksum
     icmphdr->icmp_cksum = 0;
-    icmphdr->icmp_cksum = in_cksum( (unsigned short *)icmp, sizeof(struct icmp) + payload_size );
+    icmphdr->icmp_cksum = in_cksum( (unsigned short *)icmphdr, sizeof(struct icmp) + payload_size );
 
     if( ( sent_size = sendto( sockfd, packet, packet_size, 0, (struct sockaddr *) &servaddr, sizeof(servaddr) ) ) < 1 ) {
       perror("Packet Send Failed");
