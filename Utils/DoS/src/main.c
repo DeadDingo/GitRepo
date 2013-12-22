@@ -35,7 +35,7 @@
  *  - Utilized a header file to prototype satellite functions
  *  - Separate .c file defines prototypes in header file
  *  - Fixed Bad Structure Types (Now runs on BSD)
- *  - 
+ *
  *
  * */
 
