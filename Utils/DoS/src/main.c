@@ -1,16 +1,39 @@
 /**
  * DoS : Denial Of Service Attack
- * Accomplished via ICMP Flooding
+ * ICMP Flooding
+ *
  *
  * Orriginally Written By Silver Moon
  *
- * Version 2 Written By Josh Harshman (DeadDingo)
- * All Rights Reserved 12.21.2013
+ * Version 2 Written By Josh Harshman (DeadDingo) joshgreyhat@gmail.com
+ * Copyright 12.21.2013 Josh Harshman
+ *
+ *
+ * This file is part of the DoS package
+ *
+ * The DoS package is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public Licence as published by
+ * the Free Software Foundation, etierh version 3 of the Licence, or
+ * (at your option) any later version.
+ *
+ * The DoS package is distrubuted in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied arranty of
+ * MERCHANTABLILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public Licence for more details.
+ *
+ * You should have received a copy of the GNU General Public Licence
+ * along with the DoS package.  If not, see <http://www.gnu.org/licences/>.
+ *
  *
  * ================================================
  * Version 2 Channel Log:
  *
  *  - Better Argument Parsing
+ *  - Better Error Checking
+ *  - More Informative Usage Dialog
+ *  - Utilized a header file to prototype satellite functions
+ *  - Separate .c file defines prototypes in header file
+ *  - Fixed Bad Structure Types (Now runs on BSD)
  *  - 
  *
  * */
