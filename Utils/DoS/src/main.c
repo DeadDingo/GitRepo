@@ -28,6 +28,7 @@
  * ================================================
  * Version 2 Channel Log:
  *
+ *  - Now protected under the GNU Public Licence
  *  - Better Argument Parsing
  *  - Better Error Checking
  *  - More Informative Usage Dialog
@@ -107,7 +108,7 @@ int main ( int argc, char *argv[ ] ) {
   char *packet = (char *)malloc(packet_size);
 
   if(!packet) {
-    perror("No Memory");
+    perror("Memory Error");
     close(sockfd);
     return 0;
   }
@@ -120,16 +121,16 @@ int main ( int argc, char *argv[ ] ) {
   memset(packet, 0, packet_size);
   
   //set member variables and whatnot
-  iphdr->version = 4;
-  iphdr->ihl = 5;
-  iphdr->tos = 0;
-  iphdr->tot_len = htons(packet_size);
-  iphdr->id = rand();
-  iphdr->frag_off = 0;
-  iphdr->ttl = 255;
-  iphdr->protocol = IPPROTO_ICMP;
-  iphdr->saddr = saddr;
-  iphdr->daddr = daddr;
+  iphdr->ip_v = 4;
+  iphdr->ip_hl = 5;
+  iphdr->ip_tos = 0;
+  iphdr->ip_len = htons(packet_size);
+  iphdr->ip_id = rand();
+  iphdr->ip_off = 0;
+  iphdr->ip_ttl = 255;
+  iphdr->ip_p = IPPROTO_ICMP;
+  iphdr->ip_src.s_addr = saddr;
+  iphdr->ip_dst.s_addr = daddr;
   //
   
   icmphdr->icmp_type = ICMP_ECHO;
