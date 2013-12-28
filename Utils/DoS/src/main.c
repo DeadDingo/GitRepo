@@ -72,13 +72,6 @@ int main ( int argc, char *argv[ ] ) {
   //end arg parsing
 
 
-  //echo back arguments for testing
-  /*
-  printf("Source Address (saddr): %lu\n", saddr);
-  printf("Destination Address (daddr) %lu\n", daddr);
-  printf("Payload Size (payload_size) %d\n", payload_size);
-  */
-
   //Get Raw Socket
   int sockfd = socket(AF_INET, SOCK_RAW, IPPROTO_RAW);
 
@@ -101,10 +94,8 @@ int main ( int argc, char *argv[ ] ) {
     return 0;
   }
 
-  //calculate packet size
-  //WARNING!!!
-  //The Structs iphdr and icmphdr might not exist in Apple OSX
-  //In order to maintain cross platform usability, utilize the makefile to do conditional preprocessing.
+
+  //calc packet size
   int packet_size = sizeof(struct ip) + sizeof(struct icmp) + payload_size;
   char *packet = (char *)malloc(packet_size);
 

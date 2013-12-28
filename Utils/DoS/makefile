@@ -1,10 +1,12 @@
-FloodTarget.out:	src/main.c
-			gcc src/main.c src/packetsoup.c -o FloodTarget.out
+#MAKEFILE
+
+FloodTarget:	src/main.c
+			gcc src/main.c src/packetsoup.c -o FloodTarget
 
 clean:	
-			rm -f FloodTarget.out
+			rm -f FloodTarget
 
-buildclean:
-			rm -f FloodTarget.out
-			gcc src/main.c src/packetsoup.c -o FloodTarget.out
-			./FloodTarget.out
+cleanbuild:
+			rm -f FloodTarget
+			gcc src/main.c src/packetsoup.c -o FloodTarget
+			./FloodTarget

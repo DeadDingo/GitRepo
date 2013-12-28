@@ -29,6 +29,7 @@ typedef unsigned short int u16;
 
 /**
  * Description:
+ * Calculates the checksum on a packet to packet basis
  *
  * */
 unsigned short in_cksum(unsigned short *ptr, int nbytes);
@@ -36,7 +37,8 @@ unsigned short in_cksum(unsigned short *ptr, int nbytes);
 
 /**
  * Description:
- *
+ * Displays Usage Dialog
+ * 
  * */
 void Usage( void );
 
