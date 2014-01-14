@@ -1,0 +1,18 @@
+//#include <a40PinModule.reflex>
+
+//a40PinModule stem;
+
+#define DELAY 1000000
+
+reflex mapEnable() {
+
+       char i = 0;
+       for(i = 0; i < 10; i++ ) {
+
+       	     stem.system.setLED(true);
+	     stem.system.setSleep(DELAY);
+	     stem.system.setLED(false);
+	     stem.system.setSleep(DELAY);
+       }
+
+}
