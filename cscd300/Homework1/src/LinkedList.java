@@ -1,6 +1,8 @@
 /**
  * Homework 1 - Linked Lists and HashTable
  * 
+ * NOTE: Extra Credit Completed!
+ * 
  * Written By Josh Harshman
  * All Rights Reserved 1/10/2014
  * 
@@ -13,9 +15,9 @@ import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 
-public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
+public class LinkedList<E> implements Iterable<E>, List<E>, Cloneable {
 	
-	private Node head;
+	private Node<E> head;
 	private int size;
 	
 	/**
@@ -24,7 +26,7 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 	 * 	keeps size at zero
 	 * */
 	public LinkedList() {
-		this.head = new Node(null); //initialize with dummy head node
+		this.head = new Node<E>(null); //initialize with dummy head node
 		this.size = 0;
 	}
 	
@@ -42,9 +44,9 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 	 * 	adds node to beginning of list
 	 * 	returns void
 	 * */
-	public void addFirst(Object data) {
-		Node cur = this.head;
-		cur.next = new Node(data, cur.next);
+	public void addFirst(E data) {
+		Node<E> cur = this.head;
+		cur.next = new Node<E>(data, cur.next);
 		this.size++;
 	}
 	
@@ -53,16 +55,16 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 	 * 	adds node to end of list
 	 * 	returns void
 	 * */
-	public void addLast(Object data) {
+	public void addLast(E data) {
 		if(isEmpty()) { 
 			addFirst(data);
 		}
 		else {
-			Node cur = this.head;
+			Node<E> cur = this.head;
 			while(cur.next != null) {
 				cur = cur.next;
 			}
-			cur.next = new Node(data, null);
+			cur.next = new Node<E>(data, null);
 			size++;
 		}
 	}
@@ -72,17 +74,17 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 	 * 	adds a node to the end of a list
 	 * 	returns boolean
 	 * */
-	public boolean add(Object data) {
+	public boolean add(E data) {
 		
-		if(isEmpty()) { //edge case
+		if(isEmpty()) { 
 			addFirst(data);
 			return true;
 		}
-		Node cur = this.head;
+		Node<E> cur = this.head;
 		while(cur.next != null) {
 			cur = cur.next;
 		}
-		cur.next = new Node(data, null);
+		cur.next = new Node<E>(data, null);
 		size++;
 		return true;
 		
@@ -93,18 +95,18 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 	 * 	adds node at index
 	 * 	returns void
 	 * */
-	public void add(int index, Object data) {
+	public void add(int index, E data) {
 		
 		if(isEmpty()) {
-			System.out.println("Empty List.  Adding as first node...");
+			System.out.println("Empty List. Ignoring index and Adding as first node...");
 			addFirst(data);
 		}
 		else {
-			Node cur = head.next; //ignores the dummy node and starts the index counter at head.next
+			Node<E> cur = head.next; //ignores the dummy node and starts the index counter at head.next
 			for(int i = 0; i < index; i++) {
 				cur = cur.next;
 			}
-			cur.next = new Node(data, cur.next);
+			cur.next = new Node<E>(data, cur.next);
 			size++;
 		}
 	}
@@ -138,8 +140,8 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 	 * 	returns a new linkedlist iterator
 	 * */
 	@Override
-	public Iterator<Object> iterator() {
-		return new LinkedListIterator(this.head.next); //ignores dummy head node
+	public Iterator<E> iterator() {
+		return new LstItr(this.head.next); //ignores dummy head node
 	}
 
 	/**
@@ -168,7 +170,7 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 		if(isEmpty() || obj == null) {
 			return false;
 		}
-		for(Node prev = this.head, cur = this.head.next; cur != null; prev = cur, cur = cur.next) {
+		for(Node<E> prev = this.head, cur = this.head.next; cur != null; prev = cur, cur = cur.next) {
 			if(cur.data.equals(obj)) {
 				prev.next = cur.next;
 				this.size--;
@@ -186,8 +188,12 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 	@Override
 	public boolean containsAll(Collection<?> c) {
 		
-		Node cur;
+		Node<E> cur;
 		boolean flag;
+		
+		if(c == null) {
+			throw new NullPointerException("Collection is null");
+		}
 		
 		for(Object x : c) {
 			cur = this.head.next;
@@ -205,19 +211,23 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 	}
 
 	@Override
-	public boolean addAll(Collection<? extends Object> c) {
+	public boolean addAll(Collection<? extends E> c) {
 		
-		Node cur = this.head;
-		Node tail = null;
+		Node<E> cur = this.head;
+		Node<E> tail = null;
+		
+		if(c == null) {
+			throw new NullPointerException("Collection is null");
+		}
 		
 		//find the end of the list
 		while(cur.next != null) {
 			cur = cur.next;
 		}
 		tail = cur;
-		for(Object x : c) {
+		for(E x : c) {
 			//add onto end of list
-			cur.next = new Node(x, null);
+			cur.next = new Node<E>(x, null);
 			this.size++;
 			cur = cur.next;
 		}
@@ -234,19 +244,22 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 	 * 	returns true after list is inserted
 	 * */
 	@Override
-	public boolean addAll(int index, Collection<? extends Object> c) {
+	public boolean addAll(int index, Collection<? extends E> c) {
 		
-		Node cur = this.head.next;
+		Node<E> cur = this.head.next;
 		//navigate to index of list
 		if(index < 0 || index > size) {
 			throw new IllegalArgumentException("Index Out of bounds at " + index + "\n");
+		}
+		if(c == null) {
+			throw new NullPointerException("Collection is null");
 		}
 		
 		for(int i = 0; i < index; i++) {
 			cur = cur.next;
 		}
-		for(Object x : c) {
-			cur.next = new Node(x, cur.next);
+		for(E x : c) {
+			cur.next = new Node<E>(x, cur.next);
 			this.size++;
 			cur = cur.next;
 		}
@@ -263,8 +276,11 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 	@Override
 	public boolean removeAll(Collection<?> c) {
 		
-		Node cur = this.head.next;  // skip past the dummy head node
+		Node<E> cur = this.head.next;  // skip past the dummy head node
 		int index = 0;
+		if(c == null) {
+			throw new NullPointerException("Collection is empty");
+		}
 		boolean rem = false; //removal flag
 		while(cur != null) {
 			for(Object x : c) {
@@ -293,8 +309,11 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 	@Override
 	public boolean retainAll(Collection<?> c) {
 		
-		Node cur = this.head.next;
+		Node<E> cur = this.head.next;
 		int index = 0;
+		if(c == null) {
+			throw new NullPointerException("Collection is empty");
+		}
 		boolean rem = false;
 		while(cur != null) {
 			
@@ -334,9 +353,9 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 	 * 	returns Object
 	 * */
 	@Override
-	public Object get(int index) {
+	public E get(int index) {
 		
-		Node cur = this.head.next;
+		Node<E> cur = this.head.next;
 		
 		if(index < 0 || index >= size) {
 			throw new IllegalArgumentException("Index Out of Bounds of List: " + index);
@@ -358,10 +377,10 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 	 * 	returns Object
 	 * */
 	@Override
-	public Object set(int index, Object element) {
+	public E set(int index, E element) {
 		
-		Node cur = this.head.next;
-		Object x;
+		Node<E> cur = this.head.next;
+		E x;
 		
 		if(index < 0 || index >= size) {
 			throw new IllegalArgumentException("Index Out of Bounds " + index);
@@ -381,14 +400,14 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 	 * 	returns removed node's data element
 	 * */
 	@Override
-	public Object remove(int index) throws IllegalArgumentException {
+	public E remove(int index) throws IllegalArgumentException {
 		if(index < 0 || index >= this.size) {
 			throw new IllegalArgumentException("Index out of bounds at " + index);
 		}
-		Node cur, prev;
+		Node<E> cur, prev;
 		cur = this.head.next;
 		prev = null;
-		Object data;
+		E data;
 		
 		if(index == 0) {
 			data = this.head.next.data;
@@ -408,10 +427,13 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 
 	/**
 	 * int indexOf(Object obj)
+	 * 	finds first occurrence of object in LinkedList
+	 * 	returns the index of found object
+	 * 	returns -1 if no object matched
 	 * */
 	@Override
 	public int indexOf(Object obj) {
-		Node cur = this.head.next;
+		Node<E> cur = this.head.next;
 		for(int index = 0; index < size && cur != null; index++) {
 			if(cur.data.equals(obj)) {
 				return index;
@@ -423,43 +445,47 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 
 	/**
 	 * int lastIndexOf(Object obj)
-	 * 	finds last occurrence of object in linkedlist
+	 * 	finds last occurrence of object in LinkedList
 	 * 	returns the index of the discovered last occurrence
+	 * 	returns -1 if no matches
 	 * */
 	@Override
 	public int lastIndexOf(Object obj) {
 		
-		Node cur = this.head.next;
+		Node<E> cur = this.head.next;
 		int last = -1; //initialize to negative.  Will change if object is matched to an index
 		
 		for(int index = 0; index < size && cur != null; index++) {
 			if(cur.data.equals(obj)) {
 				last = index;
 			}
+			cur = cur.next;
 		}
 		
 		return last; //if return -1, no matches
 	}
 
 	@Override
-	public ListIterator<Object> listIterator() {
-		// TODO Auto-generated method stub
-		//implement another inner class to handle this
-		return null;
+	public ListIterator<E> listIterator() {
+		return new LinkedListIterator();
 	}
 
 	@Override
-	public ListIterator<Object> listIterator(int index) {
-		// TODO Auto-generated method stub
-		return null;
+	public ListIterator<E> listIterator(int index) {
+		return new LinkedListIterator(index);
 	}
 
 	@Override
-	public List<Object> subList(int fromIndex, int toIndex) {
-		//initialize sublist
-		LinkedList sublist = new LinkedList();
-		Node cur = this.head;
-		for(int i = 0; i <= toIndex && i >= fromIndex; i++) {
+	public List<E> subList(int fromIndex, int toIndex) {
+		
+		if(fromIndex < 0 || toIndex > size)
+			throw new IndexOutOfBoundsException("Index is out of bounds");
+		if(fromIndex > toIndex)
+			throw new IllegalArgumentException("Indicies are swapped");
+		LinkedList<E> sublist = new LinkedList<E>();
+		Node<E> cur = this.head.next;
+		for(int i = 0; i < fromIndex; i++, cur = cur.next); // run to end of list
+		for(int i = 0; i <= toIndex; i++) {
 			sublist.add(cur.data);
 			cur = cur.next;
 		}
@@ -472,7 +498,7 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 	@Override
 	public String toString() {
 		String result = "Contents:\n";
-		Node cur = this.head;
+		Node<E> cur = this.head;
 		int i = 0;
 		while(cur != null) {
 			if(i % 4 == 0) {
@@ -495,7 +521,7 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 	public int hashCode() {
 		final int PRIME = 31;
 		int result = 1;
-		for(Node node = this.head; node != null; node = node.next) {
+		for(Node<E> node = this.head; node != null; node = node.next) {
 			result = PRIME * result + node.hashCode();
 		}
 		return result;
@@ -512,36 +538,33 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 	 * Defines the Node Object
 	 * Change access to private.  Encapsulate inside LinkedList
 	 * */
-	private class Node {
+	private class Node<E> {
 	
-		protected Object data; //allows storage of generic types
-		protected Node next;
+		protected E data; //allows storage of generic types
+		protected Node<E> next;
 		
 		public Node() {
 			data = null;
 			next = null;
 		}
-		public Node(Object data) {
+		public Node(E data) {
 			this(data, null);
 		}
-		public Node(Object data, Node next) {
+		public Node(E data, Node<E> next) {
 			this.data = data;
 			this.next = next;
 		}
-		public Object getData() {
+		public E getData() {
 			return data;
 		}
-		public void setData(Object data) {
+		public void setData(E data) {
 			this.data = data;
 		}
-		public Node getNext() {
+		public Node<E> getNext() {
 			return next;
 		}
-		public void setNext(Node next) {
+		public void setNext(Node<E> next) {
 			this.next = next;
-		}
-		private LinkedList getOuterType() {
-			return LinkedList.this;
 		}
 		
 	} //End Node Inner Class
@@ -553,12 +576,12 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 	/**
 	 * LinkedList Iterator
 	 * */
-	public class LinkedListIterator implements Iterator<Object> {
+	public class LstItr implements Iterator<E> {
 		
-		private Node nextNode; //points to the node we are about to access
+		private Node<E> nextNode; //points to the node we are about to access
 		private int index;
 		
-		public LinkedListIterator(Node start) {
+		public LstItr(Node<E> start) {
 			this.nextNode = start;
 			this.index = 0;
 		}
@@ -569,11 +592,15 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 		}
 
 		@Override
-		public Object next() {
+		public E next() {
 			if(!hasNext()) throw new NoSuchElementException();
-			Object res = nextNode.data;
+			E res = nextNode.data;
 			nextNode = nextNode.next;
 			return res;
+		}
+		//Added toString() method to print out individual node data
+		public String toString() {
+			return " [ " + nextNode.data + " ] ";
 		}
 
 		@Override
@@ -584,5 +611,90 @@ public class LinkedList implements Iterable<Object>, List<Object>, Cloneable {
 	}
 	//end iterator inner class
 	//========================================
+	
+	//========================================
+	//LinkedListIterator inner class
+	//========================================
+	
+	public class LinkedListIterator implements ListIterator<E> {
+
+		private Node<E> nextNode;
+		private int index;
+		
+		public LinkedListIterator() {
+			nextNode = head.next;
+			index = 0;
+		}
+		public LinkedListIterator(int index) {
+			nextNode = head.next;
+			this.index = index;
+			for(int i = 0; i < index; i++) {
+				nextNode = nextNode.next;
+			}
+		}
+		@Override
+		public boolean hasNext() {
+			return nextNode != null;
+		}
+
+		@Override
+		public E next() {
+			if(!hasNext()) throw new NoSuchElementException("Element Does Not Exisit");
+			E res = nextNode.data;
+			nextNode = nextNode.next;
+			index++;
+			return res;
+		}
+
+		@Override
+		public boolean hasPrevious() {
+			if(index > 0) 
+				return true;
+			return false;
+		}
+
+		@Override
+		public E previous() {
+			for(int i = 0; i < (index-1); i++) {
+				nextNode = nextNode.next;
+			}
+			return nextNode.data;
+			
+		}
+
+		@Override
+		public int nextIndex() {
+			return index;
+		}
+
+		@Override
+		public int previousIndex() {
+			return index - 1;
+		}
+		//added toString() method
+		@Override
+		public String toString() {
+			return " [ " + nextNode.data + " ] ";
+		}
+
+		@Override
+		public void remove() {
+			throw new UnsupportedOperationException("Operation Not Supported");
+			
+		}
+
+		@Override
+		public void set(E e) {
+			throw new UnsupportedOperationException("Operation Not Supported");
+			
+		}
+
+		@Override
+		public void add(E e) {
+			throw new UnsupportedOperationException("Operation Not Supported");
+			
+		}
+		
+	}
 	
 }

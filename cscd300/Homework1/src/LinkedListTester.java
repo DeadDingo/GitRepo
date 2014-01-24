@@ -1,6 +1,7 @@
 /**
  * LinkedList Tester Class
  * 
+ * NOTE: Extra Credit Completed
  * 
  * Written By Josh Harshman
  * All Rights Reserved 1/10/2014
@@ -8,25 +9,32 @@
  * */
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Scanner;
+
 
 public class LinkedListTester {
 
 	public static void main(String ...args) {
 		
 		int choice = 0;
-		int index, result;
+		int index, fromIndex, result;
 		String r;
 		Object obj;
 		
-		//initialize LinkedList reference
-		LinkedList ll = new LinkedList();
-		LinkedList sublist;
+		//initialize LinkedList references
+		LinkedList<Object> ll = new LinkedList<Object>();
+		LinkedList<Object> sub = new LinkedList<Object>();
+		
+		//List Iterators
+		Iterator<Object> it = null;
+		ListIterator<Object> li = null;
 		
 		Scanner kb = new Scanner(System.in);
 		
-		//Make a random collection of objects
+		//Random Collection of Objects
 		List<Object> collection1 = new ArrayList<Object>();
 		collection1.add("Collection Item 1");
 		collection1.add("Collection Item 2");
@@ -43,22 +51,25 @@ public class LinkedListTester {
 				ll.add("TestSimpleAdd");
 				break;
 			case 2 :
-				System.out.print("Enter index to insert test value: ");
-				index = kb.nextInt();
+				index = getIndex(ll.size());
+				ll.add(index, "TestAddIndex");
+				break;
+			case 3 :
 				try {
-					ll.add(index, "TestAddIndex");
+					ll.addAll(collection1);
 				}catch(NullPointerException e) {
 					e.printStackTrace();
 				}
 				break;
-			case 3 :
-				ll.addAll(collection1);
-				break;
 			case 4 :
-				System.out.println("Max index to insert without failure is: " + (ll.size() - 1));
-				System.out.print("Enter index: ");
-				index = kb.nextInt();
-				ll.addAll(index, collection1);
+				index = getIndex(ll.size());
+				try {
+					ll.addAll(index, collection1);
+				}catch(NullPointerException e) {
+					e.printStackTrace();
+				}catch(IllegalArgumentException e) {
+					e.printStackTrace();
+				}
 				break;
 			case 5 :
 				ll.addFirst("TestAddFirst");
@@ -72,10 +83,10 @@ public class LinkedListTester {
 				break;
 			case 8 :
 				if(ll.contains("TestSimpleAdd")) {
-					System.out.println("Contain Query Comes back true");
+					System.out.println("Contains Query Comes back true");
 				}
 				else {
-					System.out.println("Contain Query Comes back false");
+					System.out.println("Contains Query Comes back false");
 				}
 				break;
 			case 9 :
@@ -91,15 +102,26 @@ public class LinkedListTester {
 				break;
 			case 10 :
 				//test equals method
-				if(ll.get(0).equals("TestAddFirst")) {
-					System.out.println("Equals query comes back true");
+				try {
+					if(ll.get(0).equals("TestAddFirst")) {
+						System.out.println("Equals query comes back true");
+					}
+					else {
+						System.out.println("Equals query comes back false");
+					}
+				}catch(IllegalArgumentException e) {
+					System.out.println("List is empty");
+					e.printStackTrace();
 				}
-				else {
-					System.out.println("Equals query comes back false");
-				}
+				
 				break;
 			case 11 :
-				System.out.println(ll.get(0));
+				index = getIndex(ll.size());
+				try {
+					System.out.println(ll.get(index));
+				}catch(IllegalArgumentException e) {
+					e.printStackTrace();
+				}
 				break;
 			case 12 :
 				System.out.println("HashCode: " + ll.hashCode());
@@ -113,23 +135,45 @@ public class LinkedListTester {
 				System.out.println(r);
 				break;
 			case 15 :
-				//Iterator()
+				it = ll.iterator();
+				System.out.println("Walking the list with an iterator: ");
+				while(it.hasNext()) {
+					System.out.println(it.toString());
+					it.next();
+				}
 				break;
 			case 16 :
 				result = ll.lastIndexOf("TestSimpleAdd");
-				System.out.println("result: " + result);
+				if(result == -1) {
+					System.out.println("No Matches");
+				}
+				else {
+					System.out.println("result: " + result);
+				}
 				break;
 			case 17 :
-				//listiterator()
+				li = ll.listIterator();
+				while(li.hasNext()) {
+					System.out.println(li.toString());
+					li.next();
+				}
 				break;
 			case 18 :
-				//listiterator(index)
+				index = getIndex(ll.size());
+				li = ll.listIterator(index);
+				while(li.hasNext()) {
+					System.out.println(li.toString());
+					li.next();
+				}
 				break;
 			case 19 :
-				System.out.print("Enter index: ");
-				index = kb.nextInt();
-				obj = ll.remove(index);
-				System.out.println("Resulting Object: " + obj);
+				try {
+					index = getIndex(ll.size());
+					obj = ll.remove(index);
+					System.out.println("Resulting Object: " + obj);
+				}catch(IllegalArgumentException e) {
+					e.printStackTrace();
+				}
 				break;
 			case 20 :
 				if(ll.remove("TestSimpleAdd")) {
@@ -140,25 +184,49 @@ public class LinkedListTester {
 				}
 				break;
 			case 21 :
-				if(ll.removeAll(collection1)) {
-					System.out.println("All nodes present in collection removed from list");
+				try {
+					if(ll.removeAll(collection1)) {
+					System.out.println("All nodes present in collection (if any) removed from list");
+					}
+				}catch(NullPointerException e) {
+					e.printStackTrace();
 				}
 				break;
 			case 22 :
-				if(ll.retainAll(collection1)) {
-					System.out.println("All nodes present in collection are retained in list");
+				try {
+					if(ll.retainAll(collection1)) {
+					System.out.println("All nodes present in collection (if any) are retained in list");
+					}
+				}catch(NullPointerException e) {
+					e.printStackTrace();
 				}
 				break;
 			case 23 :
-				System.out.print("Enter index: ");
-				index = kb.nextInt();
-				obj = ll.set(index, "ModifiedContent");
+				try {
+					index = getIndex(ll.size());
+					obj = ll.set(index, "ModifiedContent");
+				}catch(IllegalArgumentException e) {
+					e.printStackTrace();
+				}
+				
 				break;
 			case 24 :
 				System.out.println("Size of list: " + ll.size());
 				break;
 			case 25 :
-				//sublist
+				fromIndex = getIndex(ll.size());
+				index = getIndex(ll.size());
+				try {
+					sub = (LinkedList<Object>) ll.subList(fromIndex, index);
+				}catch(IndexOutOfBoundsException e) {
+					e.printStackTrace();
+				}catch(IllegalArgumentException e) {
+					e.printStackTrace();
+				}catch(NullPointerException e) {
+					System.out.println("Original List is Empty");
+					e.printStackTrace();
+				}
+				System.out.println(sub.toString());
 				break;
 			case 26 :
 				System.out.println(ll.toString());
@@ -206,6 +274,23 @@ public class LinkedListTester {
 		System.out.println("----------------------------------------");
 		System.out.print("~~>");
 		
+	}
+	/**
+	 * getIndex()
+	 * 	helper method.  Helps with modularity of program
+	 * 	prompts for input of index until valid index entered
+	 * 	returns index
+	 * NOTE:  For some reason, closing the scanner will end up in a no such element exception
+	 * */
+	public static int getIndex(int LinkedListSize) {
+		int index;
+		Scanner kb = new Scanner(System.in);
+		System.out.println("Max Index available for insert: " + (LinkedListSize - 1));
+		do {
+			System.out.print("Enter Index: ");
+			index = kb.nextInt();
+		}while(index < 0 || index > LinkedListSize);
+		return index;
 	}
 	
 }
