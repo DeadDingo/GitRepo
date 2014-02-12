@@ -47,8 +47,8 @@ int main ( int argc, char *argv[ ] ) {
 
   unsigned long daddr;
   unsigned long saddr;
-  int payload_size = 0, sent, sent_size, on, i;
-
+  int payload_size = 0, sent_size, onxc, i;
+  int size = 0;
 
   /*
   * Argument Parsing...*/
