@@ -1,6 +1,8 @@
 /**
  * Demonstrates the use of mutexes in conjunction with condition variables
  * 
+ * Written By Josh Harshman
+ * April 22, 2014
  * */
 
 #include <pthread.h>
