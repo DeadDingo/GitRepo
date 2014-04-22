@@ -1,0 +1,41 @@
+/**
+ * Demonstrates the use of mutex variables
+ * 
+ * Written By Josh Harshman
+ * April 21, 2014
+ * */
+
+#include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#define NUMTHREADS 4
+#define VECLEN 100
+
+typedef struct {
+  double *a;
+  double *b;
+  double *sum;
+  int veclen;
+} DOTDATA;
+
+DOTDATA dotstr;
+pthread_t callThd[NUMTHREADS];
+pthread_mutex_t mutexsum;
+
+void *dotprod(void * arg) {
+
+
+
+
+  pthread_exit((void *) 0);
+
+}
+
+int main(void) {
+
+
+
+  pthread_exit(NULL);
+
+}
