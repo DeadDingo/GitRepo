@@ -74,3 +74,29 @@ void *watch_count(void *t) {
 
   pthread_exit(NULL);
 }
+
+
+int main(void) {
+
+  int i, rc;
+  long t1=1, t2=2, t3=3;
+  pthread_t threads[3];
+  pthread_attr attr;
+  
+  //init mutex and condition vars
+  pthread_mutex_init(&count_mutex, NULL);
+  pthread_cond_init(&count_threshold_cv, NULL); //note null attribute (previous line as well)
+
+  pthread_attr_init(&attr);
+  pthread_setdetatchstate(&attr, PTHREAD_CREATE_JOINABLE);
+  pthread_create(&threads[0], &attr, watch_count, (void *)t1);
+  pthread_create(&threads[1], &attr, inc_count, (void *)t2);
+  pthread_create(&threads[2], &attr, inc_count, (void *)t3);
+
+
+  
+
+
+  pthread_exit(NULL);
+
+}
