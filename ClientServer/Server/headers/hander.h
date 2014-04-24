@@ -27,7 +27,19 @@
 //----[end include]----
 
 
+//----[prototypes]----
+
+/*
+ * void handler(int *onflag)
+ * This method is a multithreading socket listener.  When a connection comes in, a pthread is dispatched to handle the connection
+ * This method loops until it receives a signal from main to quit execution.  In which case it breaks the loop, cleans up, and
+ * joins the main thread (if running as a dispatched thread).
+ * @Param int *onflag:  A pointer to an integer flag.  Is set to 1 (ON) when handler starts looping.  Default 0 (OFF)
+ * */
+void handler(int *onflag);
 
 
+
+//----[end prototypes]----
 
 #endif
