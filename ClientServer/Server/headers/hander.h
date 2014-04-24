@@ -9,6 +9,9 @@
 #ifndef HANDLER_H
 #define HANDLER_H
 
+#define PORT 4444
+#define BACKLOG_SIZE 10
+
 //----[include]----
 
 #include <stdio.h>
@@ -38,7 +41,7 @@
  * */
 void handler(int *onflag);
 
-
+void *process_connection(void *connfd);
 
 //----[end prototypes]----
 
