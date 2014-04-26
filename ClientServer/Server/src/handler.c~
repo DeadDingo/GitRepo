@@ -5,8 +5,6 @@
  * April 23, 2014
  * */
 
-#include "../headers/handler.h"
-
 //define global variables / flags
 int g_flag = 1; //default on
 

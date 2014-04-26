@@ -43,6 +43,8 @@ void handler(int *onflag);
 
 void *process_connection(void *connfd);
 
+int interact();
+
 //----[end prototypes]----
 
 #endif
