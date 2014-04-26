@@ -5,13 +5,15 @@
  * April 23, 2014
  * */
 
+#include "../headers/handler.h"
+
 //define global variables / flags
 int g_flag = 1; //default on
 
 void handler(int *onflag) {
 
   int listenfd = 0, connfd = 0, *new_sock;
-  struct_sockaddr_in serv_addr;
+  struct sockaddr_in serv_addr;
   pthread_attr_t attr;
 
   //char sendbuf[1025];
@@ -33,7 +35,7 @@ void handler(int *onflag) {
 
   //init attributes
   pthread_attr_init(&attr);
-  pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETATCHED);
+  pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
   
   
   while(g_flag) {
@@ -68,7 +70,7 @@ void *process_connection(void *socket) {
   int sock = *(int *)socket; //get socket descriptor
 
   printf(ANSI_COLOR_CYAN "[*]" ANSI_COLOR_RESET);
-  printf(" In thread processing connection %d\n" sock);
+  printf(" In thread processing connection %d\n", sock);
 
   pthread_exit(NULL);
 }
@@ -92,6 +94,6 @@ int interact() {
     else
       printf(ANSI_COLOR_RED "[-]" ANSI_COLOR_RESET " Unknown Command\n");
 
-  } while(exit)
+  } while(exit);
 
 }
