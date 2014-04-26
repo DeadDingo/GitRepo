@@ -8,14 +8,20 @@
 #include "../headers/handler.h"
 
 int main ( int argc, char *argv[ ] ) {
-
+  
+  int *on_flag = 0; //server is off
   pthread_attr_t attr;
 
   //inits
   pthread_attr_init(&attr);
-  pthread_attr_setdetachstate(&attr, CREATE_THREAD_JOINABLE);
+  pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
 
   printf(ANSI_COLOR_CYAN "[*]" ANSI_COLOR_RESET " Starting server\n");
+  handler(&on_flag);
+  if(*on_flag == 1)
+    printf(ANSI_COLOR_CYAN "[*]" ANSI_COLOR_RESET " Server running...\n");
+  else if(*on_flag == 0)
+    printf(ANSI_COLOR_CYAN "[*]" ANSI_COLOR_RESET " Server not running...\n");
 
   pthread_exit(NULL);
 

@@ -10,7 +10,7 @@
 //define global variables / flags
 int g_flag = 1; //default on
 
-void handler(int *onflag) {
+void handler(int **onflag) {
 
   int listenfd = 0, connfd = 0, *new_sock;
   struct sockaddr_in serv_addr;
@@ -37,7 +37,7 @@ void handler(int *onflag) {
   pthread_attr_init(&attr);
   pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
   
-  
+  **onflag = 1;
   while(g_flag) {
 
     connfd = accept(listenfd, (struct sockaddr *)NULL, NULL);
