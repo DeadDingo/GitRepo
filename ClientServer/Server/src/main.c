@@ -21,7 +21,7 @@ int main ( int argc, char *argv[ ] ) {
 
   pthread_create(&server_thread, &attr, handler, (void *) tid);
 
-  // interact();
+  interact();
 
   pthread_join(server_thread, NULL);
 

@@ -84,15 +84,8 @@ int interact() {
 
   do {
     //fancy colored command prompt :)
-    printf(ANSI_COLOR_GREEN "[" ANSI_COLOR_MAGENTA "srv" ANSI_COLOR_GREEN "]" ANSI_COLOR_CYAN "->" ANSI_COLOR_RESET);
+    printf(ANSI_COLOR_GREEN "[" ANSI_COLOR_MAGENTA "srv" ANSI_COLOR_GREEN "]" ANSI_COLOR_CYAN "-> " ANSI_COLOR_RESET);
     fgets(buffer, sizeof(buffer), stdin);
-
-    if(strncmp(buffer, "exit", sizeof(buffer)) == 0)
-      exit = 0; //set exit flag
-    if(strncmp(buffer, "shutoff", sizeof(buffer)) == 0)
-      g_flag = 0;
-    else
-      printf(ANSI_COLOR_RED "[-]" ANSI_COLOR_RESET " Unknown Command\n");
 
   } while(exit);
 
