@@ -60,6 +60,7 @@ void *handler(void *tid) {
 
   //clean up attributes
   free(new_sock);
+  new_sock = NULL;
   pthread_attr_destroy(&attr);
   pthread_exit(NULL);
 }
@@ -78,7 +79,7 @@ void *process_connection(void *socket) {
 //interact with server *not clients*
 int interact() {
 
-  char buffer[11]; //allocate buffer for input
+  char buffer[20]; //allocate buffer for input
 
   int exit = 1; //running flag
 
@@ -86,6 +87,7 @@ int interact() {
     //fancy colored command prompt :)
     printf(ANSI_COLOR_GREEN "[" ANSI_COLOR_MAGENTA "srv" ANSI_COLOR_GREEN "]" ANSI_COLOR_CYAN "-> " ANSI_COLOR_RESET);
     fgets(buffer, sizeof(buffer), stdin);
+    strncpy(input, buffer, strlen(buffer));
 
   } while(exit);
 
