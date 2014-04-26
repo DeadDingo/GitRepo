@@ -9,7 +9,8 @@
 
 int main ( int argc, char *argv[ ] ) {
   
-  int *onflag = 0; //server is off
+  long tid = 0; //useless thread id.
+  pthread_t server_thread;
   pthread_attr_t attr;
 
   //inits
@@ -17,12 +18,14 @@ int main ( int argc, char *argv[ ] ) {
   pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
 
   printf(ANSI_COLOR_CYAN "[*]" ANSI_COLOR_RESET " Starting server\n");
-  handler(&onflag);
-  if(*onflag == 1)
-    printf(ANSI_COLOR_CYAN "[*]" ANSI_COLOR_RESET " Server running...\n");
-  else if(*onflag == 0)
-    printf(ANSI_COLOR_CYAN "[*]" ANSI_COLOR_RESET " Server not running...\n");
 
+  pthread_create(&server_thread, &attr, handler, (void *) tid);
+
+  // interact();
+
+  pthread_join(server_thread, NULL);
+
+  pthread_attr_destroy(&attr);
   pthread_exit(NULL);
 
 }

@@ -10,7 +10,7 @@
 //define global variables / flags
 int g_flag = 1; //default on
 
-void handler(int **onflag) {
+void *handler(void *tid) {
 
   int listenfd = 0, connfd = 0, *new_sock;
   struct sockaddr_in serv_addr;
@@ -37,7 +37,7 @@ void handler(int **onflag) {
   pthread_attr_init(&attr);
   pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
   
-  **onflag = 1;
+
   while(g_flag) {
 
     connfd = accept(listenfd, (struct sockaddr *)NULL, NULL);
@@ -71,7 +71,7 @@ void *process_connection(void *socket) {
 
   printf(ANSI_COLOR_CYAN "[*]" ANSI_COLOR_RESET);
   printf(" In thread processing connection %d\n", sock);
-
+  sleep(2);
   pthread_exit(NULL);
 }
 
@@ -88,7 +88,7 @@ int interact() {
     fgets(buffer, sizeof(buffer), stdin);
 
     if(strncmp(buffer, "exit", sizeof(buffer)) == 0)
-      exit = 1; //set exit flag
+      exit = 0; //set exit flag
     if(strncmp(buffer, "shutoff", sizeof(buffer)) == 0)
       g_flag = 0;
     else

@@ -39,7 +39,7 @@
  * joins the main thread (if running as a dispatched thread).
  * @Param int *onflag:  A pointer to an integer flag.  Is set to 1 (ON) when handler starts looping.  Default 0 (OFF)
  * */
-void handler(int *onflag);
+void handler(void *tid);
 
 void *process_connection(void *connfd);
 
