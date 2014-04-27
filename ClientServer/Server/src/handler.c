@@ -7,8 +7,6 @@
 
 #include "../headers/handler.h"
 
-//define global variables / flags
-int g_flag = 1; //default on
 
 void *handler(void *tid) {
 
@@ -16,12 +14,9 @@ void *handler(void *tid) {
   struct sockaddr_in serv_addr;
   pthread_attr_t attr;
 
-  //char sendbuf[1025];
-
   listenfd = socket(AF_INET, SOCK_STREAM, 0); //create an un-named socket inside the kernel
 
   //set memory
-  //memset(sendbuf, '0', sizeof(sendbuf));
   memset(&serv_addr, '0', sizeof(serv_addr));
 
   //set struct member variables
@@ -38,7 +33,7 @@ void *handler(void *tid) {
   pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
   
   int count = 0;
-  while(g_flag) {
+  while(1) { 
 
     if(count == 5)
       break;
@@ -55,6 +50,7 @@ void *handler(void *tid) {
     
     //dispatch thread to handle connection
     pthread_create(&sniffer_thread, &attr, process_connection, (void *)new_sock);
+
     count++;
   }
 
@@ -76,10 +72,10 @@ void *process_connection(void *socket) {
   printf(ANSI_COLOR_CYAN "[*]" ANSI_COLOR_RESET);
   printf(" In thread processing connection %d\n", sock);
 
-  //grab a file from the remote machine
+  //send a command to the remote machine
   char sendbuf[1024];
   memset(sendbuf, '0', sizeof(sendbuf));
-  snprintf(sendbuf, sizeof(sendbuf), "testing");
+  snprintf(sendbuf, sizeof(sendbuf), "COMMAND2");
   write(sock, sendbuf, strlen(sendbuf));
   sleep(1);
   pthread_exit(NULL);
@@ -90,9 +86,8 @@ void *process_connection(void *socket) {
 int interact() {
 
   char buffer[20]; //allocate buffer for input
-  char input[10];
   int exit = 1; //running flag
-
+  char *input;
   do {
     //fancy colored command prompt :)
     printf(ANSI_COLOR_GREEN "[" ANSI_COLOR_MAGENTA "srv" ANSI_COLOR_GREEN "]" ANSI_COLOR_CYAN "-> " ANSI_COLOR_RESET);
@@ -103,9 +98,13 @@ int interact() {
       if(buffer[last] == '\n')
 	buffer[last] = '\0';
     }
+    input = (char *)calloc(sizeof(buffer), '0');
     strncpy(input, buffer, strlen(buffer));
 
-  } while(exit);
+    printf("You entered %s\n", input);
+  }while(1);
+  free(input);
+  input = NULL;
 
   return 0;
 
