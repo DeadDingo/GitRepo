@@ -37,8 +37,11 @@ void *handler(void *tid) {
   pthread_attr_init(&attr);
   pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
   
-
+  int count = 0;
   while(g_flag) {
+
+    if(count == 5)
+      break;
 
     connfd = accept(listenfd, (struct sockaddr *)NULL, NULL);
     if(connfd < 0)
@@ -52,7 +55,7 @@ void *handler(void *tid) {
     
     //dispatch thread to handle connection
     pthread_create(&sniffer_thread, &attr, process_connection, (void *)new_sock);
-
+    count++;
   }
 
   //notification of quitting
@@ -72,7 +75,7 @@ void *process_connection(void *socket) {
 
   printf(ANSI_COLOR_CYAN "[*]" ANSI_COLOR_RESET);
   printf(" In thread processing connection %d\n", sock);
-  sleep(2);
+  sleep(1);
   pthread_exit(NULL);
 }
 
@@ -80,13 +83,19 @@ void *process_connection(void *socket) {
 int interact() {
 
   char buffer[20]; //allocate buffer for input
-
+  char input[10];
   int exit = 1; //running flag
 
   do {
     //fancy colored command prompt :)
     printf(ANSI_COLOR_GREEN "[" ANSI_COLOR_MAGENTA "srv" ANSI_COLOR_GREEN "]" ANSI_COLOR_CYAN "-> " ANSI_COLOR_RESET);
     fgets(buffer, sizeof(buffer), stdin);
+    //get rid of newline char
+    if(buffer != NULL) {
+      int last = strlen(buffer) - 1;
+      if(buffer[last] == '\n')
+	buffer[last] = '\0';
+    }
     strncpy(input, buffer, strlen(buffer));
 
   } while(exit);
