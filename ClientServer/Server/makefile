@@ -15,18 +15,18 @@
 
 
 ./startserver:	src/main.c
-		gcc src/handler.c src/main.c -o startserver
+		gcc -pthread src/handler.c src/main.c -o startserver
 		./startserver
 
 only:		src/main.c
-		gcc src/handler.c src/main.c -o startserver
+		gcc -pthread src/handler.c src/main.c -o startserver
 
 clean:		
 		rm -rf startserver
 
 cleanrun:	src/main.c
 		rm -rf startserver
-		gcc src/handler.c src/main.c -o startserver
+		gcc -pthread src/handler.c src/main.c -o startserver
 		./startserver
 
 #end
