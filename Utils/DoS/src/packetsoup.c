@@ -42,7 +42,7 @@ void Usage( void ) {
   puts(" -d <destination address>");
   puts(" -p <payload size>");
 
-  printf("repeater -s <source address> -d <destination address> -p <payload size>\n");
+  printf("FloodTarget -s <source address> -d <destination address> -p <payload size>\n");
 
   exit(8);
 

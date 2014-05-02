@@ -2,11 +2,8 @@
  * Packsoup.c
  *
  *
- * Written by Josh Harshman
- * All Rights Reserved 12.21.2013
- * 
- * Note:
- * in_cksum() function written by Silver Moon
+ * Written by Voodoo
+ * 12.21.2013
  *
  * */
 
@@ -45,7 +42,7 @@ void Usage( void ) {
   puts(" -d <destination address>");
   puts(" -p <payload size>");
 
-  printf("FloodTarget.out -s <source address> -d <destination address> -p <payload size>\n");
+  printf("repeater -s <source address> -d <destination address> -p <payload size>\n");
 
   exit(8);
 
