@@ -1,10 +1,10 @@
 /**
  * Packetsoup.h
  * 
- * Prototype Functions for ICMP Repeater
+ * Prototype Functions for DoS project
  *
- * Written By Voodoo
- * 12.21.2013
+ * Written By Josh Harshman
+ * All Rights Reserved 12.21.2013
  * 
  * */
 
@@ -28,13 +28,17 @@ typedef unsigned short int u16;
 
 
 /**
+ * Description:
  * Calculates the checksum on a packet to packet basis
+ *
  * */
 unsigned short in_cksum(unsigned short *ptr, int nbytes);
 
 
 /**
+ * Description:
  * Displays Usage Dialog
+ * 
  * */
 void Usage( void );
 

@@ -2,7 +2,8 @@
  * DoS : Denial Of Service Attack
  * ICMP Flooding
  *
- * Written By Voodoo 
+ * Written By Voodoo
+ * 
  *
  * */
 
@@ -19,7 +20,7 @@ int main ( int argc, char *argv[ ] ) {
   /*
   * Argument Parsing...*/
 
-  if(argc < 3 || argc > 4) {
+  if(argc < 3) {
     Usage();
   }
 
@@ -126,7 +127,6 @@ int main ( int argc, char *argv[ ] ) {
   }
 
   free(packet);
-  packet = NULL;
   close(sockfd);
 
   return 0;

@@ -15,7 +15,7 @@
 typedef struct {
   double *a;
   double *b;
-  double *sum;
+  double sum;
   int veclen;
 } DOTDATA;
 
@@ -79,6 +79,21 @@ int main(void) {
   pthread_attr_init(&attr);
   pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
 
+  for(i = 0; i < NUMTHREADS; i++) {
+    pthread_create(&callThd[i], &attr, dotprod, (void *)i);
+  }
+
+  pthread_attr_destroy(&attr);
+
+  //wait for other threads
+  for(i = 0; i < NUMTHREADS; i++) {
+    pthread_join(callThd[i], &status);
+  }
+
+  printf("Sum = %f\n", dotstr.sum);
+  free(a);
+  free(b);
+  pthread_mutex_destroy(&mutexsum);
 
   pthread_exit(NULL);
 
