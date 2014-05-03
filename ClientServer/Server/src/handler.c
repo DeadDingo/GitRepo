@@ -75,7 +75,7 @@ void *process_connection(void *socket) {
   //send a command to the remote machine
   char sendbuf[1024];
   memset(sendbuf, '0', sizeof(sendbuf));
-  snprintf(sendbuf, sizeof(sendbuf), COMMAND2);
+  snprintf(sendbuf, sizeof(sendbuf), GETUID);
   write(sock, sendbuf, strlen(sendbuf));
   sleep(1);
   pthread_exit(NULL);

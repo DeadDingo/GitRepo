@@ -10,7 +10,7 @@
 # make <only> - compiles the program							#
 # make <clean> - removes the compiled program						#
 # make <cleanrun> - removes the compiled program, compiles, and executes		#
-#										~voodoo	#
+#											#
 #########################################################################################
 
 
