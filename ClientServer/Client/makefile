@@ -10,16 +10,16 @@
 
 
 bot.out:	src/bot.c
-		gcc src/interpreter.c src/comms.c src/bot.c -o bot.out
-		./bot.out 127.0.0.1 #connect to localhost
+		gcc src/comms.c src/bot.c -o bot.out
+		./bot.out 10.0.0.4
 
 only:		src/bot.c
-		gcc src/interpreter.c src/comms.c src/bot.c -o bot.out
+		gcc src/comms.c src/bot.c -o bot.out
 
 clean:		bot.out
 		rm -rf bot.out
 
 cleanrun:	bot.out
 		rm -rf bot.out
-		gcc src/interpreter.c src/comms.c src/bot.c -o bot.out
+		gcc src/comms.c src/bot.c -o bot.out
 		./bot.out 127.0.0.1 #connect to localhost

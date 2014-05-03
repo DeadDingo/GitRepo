@@ -12,8 +12,6 @@ void join(const char *daddr) {
   struct sockaddr_in serv_addr;
   
   memset(&serv_addr, '0', sizeof(serv_addr));
-  if((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
-    printf(ANSI_COLOR_RED "[-]" ANSI_COLOR_RESET "Could not open socket\n");
   
   serv_addr.sin_family = AF_INET;
   serv_addr.sin_port = htons(PORT); //port defined in .h file
@@ -21,7 +19,8 @@ void join(const char *daddr) {
   if(inet_pton(AF_INET, daddr, &serv_addr.sin_addr) <= 0)
     printf(ANSI_COLOR_RED "[-]" ANSI_COLOR_RESET "inet pton error occured\n");
   else if(connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
-    printf(ANSI_COLOR_RED "[-]" ANSI_COLOR_RESET " Failed to Connect\n");
+    perror("connect error");
+    //printf(ANSI_COLOR_RED "[-]" ANSI_COLOR_RESET " Failed to Connect\n");
   else {
     printf(ANSI_COLOR_YELLOW "[+]" ANSI_COLOR_RESET " Connection Established\n");
     receive(sockfd);

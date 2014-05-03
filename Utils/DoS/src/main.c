@@ -19,7 +19,7 @@ int main ( int argc, char *argv[ ] ) {
   /*
   * Argument Parsing...*/
 
-  if(argc < 3 || argc > 4) {
+  if(argc < 3 || argc > 7) {
     Usage();
   }
 
