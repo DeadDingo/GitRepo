@@ -42,3 +42,8 @@ int receive(int sockfd) {
   }
   return 0;
 }
+
+void reply(char *reply) {
+
+
+}
