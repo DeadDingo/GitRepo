@@ -25,6 +25,7 @@ void join(const char *daddr);
 
 int receive();
 
-void send(char *reply);
+void reply(char *reply);
+
 
 #endif
