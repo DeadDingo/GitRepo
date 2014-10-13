@@ -13,10 +13,12 @@ int main(void) {
   char buffer[10];
   char *input = (char *)calloc('0', sizeof(buffer));
 
-  while(1) {
+  while(start != end) {
     fgets(buffer, sizeof(buffer), stdin);
     strncpy(input, buffer, sizeof(buffer));
     puts(input);
+    printf("current position %p\n", &start);
+    
   }
 
 }
